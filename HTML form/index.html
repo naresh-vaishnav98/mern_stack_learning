@@ -1,0 +1,78 @@
+<html>
+<head>
+	<title>Job Application Form</title>
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+</head>
+<body>
+	<div class="outer">
+		<div class="heading">
+				<h1>Job Application</h1>
+			</div>
+		<div class="innerleft">
+			<form>
+				<div class="formpart">
+					<label>First Name</label>
+					<input type="text" required name="firstName" autofocus>
+				</div>
+				<div class="formpart">
+					<label>Last Name</label>
+					<input type="text" required name="lastName">
+				</div>
+				<div class="gender">
+					<label>Gender</label><br>
+					<input type="radio" required name="lastName">Male
+					<input type="radio" required name="lastName">Female
+				</div>
+				<div class="formpart">
+					<label>Mobile Number</label>
+					<input type="tel" pattern="[0-9]{10}" required name="mobile">
+				</div>
+				<div class="formpart">
+					<label>E-mail</label>
+					<input type="email" required name="email">
+				</div>
+				<div class="formpart">
+					<label>DOB</label>
+					<input type="date" required name="dob">
+				</div>
+				<div class="qualifications">
+					<label>Qualifications</label><br>
+					<input type="checkbox" name="Qualifications" value="[]">12th
+					<input type="checkbox" name="Qualifications" value="[]">Graduate
+					<input type="checkbox" name="Qualifications" value="[]">PG
+					<input type="checkbox" name="Qualifications" value="[]">PHED
+				</div>
+				<div class="formpart">
+					<label>State</label>
+					<select required>
+						<optgroup label="India">
+							<option>Rajasthan</option>
+							<option>Gujrat</option>
+							<option>Delhi</option>
+							<option>Maharashtra</option>
+						</optgroup>
+						<optgroup label="US">
+							<option>California</option>
+							<option>New york</option>
+							<option>High Point</option>
+						</optgroup>
+					</select>
+				</div>
+				<div class="address">
+					<label>Address</label>
+					<textarea rows="6" required>						
+					</textarea>
+				</div>
+				<div class="formpart">
+					<label>Upload Image</label>
+					<input type="file" required name="image" accept="image/*">
+				</div>
+				<div class="formpart submit">					
+					<input type="submit" name="submit" value="Submit">
+				</div>
+			</form>
+		</div>
+		
+	</div>
+</body>
+</html>

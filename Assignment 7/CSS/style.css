@@ -1,0 +1,44 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+body{
+	font-family: sans-serif;
+	background: #F5F5F5;
+}
+.outer{
+	width: 1200px;
+	margin: auto;
+}
+
+.main_heading{
+	text-align: center;
+	padding: 20px 0px;
+}
+.outer_courses{
+	display: flex;
+	flex-wrap: wrap;
+}
+.courses{
+	background: white;
+	text-align: center;
+	width: 30%;
+	margin: 1.5%;
+	padding: 20px;
+	box-sizing: border-box;
+	border-radius: 20px;
+	box-shadow: 0px 0px 20px #ccc;
+}
+.content h2{
+	padding: 15px 0px;
+}
+.content p{
+	line-height: 25px;
+}
+.image{
+	height: 90px;
+}

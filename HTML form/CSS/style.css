@@ -1,0 +1,99 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	font-family: sans-serif;
+
+}
+a{
+	text-decoration: none;
+	color: black;
+
+}
+.outer{
+	border: 1px solid black;
+	margin: auto;
+	width: 1200px;
+	height: 750px;
+	margin-top: 50px;
+	margin-bottom: 50px;	
+	background-image: url('D:/WsCube/HTML form/images/001.jpg');
+	background-size: cover;
+}
+.heading{
+	text-align: center;
+	margin: 50px 0px;
+}
+label{
+	font-weight: bold;
+}
+.innerleft{
+	width: 47%;
+	margin: 0% 1.5%;
+	float: left;
+	background: white;
+	padding: 25px;
+	border: 1px solid skyblue;
+	border-radius: 20px;
+	box-shadow: 0px 0px 10px skyblue;
+	margin-left: 24%;
+}
+.innerright{
+	width: 47%;
+	margin: 0% 1.5%;
+	float: right;
+}
+form{
+	display: flex;
+	flex-wrap: wrap;
+}
+.formpart{
+	margin: 2% 2%;
+	width: 46%;
+}
+.formpart input,select{
+	width: 98%;
+	margin: 0% 1%;
+	border: 1px solid grey;
+	border-radius: 5px;
+	height: 30px;
+}
+.gender{
+	margin: 2% 2%;
+	width: 46%;
+}
+
+.gender input{
+	margin: 0% 1%;
+}
+.qualifications{
+	margin: 2% 2%;
+	width: 46%;
+}
+.qualifications input{
+	margin: 0% 4%;
+}
+.address{
+	width: 100%;
+	margin: 2%;
+}
+.address textarea{
+	width: 98.5%;
+	margin: 0% 1%;
+	border: 1px solid grey;
+	border-radius: 5px;
+	height: 100px;
+	resize: none;
+	padding: 10px;
+}
+.submit input{
+	margin-top: 18px;
+	border: none;
+	background: skyblue;
+	color: white;
+	font-weight: bold;
+}
+
+.submit input:hover{
+	background: blue;
+	cursor: pointer;
+}

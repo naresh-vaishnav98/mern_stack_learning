@@ -1,0 +1,431 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+body{
+	background-color: black;
+}
+.doaremon{
+	position: absolute;
+	left: 650px;
+    top: 150px;
+}
+.face{
+	background-color: #029ECD;
+	border-radius: 50%;
+	height: 150px;
+	width: 150px;	
+	position: relative;
+	left: 28px;
+	animation: facee;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;
+}
+@keyframes facee{
+	from{
+/*		left: 5px;*/
+		left: 20px;
+/*		top: 20px;*/
+		bottom: 0px;
+		transform-origin: bottom left;
+	}
+	to{
+		transform: rotate(15deg);
+		right: 5px;
+		bottom: -10px;
+/*		top: 47px;*/
+		transform-origin: bottom right;
+	}
+}
+.outer_eyes{
+	display: flex;
+	position: absolute;
+	gap: 25px;
+	left: 43px;
+    top: 25px;
+}
+.eye{
+	background-color: white;
+	height: 50px;
+	width: 20px;
+	border-radius: 50%;
+	position: relative;
+}
+.black_eye{
+	background-color: black;
+    height: 25px;
+    width: 8px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 4px;
+    left: 6px;
+}
+.white{
+	background-color: white;
+    height: 10px;
+    width: 4px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 2px;
+    left: 1.75px;
+}
+.nose{
+	background-color: red;
+    height: 15px;
+    width: 22px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 55px;
+    left: 65px;
+}
+.mouth{
+	background-color: white;
+    height: 25px;
+    width: 50px;
+    position: absolute;
+    border-radius: 0px 0px 50px 50px;
+    bottom: 20px;
+    left: 50px;
+
+}
+.toungh{
+	background-color: red;
+    height: 20px;
+    width: 35px;
+    position: absolute;
+    border-radius: 0px 0px 50px 50px;
+    bottom: 5px;
+    left: 8px;
+}
+.bodyparts{
+	display: flex;
+}
+.lefthand{
+	background-color: #029ECD;
+	height: 86px;
+	width: 30px;
+	border-radius: 50px 50px 0px 0px ;
+	position: relative;
+	left: 5px;
+	top: 20px;
+	animation: lefth;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;
+}
+@keyframes lefth{
+	from{
+		left: 5px;
+		top: 20px;
+	}
+	to{
+		transform: rotate(135deg);
+		left: -10px;
+		top: 47px;
+		transform-origin: top right;
+	}
+}
+.L-hand{
+	background-color: white;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    bottom: -12px;
+    left: -2px;
+    z-index: 1;
+}
+.body{
+	background-color: #029ECD;
+	height: 190px;
+	width: 150px;
+	border-radius: 20px 20px 20px 20px;
+	position: relative;
+	top: -8px;
+}
+.righthand{
+	background-color: #029ECD;
+	height: 30px;
+	width: 86px;
+	position: relative;
+	border-radius: 50px 0px 0px 50px ;
+	top: 20px;
+	animation: righth;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}
+@keyframes righth{
+	from{
+		left: -10px;
+		top: 20px;
+	}
+	to{
+		transform: rotate(135deg);
+		left: -10px;
+		top: 47px;
+		transform-origin: top left;
+	}
+}
+.R-hand{
+	background-color: white;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    bottom: -3px;
+    right: -10px;
+}
+.bow{
+	background-color: red;
+	height: 18px;
+	width: 60px;
+	border-radius: 10px 10px 10px 10px;
+	position: absolute;
+	left: 42px;
+    top: -4px;
+}
+.bow_bell{
+	background-color: yellow;
+	height: 19px;
+	width: 17px;
+	border-radius: 50%;
+	position: absolute;
+	left: 23px;
+}
+.pocket{
+	background-color: white;
+    height: 40px;
+    width: 80px;
+    position: absolute;
+    border-radius: 0px 0px 50px 50px;
+    top: 60px;
+    left: 35px;
+}
+.L-foot{
+	background-color: white;
+    width: 83px;
+    height: 28px;
+    border-radius: 20px 20px 20px 20px;
+    position: absolute;
+    bottom: -8px;
+    left: -8px;
+}
+.R-foot{
+	background-color: white;
+    width: 83px;
+    height: 28px;
+    border-radius: 20px 20px 20px 20px;
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+}
+.footgap{
+	background-color: white;
+    width: 1px;
+    height: 50px;
+    position: absolute;
+    bottom: 7px;
+    left: 75px;
+}
+
+
+
+
+
+
+
+
+/*image hover effect*/
+
+.outer_main{
+	background-color: white;
+	width: 1200px;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+.outer_cont{
+	width: 30%;
+	margin: 1.5%;
+	position: relative;
+}
+.image{	
+	height: 100%;
+}
+.outer_cont img{
+	width: 100%;
+	height: 100%;
+
+}
+.content{
+	position: absolute;
+	padding: 15px;
+	z-index: 1;
+	top: 0px;
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 88%;
+/*	display: none;*/
+	opacity: 0;
+	visibility: hidden;
+	transition: 1s;
+}
+
+.outer_cont:hover .content{
+/*	display: block;*/
+	opacity: 1;
+	visibility: visible;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*dropdown*/
+
+
+.outer_header{
+	width: 1200px;
+	margin: 50px auto;
+	background-color: white;
+	display: flex;
+	box-sizing: border-box;
+}
+.logo{
+	width: 20%;
+}
+.logo img{
+	width: 100%;
+}
+.menu{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.menu>ul{
+	list-style: none;
+	display: flex;
+	gap: 100px;
+	margin: 0px 70px;
+	position: relative;
+
+}
+.submenu{
+	background-color: grey;
+	width: 200px;
+	list-style: none;
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.5s;
+}
+
+.menu>ul>li:hover .submenu{
+	opacity: 1;
+	visibility: visible;
+}
+/*.menu::after{
+	content: '';
+	border-width: 20px 20px 20px 20px;
+	border-color: red green yellow blue;
+	border-style: solid solid solid solid;
+}*/
+
+
+
+
+
+
+/*slider*/
+
+.outer_div{
+	width: 300px;
+	height: 300px;
+	border: 0.5px solid darkred;
+	position: relative;
+	margin: 100px auto;
+	overflow: hidden;
+}
+.img img{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	transition: 4s;
+}
+.img1{
+	transform: translate(-300px);
+/*	left: -300px;*/
+}
+.img2{
+/*	left: -600px;*/
+	transform: translate(-600px);
+}
+.img3{
+/*	left: 0px;*/
+	transform: translate(0px);
+}
+
+.outer_div:hover .img3{
+/*	left: 600px;*/
+	transform: translate(600px);
+}
+.outer_div:hover .img2{
+/*	left: 0px;*/
+	transform: translate(0px);
+
+}
+.outer_div:hover .img1{
+/*	left: 300px;*/
+	transform: translate(300px);
+}
+
+
+
+
+
+.outer_rotate{
+	width: 300px;
+	height: 300px;
+	margin: 100px auto;
+	border: 0.5px solid red;
+	border-radius: 50%;
+	
+	position: relative;
+}
+.outer_rotate .img01{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	transition: 2s;
+}
+.outer_rotate:hover .img01{
+	transform: rotate(-180deg);
+}
+.outer_rotate:hover .img02{
+	transform: rotate(180deg);
+/*	transform: translate(-150%, 50%);*/
+}
+.img02{
+	width: 50%;
+	height: 50%;
+	border-radius: 50%;
+	position: absolute;
+/*	transform: translate(-150%, 50%);*/
+	left: 25%;
+    top: 25%;
+	transition: 2s;
+}

@@ -1,0 +1,54 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+.outer_btn{
+	width: 300px;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+}
+
+.inner_btn button{
+	padding: 10px 20px;
+	border-radius: 15px;
+	background-color: green;
+	border: none;
+	color: white;
+	position: relative;
+	z-index: 9;
+	top: 50px;
+
+}
+.wave{
+	background-color: green;
+	position: absolute;
+	border-radius: 15px;
+	top: 0px;
+	left: 0px;
+	opacity: 0;
+	height: 100%;
+	width: 100%;
+	animation: wav;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+}
+@keyframes wav{
+	0%{
+		transform: scale(1,1);
+		opacity: 0;
+	}
+	50%{
+		transform: scale(1.5,1.5);
+		opacity: 0.5;
+	}
+	100%{
+		transform: scale(1,1);
+		opacity: 1;
+	}
+}

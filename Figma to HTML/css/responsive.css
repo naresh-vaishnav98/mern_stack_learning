@@ -1,0 +1,1106 @@
+@media only screen and (min-width:769px) and (max-width:1024px){
+	.header_inner{
+		padding: 0px 15px;
+	}
+
+	.banner_inner{
+		padding: 0px 15px;
+	}
+	.banner_left h1{
+		font-size: 4vw;
+    	line-height: 50px;
+	}
+	.banner_left p{
+		font-size: 2.1vw;
+    	line-height: 30px;
+	}
+	.banner_left ul li{
+		gap: 8px;
+		font-size: 2.1vw;
+    	line-height: 30px;
+	}
+	.banner_left ul li img{
+		width: 18px;
+	}
+	.banner_btns{
+		justify-content: space-between;
+		margin-top: 35px;
+		gap: 0px;
+	}
+	.demo_btn{
+		padding: 5px 10px;
+		font-size: 1.8vw;
+    	line-height: 20px;
+	}
+	.dwnld_btn{
+		padding: 5px 10px;
+		font-size: 1.8vw;
+	}
+	.dwnld_btn img{
+		width: 18px;
+	}
+	.form{
+		top: 5.4%;
+		padding: 15px 30px;
+	}
+	.form_head{
+		margin: 10px;
+	}
+	.form_head h4{
+		font-size: 2.5vw;
+	}
+	.form_head p{
+		font-size: 1.7vw;
+   		line-height: 22px;
+	}
+	.form form{
+		padding: 0px;
+	}
+	.f_field{
+		padding-bottom: 10px;
+	}
+	.form form label{
+		font-size: 1.7vw;
+	}
+	.form form input{
+		width: 89%;
+		padding: 8px 12px;
+		margin-top: 5px;
+	}
+	.reg{
+		font-size: 1.7vw;
+   		line-height: 20px;
+   		padding: 8px 15px;
+	}
+	.info_bar_inner{
+		margin: 0px 15px;
+		margin-top: 5%;
+	}
+	.highlight_inner{
+		margin: 0px 15px;
+		margin-top: 5%;
+	}
+	.item_text h5{
+		font-size: 1.8vw;
+   		line-height: 20px;
+	}
+	.item_text p{
+		font-size: 1.2vw;
+    	line-height: 18px;
+	}
+	.digi_market_inner{
+		padding: 0px 15px;
+	}
+	.certify_outer{
+		padding: 70px 0px;
+	}
+	.certify_inner{
+		padding: 0px 15px;
+	}
+	.certify_head h4{
+		font-size: 3.5vw;
+	}
+	.certify_head p{
+		font-size: 1.5vw;
+    	line-height: 22px;
+	}
+	.certify_contents{
+		gap: 25px;
+    	margin: 40px 0px;
+	}
+	.certify_content{
+		padding: 15px;
+	}
+	.cont_img{
+		padding: 0px 15px;
+	}
+	.cont_text h3{
+		font-size: 1.8vw;
+		padding-bottom: 13px;
+	}
+	.cont_text p{
+		font-size: 1.2vw;
+    	line-height: 18px;
+	}
+	.free_class_certify{
+		padding-top: 0;
+	}
+	.class_btn_certify{
+		padding: 12px 40px;
+	}
+	.certify_right_inner img{
+		width: 83%;
+	}
+	.certify_right_inner:before{
+		width: 32%;
+    	height: 25%;
+	}
+	.certify_right_inner:after{
+		bottom: -40px;
+	    right: 0px;
+	    width: 35%;
+	    height: 30%;
+	}
+	.curriculum_inner{
+		padding: 60px 15px;
+	}
+	.curriculum_head h2{
+		font-size: 3.5vw;
+	}
+	.curriculum_head p{
+		font-size: 1.7vw;
+    	line-height: 22px;
+	}
+	.tabs{
+		gap: 20px;
+	}
+	.tab{
+		font-size: 1.5vw;
+	}
+	.tab_items ul li{
+		gap: 10px;
+		font-size: 1.6vw;
+	}
+	.tab_items ul li img{
+		width: 25px;
+	}
+	.class_btn_curriculum{
+		width: 20%;
+		padding: 12px 40px;
+		font-size: 1.5vw;
+		line-height: 25px;
+	}
+	.w_learn_inner{
+		padding: 60px 15px;
+	}
+	.feedback_inner{
+		padding: 60px 15px;
+	}
+	.class_btn_start{
+		width: 30%;
+		padding: 12px 40px;
+	}
+}
+@media only screen and (min-width:426px) and (max-width:768px){
+	.header_inner{
+		padding: 0px 15px;
+	}
+
+	.banner_inner{
+		padding: 0px 15px;
+	}
+	.banner_left h1{
+		font-size: 4vw;
+    	line-height: 40px;
+	}
+	.banner_left p{
+		font-size: 2.1vw;
+    	line-height: 25px;
+	}
+	.banner_left ul li{
+		gap: 8px;
+		font-size: 2.1vw;
+    	line-height: 25px;
+	}
+	.banner_left ul li img{
+		width: 18px;
+	}
+	.banner_btns{
+		justify-content: space-between;
+		margin-top: 35px;
+		gap: 0px;
+	}
+	.demo_btn{
+		padding: 5px 10px;
+		font-size: 1.8vw;
+    	line-height: 20px;
+	}
+	.dwnld_btn{
+		padding: 5px 10px;
+		font-size: 1.8vw;
+	}
+	.dwnld_btn img{
+		width: 18px;
+	}
+	.form{
+		top: 5.4%;
+		padding: 15px 30px;
+	}
+	.form_head{
+		margin: 10px;
+	}
+	.form_head h4{
+		font-size: 2.5vw;
+	}
+	.form_head p{
+		font-size: 1.7vw;
+   		line-height: 22px;
+	}
+	.form form{
+		padding: 0px;
+	}
+	.f_field{
+		padding-bottom: 10px;
+	}
+	.form form label{
+		font-size: 1.7vw;
+	}
+	.form form input{
+		width: 89%;
+		padding: 8px 12px;
+		margin-top: 5px;
+	}
+	.reg{
+		font-size: 1.7vw;
+   		line-height: 20px;
+   		padding: 8px 15px;
+	}
+	.info_bar_outer {
+	    width: 100%;
+	    margin-top: 50px;
+	}
+	.info_bar_inner{
+		margin: 0px 15px;
+	}
+	.info_item{
+		padding: 20px 10px;
+	}
+	.info_item h5{
+		font-size: 2.5vw;
+	}
+	.info_item p{
+	    font-size: 1.5vw;
+    	line-height: 20px;
+	}
+	.highlight_inner{
+		padding: 50px 15px;
+	}
+	.highlight_head h3 {
+		font-size: 3.7vw;
+	}
+	.highlight_head p{
+		font-size: 2vw;
+    	line-height: 15px;
+	}
+	.highlight_item{
+		width: 48%;
+	}
+	.class_btn{
+		width: 20%;
+	}
+	.digi_market_inner{
+		padding: 0px 15px;
+	}
+	.digi_head h2{
+		font-size: 4vw;
+    	line-height: 40px;
+	}
+	.digi_head p{
+		font-size: 2vw;
+    	line-height: 27px;
+	}
+	.digi_contents{
+		flex-wrap: wrap;
+		gap: 30px;
+	}
+	.digi_content{
+		width: 42.2%;
+	}
+	.certify_inner{
+		display: flex;
+		flex-direction: column;
+		padding: 100px 15px;
+	}
+	.certify_left{
+		width: 100%;
+	}
+	.certify_head{
+		text-align: center;
+	}
+	.certify_head h4{
+		font-size: 4vw;
+	}
+	.certify_head p{
+		font-size: 2vw;
+    	line-height: 27px;
+	}
+	.certify_contents{
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: space-around;
+	}
+	.certify_content{
+		width: 45%;
+	}
+	.cont_text h3{
+		font-size: 2.2vw;
+	}
+	.cont_text p{
+		font-size: 1.8vw;
+    	line-height: 20px;
+	}
+	.free_class_certify{
+		display: flex;
+    	justify-content: center;
+	}
+	.class_btn_certify{
+		width: 20%;
+		padding: 13px 40px;
+	}
+	.certify_right_inner{
+		display: flex;
+	    justify-content: center;
+	}
+	.certify_right_inner img{
+		width: 55%;
+	}
+	.certify_right_inner:before{
+		left: 120px;
+		width: 50%;
+	}
+	.certify_right_inner:after{
+		bottom: -50px;
+	    right: 100px;
+	    width: 30%;
+	    height: 35%;
+	}
+	.curriculum_inner{
+		padding: 60px 15px;
+	}
+	.curriculum_head h2{
+		font-size: 3.5vw;
+	}
+	.curriculum_head p{
+		font-size: 1.7vw;
+    	line-height: 22px;
+	}
+	.tabs{
+		gap: 0px;
+	}
+	.tab{
+		font-size: 1.6vw;
+        font-weight: 600;
+	}
+	.tab_items ul li{
+		gap: 10px;
+		font-size: 2vw;
+	}
+	.tab_items ul li img{
+		width: 22px;
+	}
+	.class_btn_curriculum{
+		width: 20%;
+		padding: 12px 40px;
+		font-size: 1.8vw;
+		line-height: 25px;
+	}
+	.w_learn_inner{
+		padding: 60px 15px;
+	}
+	.w_learn_head h2{
+		font-size: 3.5vw;
+	}
+	.w_learn_head p{
+		font-size: 1.7vw;
+	    line-height: 22px;
+	    padding: 18px 0px;
+	}
+	.w_learn_item{
+		padding: 20px;
+	}
+	.w_learn_item img{
+		width: 30%;
+	}
+	.w_learn_item_text h3{
+		font-size: 2.2vw;
+	}
+	.w_learn_item_text p{
+		font-size: 1.8vw;
+		line-height: 20px;
+	}
+	.class_btn_w_learn{
+		width: 20%;
+		padding: 10px 40px;
+		font-size: 2.2vw;
+	}
+	.feedback_inner{
+		padding: 60px 15px;
+	}
+	.feedback_head h2{
+		font-size: 3.5vw;
+	}
+	.feedback_head p{
+		font-size: 1.7vw;
+    	line-height: 20px;
+	}
+	.std_name h4{
+		font-size: 2.2vw;
+	}
+	.std_name p{
+		font-size: 1.7vw;
+    	line-height: 22px;
+	}
+	.feedbk p{
+		font-size: 1.7vw;
+    	line-height: 25px;
+	}
+	.start_course{
+		padding: 40px 0px;
+	}
+	.start_head h3{
+		font-size: 5vw;
+	}
+	.start_head p{
+		font-size: 1.8vw;
+    	line-height: 25px;
+	}
+	.class_btn_start{
+		width: 35%;
+		padding: 12px 40px;
+		font-size: 2vw;
+	}
+}
+@media only screen and (min-width:376px) and (max-width:425.9px){
+	.header_inner{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+	}
+	.chat_with_us{
+		padding: 4px 14px;
+    	gap: 8px;
+    	
+	}
+	.chat_text{
+		font-size: 3vw;
+	}
+	.call_us{
+		padding: 4px 14px;
+		font-size: 3vw;
+	}
+	.banner_inner,.banner_btns{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+	}
+	.banner_left {
+    	width: 90%;
+	}
+	.banner_left h1{
+		font-size: 10vw;
+    	line-height: 55px;
+	}
+	.banner_left p{
+		font-size: 4.5vw;
+    	line-height: 30px;
+	}
+	.banner_left ul li{
+		font-size: 4.5vw;
+   		line-height: 30px;
+	}
+	.banner_left ul li img{
+		width: 21px;
+	}
+	.demo_btn{
+		font-size: 4vw;
+		width: 83%;
+    	padding: 8px 30px;
+    	text-align: center;
+	}
+	.dwnld_btn{
+		width: 95%;
+		    padding: 10px 7px;
+	}
+	.banner_right{
+		width: 98%;
+		background-color: white;
+		border-radius:0%;
+		position: static;
+		display: flex;
+        justify-content: center;
+	}
+	.form{
+		position: static;
+		width: 90%;
+	}
+	.form_head h4{
+		font-size: 5vw;
+	}
+	.form_head p{
+		font-size: 3vw;
+		line-height: 20px;
+	}
+	.info_bar_inner{
+		flex-wrap: wrap;
+    	gap: 20px;
+    	width: 88%;
+	}
+	.info_item h5{
+		font-size: 6.5vw;
+	}
+	.info_item p{
+		font-size: 3.5vw;
+	}
+
+	.highlight_inner{
+		padding: 50px 30px;
+	}
+	.highlight_head h3{
+		font-size: 6vw;
+	}
+	.highlight_head p{
+		font-size: 4vw;
+    	line-height: 25px;
+	}
+	.highlight_items{
+		justify-content: center;
+	}
+	.highlight_item{
+		width: 100%;
+	}
+	.item_text{
+		display: flex;
+	    flex-direction: column;
+    	justify-content: space-between;
+	}
+	.item_text h5{
+		font-size: 4vw;
+   		line-height: 20px;
+	}
+	.item_text p{
+		font-size: 3vw;
+    	line-height: 22px;
+	}
+	.class_btn{
+		width: 40%;
+	}
+	.digi_head h2{
+		font-size: 6vw;
+	    line-height: 25px;
+	    width: 60%;
+	}
+	.digi_head p{
+		font-size: 3.5vw;
+    	line-height: 20px;
+	}
+	.digi_contents{
+		flex-direction: column;
+    	justify-content: center;
+		gap: 30px;
+		align-items: center;
+	}
+	.digi_content{
+		width: 70%;
+	}
+	.digi_content p{
+		font-size: 3.5vw;
+    	line-height: 20px;
+	}
+
+	.certify_inner{
+		padding: 100px 15px;
+		flex-direction: column;
+	}
+	.certify_left{
+		width: 100%;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.certify_head{
+		text-align: center;
+	}
+	.certify_head h4{
+		font-size: 7vw;
+	}
+	.certify_head p{
+		font-size: 3.7vw;
+    	line-height: 20px;
+	}
+	.cont_text h3{
+		font-size: 4vw;
+	}
+	.cont_text p{
+		font-size: 3vw;
+    	line-height: 18px;
+	}
+	.class_btn_certify{
+		width: 60%;
+		padding: 12px 40px;
+	}
+	.certify_right{
+		padding-top: 50px;
+	}
+	.certify_right_inner{
+		display: flex;
+	    align-items: center;
+	    justify-content: center;
+	}
+	.certify_right_inner img{
+		width: 70%;
+	}
+	.certify_right_inner:before{
+		left: 15px;
+	}
+	.certify_right_inner:after{
+		right: -8px;
+		height: 50%;
+	}
+	.curriculum_inner{
+		padding: 60px 15px;
+	}
+	.curriculum_head h2{
+		font-size: 6vw;
+	}
+	.curriculum_head p{
+		font-size: 3vw;
+    	line-height: 22px;
+    	text-align: center;
+	}
+	.tabs{
+		gap: 0px;
+		flex-wrap: wrap;
+	}
+	.tab{
+		width: 25%;
+		font-size: 2.7vw;
+        font-weight: 600;
+        padding: 10px 0px;
+	}
+	.tab_items{
+		flex-wrap: wrap;
+	}
+	.tab_items ul{
+		width: 98%;
+		padding: 0px;
+	}
+	.tab_items ul li{
+		gap: 10px;
+		font-size: 3.7vw;
+	}
+	.tab_items ul li img{
+		width: 25px;
+	}
+	.class_btn_curriculum{
+		width: 50%;
+		padding: 10px 35px;
+		font-size: 3.8vw;
+		line-height: 28px;
+	}
+	.w_learn_inner{
+		padding: 60px 15px;
+	}
+	.w_learn_head h2{
+		font-size: 6vw;
+	}
+	.w_learn_head p{
+		font-size: 3vw;
+	    line-height: 18px;
+	    padding: 15px 0px;
+	}
+	.w_learn_items{
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+	}
+	.w_learn_item{
+		padding: 20px;
+		width: 48%;
+		margin-bottom: 0px;
+	}
+	.w_learn_item img{
+		width: 30%;
+	}
+	.w_learn_item_text h3{
+		font-size: 3vw;
+        padding: 10px 0px;
+	}
+	.w_learn_item_text p{
+		font-size: 2.5vw;
+		line-height: 15px;
+	}
+	.class_btn_w_learn{
+		width: 30%;
+		padding: 5px 34px;
+		font-size: 3vw;
+	}
+	.feedback_inner{
+		padding: 60px 15px;
+	}
+	.feedback_head h2{
+		font-size: 6vw;
+	}
+	.feedback_head p{
+		font-size: 3vw;
+    	line-height: 18px;
+	}
+	.feedback_stds{
+		flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    gap: 25px;
+	}
+	.feedback_std{
+		width: 98%;
+		
+	}
+	.std_detail{
+		gap: 10px;
+		padding-bottom: 10px;
+	}
+	.std_img img{
+		width: 80%;
+	}
+	.std_name h4{
+		font-size: 4vw;
+	}
+	.std_name p{
+		font-size: 3vw;
+    	line-height: 22px;
+	}
+	.feedbk p{
+		font-size: 3.5vw;
+    	line-height: 25px;
+	}
+	.start_course{
+		padding: 40px 0px;
+	}
+	.start_head h3{
+		font-size: 5vw;
+	}
+	.start_head p{
+		font-size: 3vw;
+    	line-height: 20px;
+    	padding: 15px 0px;
+	}
+	.class_btn_start{
+		width: 50%;
+		padding: 10px 20px;
+		font-size: 3vw;
+		line-height: 20px;
+	}
+}
+@media only screen and (max-width:375.5px){
+	.header_inner{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+	}
+	.chat_with_us{
+		padding: 4px 14px;
+    	gap: 8px;
+    	
+	}
+	.chat_text{
+		font-size: 3vw;
+	}
+	.call_us{
+		padding: 4px 14px;
+		font-size: 3vw;
+	}
+	.banner_inner,.banner_btns{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+	}
+	.banner_left {
+    	width: 90%;
+	}
+	.banner_left h1{
+		font-size: 10vw;
+    	line-height: 55px;
+	}
+	.banner_left p{
+		font-size: 4.5vw;
+    	line-height: 30px;
+	}
+	.banner_left ul li{
+		font-size: 4.5vw;
+   		line-height: 30px;
+	}
+	.banner_left ul li img{
+		width: 21px;
+	}
+	.demo_btn{
+		font-size: 4vw;
+		width: 83%;
+    	padding: 8px 30px;
+    	text-align: center;
+	}
+	.dwnld_btn{
+		width: 95%;
+		    padding: 10px 7px;
+	}
+	.banner_right{
+		width: 98%;
+		background-color: white;
+		border-radius:0%;
+		position: static;
+		display: flex;
+        justify-content: center;
+	}
+	.form{
+		position: static;
+		width: 90%;
+	}
+	.form_head h4{
+		font-size: 5vw;
+	}
+	.form_head p{
+		font-size: 3vw;
+		line-height: 20px;
+	}
+	.info_bar_inner{
+		flex-wrap: wrap;
+    	gap: 20px;
+    	width: 88%;
+	}
+	.info_item h5{
+		font-size: 6.5vw;
+	}
+	.info_item p{
+		font-size: 3.5vw;
+	}
+	.highlight_inner{
+		padding: 50px 30px;
+	}
+	.highlight_head h3{
+		font-size: 6vw;
+	}
+	.highlight_head p{
+		font-size: 4vw;
+    	line-height: 25px;
+	}
+	.highlight_items{
+		justify-content: center;
+	}
+	.highlight_item{
+		width: 100%;
+	}
+	.item_text{
+		display: flex;
+	    flex-direction: column;
+    	justify-content: space-between;
+	}
+	.item_text h5{
+		font-size: 4vw;
+   		line-height: 20px;
+	}
+	.item_text p{
+		font-size: 3vw;
+    	line-height: 22px;
+	}
+	.class_btn{
+		width: 40%;
+	}
+	.digi_head h2{
+		font-size: 6vw;
+	    line-height: 25px;
+	    width: 60%;
+	}
+	.digi_head p{
+		font-size: 3.5vw;
+    	line-height: 20px;
+	}
+	.digi_contents{
+		flex-direction: column;
+    	justify-content: center;
+		gap: 30px;
+		align-items: center;
+	}
+	.digi_content{
+		width: 70%;
+	}
+	.digi_content p{
+		font-size: 3.5vw;
+    	line-height: 20px;
+	}
+	.certify_inner{
+		padding: 100px 15px;
+		flex-direction: column;
+	}
+	.certify_left{
+		width: 100%;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	}
+	.certify_head{
+		text-align: center;
+	}
+	.certify_head h4{
+		font-size: 7vw;
+	}
+	.certify_head p{
+		font-size: 3.7vw;
+    	line-height: 20px;
+	}
+	.cont_text h3{
+		font-size: 4vw;
+	}
+	.cont_text p{
+		font-size: 3vw;
+    	line-height: 18px;
+	}
+	.class_btn_certify{
+		width: 60%;
+		padding: 12px 40px;
+	}
+	.certify_right{
+		padding-top: 50px;
+	}
+	.certify_right_inner{
+		display: flex;
+	    align-items: center;
+	    justify-content: center;
+	}
+	.certify_right_inner img{
+		width: 70%;
+	}
+	.certify_right_inner:before{
+		left: 15px;
+	}
+	.certify_right_inner:after{
+		right: -8px;
+		height: 50%;
+	}
+	.curriculum_inner{
+		padding: 60px 15px;
+	}
+	.curriculum_head h2{
+		font-size: 6vw;
+	}
+	.curriculum_head p{
+		font-size: 3vw;
+    	line-height: 22px;
+    	text-align: center;
+	}
+	.tabs{
+		gap: 0px;
+		flex-wrap: wrap;
+	}
+	.tab{
+		width: 25%;
+		font-size: 2.7vw;
+        font-weight: 600;
+        padding: 10px 0px;
+	}
+	.tab_items{
+		flex-wrap: wrap;
+	}
+	.tab_items ul{
+		width: 98%;
+		padding: 0px;
+	}
+	.tab_items ul li{
+		gap: 10px;
+		font-size: 3.7vw;
+	}
+	.tab_items ul li img{
+		width: 25px;
+	}
+	.class_btn_curriculum{
+		width: 50%;
+		padding: 10px 35px;
+		font-size: 3.8vw;
+		line-height: 28px;
+	}
+	.w_learn_inner{
+		padding: 60px 15px;
+	}
+	.w_learn_head h2{
+		font-size: 6vw;
+	}
+	.w_learn_head p{
+		font-size: 3vw;
+	    line-height: 18px;
+	    padding: 15px 0px;
+	}
+	.w_learn_items{
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+	}
+	.w_learn_item{
+		padding: 20px;
+		width: 98%;
+		margin-bottom: 0px;
+	}
+	.w_learn_item img{
+		width: 25%;
+	}
+	.w_learn_item_text h3{
+		font-size: 5vw;
+        padding: 15px 0px;
+	}
+	.w_learn_item_text p{
+		font-size: 3.5vw;
+		line-height: 20px;
+	}
+	.class_btn_w_learn{
+		width: 30%;
+		padding: 5px 34px;
+		font-size: 3vw;
+	}
+	.feedback_inner{
+		padding: 60px 15px;
+	}
+	.feedback_head h2{
+		font-size: 6vw;
+	}
+	.feedback_head p{
+		font-size: 3vw;
+    	line-height: 18px;
+	}
+	.feedback_stds{
+		flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    gap: 25px;
+	}
+	.feedback_std{
+		width: 98%;
+		
+	}
+	.std_detail{
+		gap: 10px;
+		padding-bottom: 10px;
+	}
+	.std_img img{
+		width: 80%;
+	}
+	.std_name h4{
+		font-size: 4vw;
+	}
+	.std_name p{
+		font-size: 3vw;
+    	line-height: 22px;
+	}
+	.feedbk p{
+		font-size: 3.5vw;
+    	line-height: 25px;
+	}
+	.start_course{
+		padding: 40px 0px;
+	}
+	.start_head h3{
+		font-size: 5vw;
+	}
+	.start_head p{
+		font-size: 3vw;
+    	line-height: 20px;
+    	padding: 15px 0px;
+	}
+	.class_btn_start{
+		width: 50%;
+		padding: 10px 20px;
+		font-size: 3vw;
+		line-height: 20px;
+	}
+}

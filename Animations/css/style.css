@@ -1,0 +1,241 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+
+body{
+	background-color: #080E24;
+}
+.outer_main{
+	background-color: #080E24;
+	width: 80%;
+	height: 67%;
+	position: relative;
+	margin-top: 200px ;
+	margin-left: 20%;
+}
+
+.solar_system li{
+	position: absolute;
+	list-style: none;
+}
+.sun{
+	height: 50px;
+	width: 50px;
+	background-color: #FDCE69;
+	border-radius: 50%;
+	box-shadow: 0 0 50px #FDCE69;
+	left: 28.7%;
+	top: 30%;
+}
+
+
+@keyframes mer{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+.mercury{ 
+	height: 100px;
+	width: 100px;
+	border: 1px solid #394057;
+	border-radius: 50%;
+	left: 26.55%;
+	top: 25%;
+	animation: mer 5s linear infinite;
+}
+.mercury span{
+	display: block;
+	height: 10px;
+	width: 10px;
+	background-color: #b6bac5;
+	border-radius: 50%;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+}
+@keyframes ven{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+.venus{
+	height: 160px;
+	width: 160px;
+	border: 1px solid #394057;
+	border-radius: 50%;
+	left: 24.1%;
+	top: 19%;
+	animation: ven 8s linear infinite;
+}
+.venus span{
+	display: block;
+	height: 10px;
+	width: 10px;
+	background-color: #bf8639;
+	border-radius: 50%;
+	position: absolute;
+	top: 13%;
+	left: 10%;
+}
+@keyframes eart{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+@keyframes moo{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+.earth{
+	height: 220px;
+	width: 220px;
+	border: 1px solid #394057;
+	border-radius: 50%;
+	left: 21.6%;
+	top: 13%;
+	animation: eart 12s linear infinite;
+}
+.earth>span{
+	display: block;
+	height: 15px;
+	width: 15px;
+	background-color: rgb(0, 132, 255);
+	border-radius: 50%;
+	position: absolute;
+	top: 13%;
+	left: 10%;
+}
+.earth span.moon{
+	display: block;
+	position: absolute;
+	height: 22px;
+	width: 22px;
+/*	border: 1px solid #394057;*/
+	border-radius: 50%;
+	left: -27%;
+	top: -25%;
+	animation: moo 2s linear infinite;
+}
+.moon span{
+	display: block;
+	height: 4px;
+	width: 4px;
+	background-color: #ccc;
+	border-radius: 50%;
+	position: absolute;
+	top: -0%;
+	left: 10%;
+}
+@keyframes mar{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+.mars{
+	height: 280px;
+	width: 280px;
+	border: 1px solid #394057;
+	border-radius: 50%;
+	left: 19.2%;
+	top: 7%;
+	animation: mar 20s linear infinite;
+}
+.mars span{
+	display: block;
+	height: 10px;
+	width: 10px;
+	background-color: #aa4200;
+	border-radius: 50%;
+	position: absolute;
+	top: 16%;
+	left: 10%;
+}
+@keyframes jup{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+.jupiter{
+	height: 340px;
+	width: 340px;
+	border: 1px solid #394057;
+	border-radius: 50%;
+	left: 16.8%;
+	top: 1%;
+	animation: jup 30s linear infinite;
+}
+.jupiter span{
+	display: block;
+	height: 10px;
+	width: 10px;
+	background-color: #e0ae6f;
+	border-radius: 50%;
+	position: absolute;
+	top: 16%;
+	left: 10%;
+}
+
+@keyframes sat{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+.saturn{
+	height: 400px;
+	width: 400px;
+	border: 1px solid #394057;
+	border-radius: 50%;
+	left: 14.45%;
+	top: -5%;
+	animation: sat 60s linear infinite;
+}
+.saturn>span{
+	display: block;
+	height: 10px;
+	width: 10px;
+	background-color: #dfd3a9;
+	border-radius: 50%;
+	position: absolute;
+	top: 17%;
+	left: 10%;
+}
+
+.ring{
+	display: block;
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	border: 2px solid #5a4e34;
+	border-radius: 8px;
+	transform: skew(50deg);
+	top: -3px;
+    left: -2px;
+}
+
