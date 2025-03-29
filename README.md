@@ -1,1 +1,1 @@
-this is a sample repository for learning Mern Stack
+- This is a repository for learning Mern Stack
