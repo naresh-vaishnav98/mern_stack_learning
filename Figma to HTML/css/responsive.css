@@ -180,6 +180,9 @@
 		width: 30%;
 		padding: 12px 40px;
 	}
+	.companies_img img{
+		width: 100%;
+	}
 }
 @media only screen and (min-width:426px) and (max-width:768px){
 	.header_inner{
@@ -458,6 +461,59 @@
 		width: 35%;
 		padding: 12px 40px;
 		font-size: 2vw;
+	}
+	.faq_inner{
+		padding: 60px 15px;
+	}
+	.faq_head h2{
+		font-size: 3.5vw;
+	}
+	.faq_head p{
+		font-size: 1.7vw;
+		line-height: 22px;
+	}
+	.f_head h3{
+		font-size: 2vw;
+	}
+	.f_head p{
+		font-size: 3.5vw;
+	}
+	.faq_active p{
+		font-size: 1.7vw;
+		line-height: 22px;
+	}
+	.faq h3{
+		font-size: 2vw;
+	}
+	.faq p{
+		font-size: 3.5vw;
+	}
+	.class_btn_faq{
+		width: 20%;
+		padding: 12px 40px;
+		font-size: 2vw;
+		line-height: 25px;
+	}
+	.companies_img img{
+		width: 100%;
+	}
+	.companies_head h3{
+		font-size: 3.5vw;
+	}
+	.footer img{
+		width: 20%;
+	}
+	.footer p{
+		font-size: 1.7vw;
+		line-height: 20px;
+	}
+	.footer_bottom p{
+		font-size: 1.7vw;
+		line-height: 20px;
+	}
+	.footer_bottom span{
+		font-size: 1.7vw;
+		line-height: 20px;
 	}
 }
 @media only screen and (min-width:376px) and (max-width:425.9px){
@@ -782,6 +838,59 @@
 		font-size: 3vw;
 		line-height: 20px;
 	}
+	.faqs{
+		width: 90%;
+	}
+	.faq_head h2{
+		font-size: 6vw;
+	}
+	.faq_head p{
+		font-size: 3vw;
+		line-height: 20px;
+	}
+	.f_head h3{
+		font-size: 4vw;
+	}
+	.f_head p{
+		font-size: 6vw;
+	}
+	.faq_active p{
+		font-size: 3vw;
+		line-height: 20px;
+	}
+	.faq h3{
+		font-size: 4vw;
+	}
+	.faq p{
+		font-size: 6vw;
+	}
+	.class_btn_faq{
+		width: 35%;
+		padding: 10px 40px;
+		font-size: 3.5vw;
+		line-height: 25px;
+	}
+	.companies_img img{
+		width: 100%;
+	}
+	.companies_head h3{
+		font-size: 6vw;
+	}
+	.footer img{
+		width: 25%;
+	}
+	.footer p{
+		font-size: 3vw;
+		line-height: 20px;
+	}
+	.footer_bottom p{
+		font-size: 3vw;
+		line-height: 20px;
+	}
+	.footer_bottom span{
+		font-size: 3vw;
+		line-height: 20px;
+	}
 }
 @media only screen and (max-width:375.5px){
 	.header_inner{
@@ -1102,5 +1211,58 @@
 		padding: 10px 20px;
 		font-size: 3vw;
 		line-height: 20px;
+	}
+	.faqs{
+		width: 90%;
+	}
+	.faq_head h2{
+		font-size: 6vw;
+	}
+	.faq_head p{
+		font-size: 3vw;
+		line-height: 20px;
+	}
+	.f_head h3{
+		font-size: 4vw;
+	}
+	.f_head p{
+		font-size: 6vw;
+	}
+	.faq_active p{
+		font-size: 3vw;
+		line-height: 20px;
+	}
+	.faq h3{
+		font-size: 4vw;
+	}
+	.faq p{
+		font-size: 6vw;
+	}
+	.class_btn_faq{
+		width: 35%;
+		padding: 10px 40px;
+		font-size: 3.5vw;
+		line-height: 25px;
+	}
+	.companies_img img{
+		width: 100%;
+	}
+	.companies_head h3{
+		font-size: 6vw;
+	}
+	.footer img{
+		width: 25%;
+	}
+	.footer p{
+		font-size: 3vw;
+		line-height: 16px;
+	}
+	.footer_bottom p{
+		font-size: 3vw;
+		line-height: 16px;
+	}
+	.footer_bottom span{
+		font-size: 3vw;
+		line-height: 16px;
 	}
 }
