@@ -543,21 +543,22 @@
 	}
 	.banner_left {
     	width: 90%;
+		padding: 30px 0px;
 	}
 	.banner_left h1{
-		font-size: 10vw;
-    	line-height: 55px;
+		font-size: 8vw;
+    	line-height: 50px;
 	}
 	.banner_left p{
-		font-size: 4.5vw;
-    	line-height: 30px;
+		font-size: 3.5vw;
+    	line-height: 25px;
 	}
 	.banner_left ul li{
-		font-size: 4.5vw;
-   		line-height: 30px;
+		font-size: 3.5vw;
+   		line-height: 25px;
 	}
 	.banner_left ul li img{
-		width: 21px;
+		width: 18px;
 	}
 	.demo_btn{
 		font-size: 4vw;
@@ -580,6 +581,7 @@
 	.form{
 		position: static;
 		width: 90%;
+		padding: 25px;
 	}
 	.form_head h4{
 		font-size: 5vw;
@@ -601,7 +603,7 @@
 	}
 
 	.highlight_inner{
-		padding: 50px 30px;
+		padding: 30px 30px;
 	}
 	.highlight_head h3{
 		font-size: 6vw;
@@ -619,7 +621,7 @@
 	.item_text{
 		display: flex;
 	    flex-direction: column;
-    	justify-content: space-between;
+    	justify-content: center;
 	}
 	.item_text h5{
 		font-size: 4vw;
@@ -656,7 +658,8 @@
 	}
 
 	.certify_inner{
-		padding: 100px 15px;
+		padding: 30px 15px;
+		padding-bottom: 100px;
 		flex-direction: column;
 	}
 	.certify_left{
@@ -706,7 +709,7 @@
 		height: 50%;
 	}
 	.curriculum_inner{
-		padding: 60px 15px;
+		padding: 40px 15px;
 	}
 	.curriculum_head h2{
 		font-size: 6vw;
@@ -747,7 +750,7 @@
 		line-height: 28px;
 	}
 	.w_learn_inner{
-		padding: 60px 15px;
+		padding: 40px 15px;
 	}
 	.w_learn_head h2{
 		font-size: 6vw;
@@ -784,7 +787,7 @@
 		font-size: 3vw;
 	}
 	.feedback_inner{
-		padding: 60px 15px;
+		padding: 40px 15px;
 	}
 	.feedback_head h2{
 		font-size: 6vw;
@@ -823,6 +826,7 @@
 	}
 	.start_course{
 		padding: 40px 0px;
+		margin-top: 70px;
 	}
 	.start_head h3{
 		font-size: 5vw;
@@ -837,6 +841,9 @@
 		padding: 10px 20px;
 		font-size: 3vw;
 		line-height: 20px;
+	}
+	.faq_inner {
+		padding: 40px 0px;
 	}
 	.faqs{
 		width: 90%;
@@ -869,6 +876,9 @@
 		padding: 10px 40px;
 		font-size: 3.5vw;
 		line-height: 25px;
+	}
+	.companies_inner{
+		padding: 40px 0px;
 	}
 	.companies_img img{
 		width: 100%;
@@ -919,21 +929,22 @@
 	}
 	.banner_left {
     	width: 90%;
+		padding: 30px 0px;
 	}
 	.banner_left h1{
-		font-size: 10vw;
-    	line-height: 55px;
+		font-size: 8vw;
+    	line-height: 50px;
 	}
 	.banner_left p{
-		font-size: 4.5vw;
-    	line-height: 30px;
+		font-size: 3.5vw;
+    	line-height: 25px;
 	}
 	.banner_left ul li{
-		font-size: 4.5vw;
-   		line-height: 30px;
+		font-size: 3.5vw;
+   		line-height: 25px;
 	}
 	.banner_left ul li img{
-		width: 21px;
+		width: 18px;
 	}
 	.demo_btn{
 		font-size: 4vw;
@@ -956,6 +967,7 @@
 	.form{
 		position: static;
 		width: 90%;
+		padding: 20px;
 	}
 	.form_head h4{
 		font-size: 5vw;
@@ -975,8 +987,9 @@
 	.info_item p{
 		font-size: 3.5vw;
 	}
+
 	.highlight_inner{
-		padding: 50px 30px;
+		padding: 30px 30px;
 	}
 	.highlight_head h3{
 		font-size: 6vw;
@@ -994,7 +1007,7 @@
 	.item_text{
 		display: flex;
 	    flex-direction: column;
-    	justify-content: space-between;
+    	justify-content: center;
 	}
 	.item_text h5{
 		font-size: 4vw;
@@ -1029,8 +1042,10 @@
 		font-size: 3.5vw;
     	line-height: 20px;
 	}
+
 	.certify_inner{
-		padding: 100px 15px;
+		padding: 30px 15px;
+		padding-bottom: 100px;
 		flex-direction: column;
 	}
 	.certify_left{
@@ -1080,7 +1095,7 @@
 		height: 50%;
 	}
 	.curriculum_inner{
-		padding: 60px 15px;
+		padding: 40px 15px;
 	}
 	.curriculum_head h2{
 		font-size: 6vw;
@@ -1121,7 +1136,7 @@
 		line-height: 28px;
 	}
 	.w_learn_inner{
-		padding: 60px 15px;
+		padding: 40px 15px;
 	}
 	.w_learn_head h2{
 		font-size: 6vw;
@@ -1158,7 +1173,7 @@
 		font-size: 3vw;
 	}
 	.feedback_inner{
-		padding: 60px 15px;
+		padding: 40px 15px;
 	}
 	.feedback_head h2{
 		font-size: 6vw;
@@ -1197,6 +1212,7 @@
 	}
 	.start_course{
 		padding: 40px 0px;
+		margin-top: 70px;
 	}
 	.start_head h3{
 		font-size: 5vw;
@@ -1211,6 +1227,9 @@
 		padding: 10px 20px;
 		font-size: 3vw;
 		line-height: 20px;
+	}
+	.faq_inner {
+		padding: 40px 0px;
 	}
 	.faqs{
 		width: 90%;
@@ -1244,6 +1263,9 @@
 		font-size: 3.5vw;
 		line-height: 25px;
 	}
+	.companies_inner{
+		padding: 40px 0px;
+	}
 	.companies_img img{
 		width: 100%;
 	}
@@ -1255,14 +1277,16 @@
 	}
 	.footer p{
 		font-size: 3vw;
-		line-height: 16px;
+		line-height: 20px;
 	}
 	.footer_bottom p{
 		font-size: 3vw;
-		line-height: 16px;
+		line-height: 20px;
 	}
 	.footer_bottom span{
 		font-size: 3vw;
-		line-height: 16px;
+		line-height: 20px;
 	}
 }
+
+
