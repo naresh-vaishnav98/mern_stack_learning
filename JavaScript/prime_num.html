@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Prime Number</title>
+    </head>
+    <body>
+        
+
+
+        <script>
+            
+            var num = Number(prompt('Enter the Number : '));
+            status = 1;
+
+            for(var i = 2; i < num; i++){
+                if(num % i == 0){
+                    status = 0;
+                    break;
+                }else{
+                    status = 1;
+                }
+            }
+            
+            if(status == 0){
+                console.log('Not a Prime Number.');
+            }else{
+                console.log('Is a Prime Number.')
+            }
+        </script>
+    </body>
+</html>
