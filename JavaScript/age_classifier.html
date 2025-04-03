@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Age Classifier</title>
+    </head>
+    <body>
+
+
+
+        <script>
+            var age = Number(prompt('Enter your age'));
+
+            if(age >= 18){
+                console.log('Adult');
+            } else if(age >= 13 && age <= 17){
+                console.log('Teenager');
+            } else if(age >= 6 && age <= 12){
+                console.log('Child');
+            } else if(age >= 3 && age <= 5){
+                console.log('Toddler');    
+            } else if(age > 0 && age <= 2){
+                console.log('Infant');
+            } else {
+                console.log('Please Enter a Number !!')
+            }
+
+        </script>
+    </body>
+</html>

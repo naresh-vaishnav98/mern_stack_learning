@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Assending Order</title>
+    </head>
+    <body>
+
+
+
+        <script>
+            
+            var a = Number(prompt('Entera number for a : '));
+            var b = Number(prompt('Entera number for b : '));
+            var c = Number(prompt('Entera number for c : '));
+
+            var first,second,third;
+
+            if(a >= b && b >= c){
+                first = a;
+                if(b >= c){
+                    second = b;
+                    third = c;
+                }else{
+                    second = c;
+                    third = b;
+                }
+            }else if(b >= a && a >= c){
+                first = b;
+                if(a >= c){
+                    second = a;
+                    third = c;
+                }else{
+                    second = c;
+                    third = a;
+                }
+            }else if(c >= a && a >= b){
+                first = c;
+                if(b >= a){
+                    second = b;
+                    third = a;
+                }else{
+                    second = a;
+                    third = b;
+                }
+            }
+            
+            console.log('Assending order is : ', + third,second,first);
+        </script>
+    </body>
+</html>

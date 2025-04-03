@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Traffic Simulator</title>
+    </head>
+    <body>
+
+
+
+        <script>
+            
+            var color = prompt('Enter a color for signal(Red, Green, Yellow)').toLowerCase();
+
+            if(color == 'red' || color == 'green' || color == 'yellow'){
+                if(color == 'red'){
+                    console.log('STOP!! Do not Cross the signal.');
+                }else if(color == 'green'){
+                    console.log('GO... You can go, the signal is open.');
+                }else if(color == 'yellow'){
+                    console.log('GO SLOW... Please go slow. ');
+                }else{
+                    console.log('Invalid value.');   
+                }
+            }else{
+                console.log('Enter a valid value.');
+            }
+
+        </script>
+    </body>
+</html>

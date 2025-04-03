@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Leap Year</title>
+    </head>
+    <body>
+
+
+
+        <script>
+            
+            var year = Number(prompt('Enter the year : '));
+            var len = String(year).length;
+
+            if(len == 4){
+                if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0){
+                    console.log('It is a LEAP year..!!!');
+                }else{
+                    console.log('Not a LEAP year...');
+                }
+            }else{
+                console.log('Enter a valid year value.')
+            }
+            
+
+        </script>
+    </body>
+</html>
