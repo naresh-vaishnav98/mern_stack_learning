@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Equality of Arrays</title>
+    </head>
+    <body>
+        
+
+        <script>
+            var arr1 = [1,2,3,4,5];
+            var arr2 = [1,2,3,4,5];
+            var len1 = arr1.length;
+            var len2 = arr2.length;
+            status = 0;
+            
+            if(len1 == len2){
+                for(var i in arr1){
+                    if(arr1[i] == arr2[i]){
+                        status = 1;
+                    }else{
+                        status = 0;
+                        break;
+                    }
+                }
+                if(status == 1){
+                    console.log('Arrays are Equal.')
+                }else{
+                    console.log('Arrays are NOT Equal.')
+                }
+            }else{
+                console.log('Arrays are NOT Equal.')
+            }
+
+        </script>
+    </body>
+</html>

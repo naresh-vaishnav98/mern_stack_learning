@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Difference of Arrays</title>
+    </head>
+    <body>
+        
+
+        <script>
+            var arr1 = [1,2,3,4,5];
+            var arr2 = [3,4,5,6,7];
+            var arr = [];
+            var u = prompt('Enter 1 for arr1-arr2 or Enter 2 for arr2-arr1');
+
+            if(u == 1){
+                for(var i of arr1){
+                    if(arr2.includes(i)){
+                        
+                    }else{
+                        arr.push(i);
+                    }
+                }
+            }else{
+                for(var i of arr2){
+                    if(arr1.includes(i)){
+                        
+                    }else{
+                        arr.push(i);
+                    }
+                }
+            }
+            // for(var i of arr1){
+            //     if(arr2.includes(i)){
+                    
+            //     }else{
+            //         arr.push(i);
+            //     }
+            // }
+            
+            console.log('Difference : '+arr);
+
+        </script>
+    </body>
+</html>
