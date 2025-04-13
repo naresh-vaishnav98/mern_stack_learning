@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reverse</title>
+    </head>
+    <body>
+
+        <button onclick="rev(arr,arr1)">Reverse</button>
+        <button onclick="lowest()">Lowest</button>
+        <button onclick="greatest()">Greatest</button>
+        <button onclick="vowLen()">Vowels</button>
+        <button onclick="caps()">Capitalise</button>
+        <button onclick="nonRepeting()">Non Repeating</button>
+
+        <script>
+
+
+
+            var arr = [25,99,77,66,44,88,99,66,77,66,55];
+            var arr1 = [];
+
+
+
+            function rev(arr,arr1){
+                arr1 = [];
+                for(var i of arr){
+                    arr1.unshift(i);
+                }
+                console.log('Reverse of array :',arr1);
+            }
+            
+            function lowest(){
+                var smallest = arr[0];
+                for(var data of arr){
+                    if(data < smallest){
+                        smallest = data;
+                    }
+                } 
+                console.log('Lowest :',smallest);
+            }
+
+            function greatest(){
+                var largest = arr[0];
+                for(var data of arr){
+                    if(data > largest){
+                        largest = data;
+                    }
+                } 
+                console.log('Greatest :',largest);
+            }
+
+
+
+
+
+            var indianNames = ["Arjun","Vinita","Ravi","Ishika","Nisha","Ishan","Priya","Veer","Siddharth","Laxmi","Indra","Esha","Aditya","Rishika"];
+            var vowels = ['a','e','i','o','u'];
+
+            function vowLen(){
+                for(var key of indianNames){
+                    var k = key[0].toLowerCase();
+                    if(vowels.includes(k) && key.length > 5){
+                        console.log(key);
+                    }                    
+                }
+            }
+
+
+            function caps(){
+                var names = ['kritika','ishika','ramesh','vinod','prakash','kanika','urvashi'];
+                var new_array = names.map((val,k)=>{
+                    var n = val[0].toUpperCase();
+                    var new_word = n + val.slice(1);
+                    return new_word;
+                });
+                console.log(new_array);
+            }
+            
+            
+            function nonRepeting(){
+                var str = 'hello world';
+                str = str.split(' ').join('');
+                obj = {};
+                // console.log(str);
+
+                for(var k of str){
+                    // if(obj[k] == k){
+                    //     obj[k] = obj[k]+1;
+                    // }else{
+                    //     obj[k] = 1;
+                    // }
+
+                    obj[k] = (obj[k] || 0) + 1;
+                                    
+                }
+
+                var output = '';
+
+                for(var k of str){
+                    if(obj[k] == 1){
+                        output = k;
+                        break;
+                    }
+                }
+
+                // for(var n of str){
+                    
+                // }
+                console.log(obj);
+                console.log('First Non-repeating :',output);
+            }
+            
+
+
+
+
+
+        </script>
+    </body>
+</html>
