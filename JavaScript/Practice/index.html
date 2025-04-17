@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image Swap</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        
+        <div class="outer">
+            <div class="img1">
+                <img src="images/3.jpg" alt="not available" id="img1" onmouseenter="swap()">
+            </div>
+            <div class="img2">
+                <img src="images/4.jpg" alt="not available" id="img2" onmouseenter="swap()">
+            </div>
+        </div>
+        <div class="btn">
+            <button onclick="swap()">Click me</button>
+        </div>
+        
+        
+
+
+
+
+
+
+
+        <div class="row" id = "row">
+            1. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, quis provident qui totam accusamus voluptatum nihil, dolores hic debitis facere reprehenderit omnis ab assumenda! Nobis illo aliquam nesciunt fugit modi.
+        </div>
+        <div class="row row1" id = "row1">
+            2. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi, quis provident qui totam accusamus voluptatum nihil, dolores hic debitis facere reprehenderit omnis ab assumenda! Nobis illo aliquam nesciunt fugit modi.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores aliquam magni ex ipsa, fuga dolore! Cumque iste, aut error ea sint iure nisi obcaecati at, nemo eaque provident, veniam sequi.
+        </div>
+
+        <div class="btn_swap">
+            <button id = "btn_swap" onclick="btn_swap()">Swap</button>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="inp">
+            <input type="text" onkeyup="writee()" id = "inp"/>
+        </div>
+        <div class="output" id="output"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="outer_border">
+            <h3>Calculator</h3>
+            <div>
+                <label>First Number</label>
+                <input type="number" id ="first_num"/>
+            </div>
+            <select name="operator" id="operator">
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+            </select> 
+            <div>
+                <label>Second Number</label>
+                <input type="number" id ="sec_num"/>
+            </div>   
+            
+
+            <button id="calc_btn" onclick="calc()">Calculate</button>
+            <div>
+                <label for="">Output</label>
+                <input type="text" id="calc_output">
+            </div>
+            
+        </div>
+
+
+
+
+
+
+
+        
+
+
+        <div class="passwordd">
+            <input type="password" id="pass"/>
+            <button onclick="show_hide()" id="pass_btn">Show</button>
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="outer_images">
+            <div class="big_img">
+                <img src="images/3.jpg" alt="Not available" id = "main_img">
+            </div>
+            <div class="sml_images">
+                <div class="img1">
+                    <img src="images/3.jpg" alt="Not available" onclick="chng_img(this)">
+                </div>
+                <div class="img2">
+                    <img src="images/4.jpg" alt="Not available" onclick="chng_img(this)">
+                </div>
+                <div class="img3">
+                    <img src="images/img03.jpg" alt="Not available" onclick="chng_img(this)">
+                </div>
+                <div class="img4">
+                    <img src="images/img06.jpg" alt="Not available" onclick="chng_img(this)">
+                </div>
+            </div>
+        </div>
+
+        <script src="js/custom.js"></script>
+    </body>
+</html>

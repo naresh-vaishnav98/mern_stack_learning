@@ -1,0 +1,102 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.outer{
+    display: flex;
+    gap: 50px;
+    margin: auto;
+    width: 500px;
+}
+.img1, .img2{
+    height: 250px;
+    width: 250px;
+}
+.img1 img, .img2 img{
+    height: 100%;
+    width: 100%;
+}
+.btn{
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+}
+.row,.btn_swap{
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 15px;
+    width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+.output{
+    width: 1000px;
+    margin: auto;
+    padding: 15px;
+    font-size: 20px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+}
+.inp{
+    width: 1000px;
+    margin: auto;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+.outer_border{
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    margin-top: 100px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.outer_border div{
+    margin: 15px 0px;
+    width: 70%;
+}
+.passwordd{
+    width: 300px;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 50px;
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+.outer_images{
+    width: 1000px;
+    margin: auto;
+    margin-top: 100px;
+    border: 1px solid black;
+}
+.big_img{
+    width: 98%;
+    height: 600px;
+    margin: auto;
+}
+.big_img img{
+    width: 100%;
+    height: 98%;
+}
+.sml_images{
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+}
+.sml_images div{
+    width: 24%;
+}
+.sml_images div img{
+    width: 100%;
+    height: 300px;
+}
