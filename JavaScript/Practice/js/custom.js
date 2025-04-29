@@ -19,11 +19,7 @@ function btn_swap(){
 
 function writee(){
     var a = document.getElementById('inp').value;
-    // var b = document.getElementById('output').innerText;
-
     document.getElementById('output').innerText = a;
-    // console.log(a);
-
 }
 
 
@@ -59,7 +55,32 @@ function show_hide(){
 }
 
 
+
+
 function chng_img(i){
     var img_src = i.src;
     document.getElementById('main_img').src = img_src;
 }
+
+
+
+
+
+var arr = [];
+ function backgrd(i){
+    if(arr.length < 9){
+        if(arr.includes(i.innerText)){
+
+        }else{
+            arr.push(i.innerText);
+        }
+        i.style.backgroundColor = 'red';
+    }
+    
+    
+    console.log(arr);
+ }
+
+ function collect_value(i){
+    i.style.backgroundColor = 'dimgrey';
+ }
