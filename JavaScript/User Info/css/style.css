@@ -1,0 +1,36 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.outer_form{
+    border: 1px solid gray;
+    box-shadow: 5px 5px 15px 0px grey;
+    border-radius: 15px;
+    padding: 30px 10px;
+    box-sizing: border-box;
+    margin: 100px auto;
+    width: 400px;
+    text-align: center;
+}
+form label{
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+form input,select{
+    margin-bottom: 15px;
+    width: 80%;
+    padding: 5px;
+}
+table{
+    width: 1000px;
+    margin: 100px auto;
+    border: 1px solid gray;
+    box-shadow: 5px 5px 15px 0px grey;
+    border-radius: 10px;
+    padding: 15px;
+}
+table tr{
+    text-align: center;
+}
