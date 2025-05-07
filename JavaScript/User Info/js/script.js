@@ -72,7 +72,7 @@ var display_table = () => {
 };
 
 
-// display_table();
+display_table();
 
 
 var allUsers = [];
