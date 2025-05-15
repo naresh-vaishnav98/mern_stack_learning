@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import data from './Faqdata.js';
+import FaqHead from './FaqHead.jsx';
 
 export default function Accordian() {
-    // console.log(data);
     let [FaqData, setFaqData] = useState(data);
     let [currentIndex, setCurrentIndex] = useState(0);
-    // console.log(FaqData);
 
     var showFaq = (i) => {
         if(currentIndex == i){
@@ -18,34 +17,9 @@ export default function Accordian() {
 
   return (
     <>
-      
-        
         <div class="outer" id="outer">
-            <div class="heading">
-                <h1>Frequently Asked Questions</h1>
-            </div>
-            
-
-            {
-                FaqData.map((value,index) => {
-                    // {console.log(value)}
-                    return(
-                        <div class="outer_faq" onClick={() => { showFaq(index) }}>
-                            <div class="question">
-                                {value.question}
-                                <span>{(currentIndex == index) ? '-' : '+'}</span>
-                            </div>
-                            <div class={ (currentIndex == index) ? 'answer' : 'answer hidden' }>
-                                {value.answer}
-                            </div>
-                        </div>
-                    )
-                    
-                })  
-            }
-
+            <FaqHead heading="Freaquently Asked Questions" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt facilis inventore, eveniet repellendus repudiandae exercitationem cupiditate atque qui vel aut voluptas adipisci fugit corporis dolorum quo delectus laboriosam nisi quas." showFaq={showFaq} currentIndex={currentIndex} FaqData={FaqData}/>
                 
-                        
         </div>
     </>
   )
