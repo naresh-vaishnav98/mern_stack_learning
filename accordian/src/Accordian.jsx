@@ -18,7 +18,7 @@ export default function Accordian() {
   return (
     <>
         <div class="outer" id="outer">
-            <FaqHead heading="Freaquently Asked Questions" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt facilis inventore, eveniet repellendus repudiandae exercitationem cupiditate atque qui vel aut voluptas adipisci fugit corporis dolorum quo delectus laboriosam nisi quas." showFaq={showFaq} currentIndex={currentIndex} FaqData={FaqData}/>
+            <FaqHead heading="Freaquently Asked Questions" showFaq={showFaq} currentIndex={currentIndex} FaqData={FaqData}/>
                 
         </div>
     </>

@@ -1,12 +1,11 @@
 import React from 'react'
 
-export default function FaqHead({heading, description, showFaq, currentIndex, FaqData}) {
+export default function FaqHead({heading, showFaq, currentIndex, FaqData}) {
 
     return (
         <>
             <div class="heading">                
                 <h1>{heading}</h1>
-                <p>{description}</p>
             </div>
             {
                 FaqData.map((value,index) => {
