@@ -5,6 +5,8 @@ import Breadcum from './Breadcum'
 import axios from 'axios'
 import ProductCard from './ProductCard'
 import { IoSearch } from "react-icons/io5";
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/classic-light-dark.css';
 // import { Toast } from 'bootstrap/dist/js/bootstrap.bundle.min'
 
 export default function ProductListing() {
@@ -20,6 +22,7 @@ export default function ProductListing() {
     const [priceFrom, setPriceFrom] = useState('');
     const [priceTo, setPriceTo] = useState('');
     const [filterName, setFilterName] =  useState('');
+    const [totalPages, setTotalPages] =  useState('');
     
 
     useEffect(() => {
@@ -76,6 +79,7 @@ export default function ProductListing() {
                 // console.log(result.data.data)
                 setproductListing(result.data.data)
                 setTotalRecords(result.data.total_records)
+                setTotalPages(result.data.total_pages)
             })
             .catch(() => {
                 // Toast('Something Went Wrong')
@@ -155,7 +159,6 @@ export default function ProductListing() {
 
     return (
         <>
-            <Header />
             <Breadcum />
             <div class="container py-5">
                 <div class="row">
@@ -357,7 +360,11 @@ export default function ProductListing() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <ResponsivePagination
+                current={currentPage}
+                total={totalPages}
+                onPageChange={setCurrentPage}
+            />
         </>
     )
 }

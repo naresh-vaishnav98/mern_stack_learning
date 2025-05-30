@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function ProductCard({data}) {
+export default function ProductCard({data, key}) {
   return (
       <>
           <div class="col">
@@ -10,7 +11,10 @@ export default function ProductCard({data}) {
                           <span class="position-absolute top-0 start-0 badge bg-danger m-2">{(data.brand_name)?data.brand_name:''}</span>
                   </div>
                   <div class="card-body">
-                      <h5 class="card-title">{data.name}</h5>
+                    <Link to={`/product-details/${data.id}`}>
+                     <h5 class="card-title">{data.name}</h5>
+                    </Link>
+                      
                       <p class="card-text text-muted small mb-0">{data.category_name}</p>
                       <div class="d-flex align-items-center mb-2">
                           <div class="text-warning me-1">
