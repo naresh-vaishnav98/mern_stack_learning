@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { IoSearch } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import { commonContext } from '../ContextAPI/Context';
 
 
 export default function Header() {
+
+
+    const {cartItems} = useContext(commonContext);
+
     return (
         <>
             <header class="sticky-top bg-white border-bottom shadow-sm">
@@ -37,7 +42,7 @@ export default function Header() {
                                 <a href="#" class="btn btn-link text-dark position-relative">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        2
+                                        {cartItems.length}
                                     </span>
                                 </a>
                             </div>

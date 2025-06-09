@@ -7,6 +7,7 @@ import ProductCard from './ProductCard'
 import { IoSearch } from "react-icons/io5";
 import ResponsivePagination from 'react-responsive-pagination';
 import 'react-responsive-pagination/themes/classic-light-dark.css';
+import { useParams } from 'react-router-dom'
 // import { Toast } from 'bootstrap/dist/js/bootstrap.bundle.min'
 
 export default function ProductListing() {
@@ -24,6 +25,9 @@ export default function ProductListing() {
     const [filterName, setFilterName] =  useState('');
     const [totalPages, setTotalPages] =  useState('');
     
+
+    const params = useParams();
+    // console.log(params)
 
     useEffect(() => {
         axios.get('https://wscubetech.co/ecommerce-api/categories.php')
@@ -93,6 +97,16 @@ export default function ProductListing() {
     }
 
 
+    useEffect( () => {
+        if(params.slug){
+           setFilterCat([params.slug])
+           setCurrentPage(1)
+        }else{
+            setFilterCat([])
+            setCurrentPage(1)
+        }
+    },[params] )
+
     var filterCategories = (slug) => {
         
         if(filterCat.includes(slug)){
@@ -103,10 +117,12 @@ export default function ProductListing() {
             } )
             var data = [...data]
             setFilterCat(data);
+            setCurrentPage(1)
             // console.log(data)
         } else {
             var data = [...filterCat, slug]
             setFilterCat(data);
+            setCurrentPage(1)
             // console.log(data)
         }
     }

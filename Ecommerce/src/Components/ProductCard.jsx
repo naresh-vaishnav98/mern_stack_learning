@@ -1,7 +1,30 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
+import { commonContext } from '../ContextAPI/Context'
 
 export default function ProductCard({data, key}) {
+
+    const {cartItems, setCartItems} =  useContext(commonContext);
+
+    var addToCart = (productInfo) => {
+        // console.log(productInfo);
+        const info = {
+            id : productInfo.id,
+            name : productInfo.name,
+            price : productInfo.price,
+            image : productInfo.image,
+            category_name : productInfo.category_name,
+            description : productInfo.description,
+            quantity : 1
+        }
+
+        // console.log(info);
+
+        var finalData = [info, ...cartItems]
+        setCartItems(finalData);
+        localStorage.setItem('cartItems',JSON.stringify(finalData));
+    }
+
   return (
       <>
           <div class="col">
@@ -41,7 +64,7 @@ export default function ProductCard({data, key}) {
                             }
                               
                           </div>
-                          <button class="btn btn-sm btn-outline-primary">
+                          <button class="btn btn-sm btn-outline-primary" onClick={() => addToCart(data)}>
                               <i class="fa fa-shopping-cart"></i>
                           </button>
                       </div>
