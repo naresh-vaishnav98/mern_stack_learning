@@ -7,22 +7,51 @@ export default function ProductCard({data, key}) {
     const {cartItems, setCartItems} =  useContext(commonContext);
 
     var addToCart = (productInfo) => {
-        // console.log(productInfo);
-        const info = {
-            id : productInfo.id,
-            name : productInfo.name,
-            price : productInfo.price,
-            image : productInfo.image,
-            category_name : productInfo.category_name,
-            description : productInfo.description,
-            quantity : 1
+
+        const checkProduct = cartItems.filter( (v)=>{
+            if(productInfo.id == v.id){
+                return v;
+            }
+        })
+
+        if(checkProduct.length >0 ){
+            const cartData = cartItems.map( (v)=>{
+                if(productInfo.id == v.id){
+                    if(v.quantity < 3){
+                        v.quantity++;
+                        return v;
+                    }else{
+                        return v;
+                    }
+                    
+                }else{
+                    return v;
+                }
+            })
+            var finalData = [...cartData]
+            setCartItems(finalData);
+            localStorage.setItem('cartItems',JSON.stringify(finalData));
+
+        } else {
+            const info = {
+                id : productInfo.id,
+                name : productInfo.name,
+                price : productInfo.price,
+                image : productInfo.image,
+                category_name : productInfo.category_name,
+                description : productInfo.description,
+                quantity : 1
+            }
+    
+            // console.log(info);
+    
+            var finalData = [info, ...cartItems]
+            setCartItems(finalData);
+            localStorage.setItem('cartItems',JSON.stringify(finalData));
         }
 
-        // console.log(info);
-
-        var finalData = [info, ...cartItems]
-        setCartItems(finalData);
-        localStorage.setItem('cartItems',JSON.stringify(finalData));
+        // console.log(productInfo);
+        
     }
 
   return (

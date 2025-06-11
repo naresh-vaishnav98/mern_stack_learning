@@ -301,3 +301,14 @@ label.radio input:checked+span::before {
 .card-body {
     padding: 0.3rem 0.3rem 0.2rem
 }
+
+
+
+
+.thumbnail{
+    margin-right: 20px;
+  }
+.thumb-img{
+    width: 72px; 
+    height: 72px;
+}
