@@ -9,6 +9,7 @@ import Home from './Components/Home';
 import RootLayout from './Components/RootLayout';
 import ProductDetails from './Components/ProductDetails';
 import CartListing from './Components/CartListing';
+import LoginRegister from './Components/LoginRegister';
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/product-listing/:slug?' element={<ProductListing/>}/>
         <Route path='/product-details/:id?'element={<ProductDetails/>}/>
         <Route path='/cart-listing/'element={<CartListing/>}/>
+        <Route path='/login-register/'element={<LoginRegister/>}/>
       </Route>
       
     </Routes>

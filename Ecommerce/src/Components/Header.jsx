@@ -7,7 +7,13 @@ import { commonContext } from '../ContextAPI/Context';
 export default function Header() {
 
 
-    const {cartItems} = useContext(commonContext);
+    const {cartItems,setIsLogin,isLogin} = useContext(commonContext);
+
+    // console.log(isLogin);
+    const logout = () => {
+        localStorage.removeItem('user_uid');
+        setIsLogin('')
+    }
 
     return (
         <>
@@ -36,9 +42,18 @@ export default function Header() {
                             <div class="d-flex justify-content-end align-items-center">
                                 <Link to="/product-listing" class="btn btn-link text-dark d-none d-md-inline-block">Categories</Link>
                                 <a href="#" class="btn btn-link text-dark d-none d-md-inline-block">Deals</a>
-                                <a href="#" class="btn btn-link text-dark position-relative">
-                                    <i class="fa fa-user"></i>
-                                </a>
+                                
+                                {
+                                    isLogin
+                                    ?
+                                    <div class="btn btn-link text-dark position-relative">
+                                        <button class="bordered rounded-3" onClick={logout}>Logout</button>
+                                    </div>
+                                    :
+                                    <Link to={'/login-register'} class="btn btn-link text-dark position-relative">
+                                        <i class="fa fa-user"></i>
+                                    </Link>
+                                }
                                 <Link to={`/cart-listing/`} class="btn btn-link text-dark position-relative">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
