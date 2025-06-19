@@ -60,8 +60,8 @@ export default function Header() {
       </form>
 
       <div class="hidden gap-3 md:!flex">
-        <a
-          href="wishlist.html"
+        <Link
+          href="/wishlist"
           class="flex cursor-pointer flex-col items-center justify-center"
         >
           <svg
@@ -80,10 +80,10 @@ export default function Header() {
           </svg>
 
           <p class="text-xs">Wishlist</p>
-        </a>
+        </Link>
 
-        <a
-          href="cart.html"
+        <Link
+          href="/cart"
           class="flex cursor-pointer flex-col items-center justify-center"
         >
           <svg
@@ -100,10 +100,10 @@ export default function Header() {
           </svg>
 
           <p class="text-xs">Cart</p>
-        </a>
+        </Link>
 
-        <a
-          href="account-page.html"
+        <Link
+          href="/account-page"
           class="relative flex cursor-pointer flex-col items-center justify-center"
         >
           <span class="absolute bottom-[33px] right-1 flex h-2 w-2">
@@ -131,7 +131,7 @@ export default function Header() {
           </svg>
 
           <p class="text-xs">Account</p>
-        </a>
+        </Link>
       </div>
     </header>
     {/* // <!-- /Header --> */}
@@ -144,8 +144,8 @@ export default function Header() {
     >
       <div class="mx-auto">
         <div class="mx-auto flex w-full justify-center gap-3 py-4">
-          <a
-            href="wishlist.html"
+          <Link
+            href="/wishlist"
             class="flex cursor-pointer flex-col items-center justify-center"
           >
             <svg
@@ -164,10 +164,10 @@ export default function Header() {
             </svg>
 
             <p class="text-xs">Wishlist</p>
-          </a>
+          </Link>
 
-          <a
-            href="cart.html"
+          <Link
+            href="/cart"
             class="flex cursor-pointer flex-col items-center justify-center"
           >
             <svg
@@ -184,10 +184,10 @@ export default function Header() {
             </svg>
 
             <p class="text-xs">Cart</p>
-          </a>
+          </Link>
 
-          <a
-            href="account-page.html"
+          <Link
+            href="/account-page"
             class="relative flex cursor-pointer flex-col items-center justify-center"
           >
             <span class="absolute bottom-[33px] right-1 flex h-2 w-2">
@@ -215,7 +215,7 @@ export default function Header() {
             </svg>
 
             <p class="text-xs">Account</p>
-          </a>
+          </Link>
         </div>
 
         <form class="my-4 mx-5 flex h-9 items-center border">
@@ -249,7 +249,7 @@ export default function Header() {
         </form>
         <ul class="text-center font-medium">
           <li class="py-2"><a href="index.html">Home</a></li>
-          <li class="py-2"><a href="catalog.html">Catalog</a></li>
+          <li class="py-2"><Link href="/products">Products</Link></li>
           <li class="py-2"><a href="about-us.html">About Us</a></li>
           <li class="py-2"><a href="contact-us.html">Contact Us</a></li>
         </ul>
@@ -293,8 +293,8 @@ export default function Header() {
             >Home</Link>
           <Link
             class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
-            href="/catalog"
-            >Catalog</Link>
+            href="/products"
+            >Products</Link>
           <Link
             class="font-light text-white duration-100 hover:text-yellow-400 hover:underline"
             href="/about-us"
