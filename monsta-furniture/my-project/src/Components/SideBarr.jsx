@@ -21,36 +21,36 @@ export default function SideBarr() {
                             Dashboard
                         </SidebarItem>
                         <SidebarCollapse icon={HiUsers} label="User Management">
-                            <SidebarItem href="/">Admins</SidebarItem>
-                            <SidebarItem href="/">Users</SidebarItem>
+                            <SidebarItem href="/admins">Admins</SidebarItem>
+                            <SidebarItem href="/users">Users</SidebarItem>
                         </SidebarCollapse>
                         <SidebarCollapse icon={HiLocationMarker} label="Locations">
-                            <SidebarItem href="/">Countries</SidebarItem>
+                            <SidebarItem href="/countries">Countries</SidebarItem>
                         </SidebarCollapse>
                         <SidebarCollapse icon={PiNotebookLight} label="Master Catalogs">
-                            <SidebarItem href="/">Sliders</SidebarItem>
-                            <SidebarItem href="/">Testimonials</SidebarItem>
-                            <SidebarItem href="/">Why Choose Us</SidebarItem>
-                            <SidebarItem href="/">Coupons</SidebarItem>
+                            <SidebarItem href="/slider-listing">Sliders</SidebarItem>
+                            <SidebarItem href="/testimonials-listing">Testimonials</SidebarItem>
+                            <SidebarItem href="/whychooseus-listing">Why Choose Us</SidebarItem>
+                            <SidebarItem href="/coupons">Coupons</SidebarItem>
                         </SidebarCollapse>
                         <SidebarCollapse icon={PiNotebookLight} label="Product Catalogs">
-                            <SidebarItem href="/">Catagories</SidebarItem>
-                            <SidebarItem href="/">Materials</SidebarItem>
-                            <SidebarItem href="/">Colors</SidebarItem>
-                            <SidebarItem href="/">Products</SidebarItem>
+                            <SidebarItem href="/categories-listing">Catagories</SidebarItem>
+                            <SidebarItem href="/materials-listing">Materials</SidebarItem>
+                            <SidebarItem href="/colors-listing">Colors</SidebarItem>
+                            <SidebarItem href="/products-listing">Products</SidebarItem>
                         </SidebarCollapse>
                         <SidebarCollapse icon={VscSettings} label="Enquirys">
-                            <SidebarItem href="/">Contact Enquirys</SidebarItem>
-                            <SidebarItem href="/">Newsletters</SidebarItem>
+                            <SidebarItem href="/contact-enquiry-management">Contact Enquirys</SidebarItem>
+                            <SidebarItem href="/newsletter-management">Newsletters</SidebarItem>
                         </SidebarCollapse>
                         <SidebarCollapse icon={VscSettings} label="Configuration">
-                            <SidebarItem href="/">Payment Gateways</SidebarItem>
-                            <SidebarItem href="/">Configurations</SidebarItem>
+                            <SidebarItem href="/payment-gateway-listing">Payment Gateways</SidebarItem>
+                            <SidebarItem href="/configurations">Configurations</SidebarItem>
                         </SidebarCollapse>
-                        <SidebarItem href="/" icon={IoLogoWechat}>
+                        <SidebarItem href="/faqs-listing" icon={IoLogoWechat}>
                             FAQs
                         </SidebarItem>
-                        <SidebarItem href="/" icon={FiFileText}>
+                        <SidebarItem href="/cms-pages-listing" icon={FiFileText}>
                             CMS Pages
                         </SidebarItem>
                     </SidebarItemGroup>
