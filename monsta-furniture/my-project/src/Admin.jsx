@@ -1,26 +1,103 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { RiEditCircleFill } from "react-icons/ri";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
-import { IoMdDocument,IoMdAdd } from "react-icons/io";
+import { IoMdDocument, IoMdAdd, IoIosSearch } from "react-icons/io";
 import { GrDocumentText } from "react-icons/gr";
-import { FaFilter } from "react-icons/fa";
+import { FaFilter,FaRegSave } from "react-icons/fa";
 
 
 
 
 
 export default function Admin() {
+
+    const [filterToggle, setFilterToggle] = useState(false);
+    const [popupToggle, setPopupToggle] = useState(false);
+
+
+
+    const filterHideShow = () => {
+        if (filterToggle) {
+            setFilterToggle(false);
+        } else {
+            setFilterToggle(true);
+        }
+    }
+
+    const popupHideShow = () => {
+        if (popupToggle) {
+            setPopupToggle(false);
+        } else {
+            setPopupToggle(true);
+        }
+    }
+
     return (
         <>
+
+            {
+               popupToggle
+               ?
+               <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-5'>
+                <div className='flex text-gray-700 justify-between'>
+                    <h4>Create Admin</h4>
+                    <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
+                    
+                </div>
+                <form action="" className='py-5 text-gray-500'>
+                    <label htmlFor="">Name</label><br />
+                    <input type="text" placeholder='Name'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                    <label htmlFor="">Email Address</label><br />
+                    <input type="text" placeholder='Email Address'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                    <label htmlFor="">Mobile Number</label><br />
+                    <input type="text" placeholder='Mobile Number'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                    <div className='flex gap-2 justify-self-end mt-3'>
+                        <button className='rounded bg-gray-300 px-3 py-1'  onClick={popupHideShow}>Close</button>
+                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Create Admin</button>
+                    </div>
+                    
+                </form>
+               </div>
+               :
+               ''
+            }
+
+            
+
+
+            
+
 
             <div className='mt-[40px] mx-3 flex justify-between'>
                 <h2 className='text-2xl'>Admin Listing</h2>
                 <div className='flex gap-3 me-5 text-white'>
-                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]'><FaFilter /></button>
-                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]'><IoMdAdd /></button>
+                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={filterHideShow}><FaFilter /></button>
+                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={popupHideShow} ><IoMdAdd /></button>
                 </div>
             </div>
+
+            {
+                filterToggle
+                    ?
+                    <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
+                        <h3 className='text-gray-600 mb-2'>FILTERS</h3>
+                        <div>
+                            <form action="" className='flex gap-5'>
+                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
+                                <input type="text" placeholder='Email Address' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
+                                <input type="text" placeholder='Mobile Nummber' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
+                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Admins</button>
+                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3'>Clear</button>
+                            </form>
+
+                        </div>
+                    </div>
+                    :
+                    ''
+            }
+
+
 
             <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
                 <div className='flex justify-between'>
@@ -49,7 +126,7 @@ export default function Admin() {
                             <MdDelete className='text-red-500 text-xl ' />
                         </div>
                         <div className='flex p-2 gap-2 items-center border border-1 bg-white'>
-                            <GrDocumentText className='hover:bg-gray-200'/>
+                            <GrDocumentText className='hover:bg-gray-200' />
                             <IoMdDocument className='text-xl hover:bg-gray-200' />
                         </div>
                     </div>
