@@ -8,7 +8,17 @@ export default {
     ".flowbite-react\\class-list.json"
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'slide-in': 'slideIn 1s ease-out forwards',
+      },
+      keyframes: {
+        slideIn: {
+          '0%': { transform: 'translateY(-100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+    },
   },
   plugins: [flowbiteReact],
 }

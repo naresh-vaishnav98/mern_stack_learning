@@ -15,6 +15,8 @@ export default function Admin() {
     const [filterToggle, setFilterToggle] = useState(false);
     const [popupToggle, setPopupToggle] = useState(false);
 
+    const [editAdminn, setEditAdminn] = useState(false);
+
 
 
     const filterHideShow = () => {
@@ -33,12 +35,61 @@ export default function Admin() {
         }
     }
 
+
+    const editPopupHideShow = () => {
+        if (editAdminn) {
+            setEditAdminn(false);
+        } else {
+            setEditAdminn(true);
+        }
+
+        if (popupToggle) {
+            setPopupToggle(false);
+        } else {
+            setPopupToggle(true);
+        }
+    }
+
+
+    const editAdmin = () => {
+        if (editAdminn) {
+            setPopupToggle(false);
+            setEditAdminn(false);
+        } else {
+            setPopupToggle(true);
+            setEditAdminn(true);
+        }
+    }
+
     return (
         <>
 
             {
                popupToggle
                ?
+               editAdminn
+               ?
+               <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-5'>
+                <div className='flex text-gray-700 justify-between'>
+                    <h4>Edit Admin</h4>
+                    <button onClick={editPopupHideShow}><strong className='text-xl'>x</strong></button>
+                    
+                </div>
+                <form action="" className='py-5 text-gray-500'>
+                    <label htmlFor="">Name</label><br />
+                    <input type="text" placeholder='Name'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                    <label htmlFor="">Email Address</label><br />
+                    <input type="text" placeholder='Email Address'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                    <label htmlFor="">Mobile Number</label><br />
+                    <input type="text" placeholder='Mobile Number'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                    <div className='flex gap-2 justify-self-end mt-3'>
+                        <button className='rounded bg-gray-300 px-3 py-1'  onClick={editPopupHideShow}>Close</button>
+                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Update Admin</button>
+                    </div>
+                    
+                </form>
+               </div>
+               :
                <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-5'>
                 <div className='flex text-gray-700 justify-between'>
                     <h4>Create Admin</h4>
@@ -61,12 +112,7 @@ export default function Admin() {
                </div>
                :
                ''
-            }
-
-            
-
-
-            
+            }        
 
 
             <div className='mt-[40px] mx-3 flex justify-between'>
@@ -80,7 +126,7 @@ export default function Admin() {
             {
                 filterToggle
                     ?
-                    <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
+                    <div className=' mt-[60px] border border-1 rounded p-5 mx-5  animate-slide-in transition-all duration-1000 ease-out transform translate-y-[-100%] opacity-0'>
                         <h3 className='text-gray-600 mb-2'>FILTERS</h3>
                         <div>
                             <form action="" className='flex gap-5'>
@@ -150,7 +196,7 @@ export default function Admin() {
                                     Email ID
                                 </th>
                                 <th scope="col" class="px-6 py-3 border border-1">
-                                    MObile Number
+                                    Mobile Number
                                 </th>
                                 <th scope="col" class="px-6 py-3 border border-1">
                                     Status
@@ -181,7 +227,7 @@ export default function Admin() {
                                     <button className='w-[70px] h-[30px] border border-1 bg-[#4DC36F] text-white rounded'>Active</button>
                                 </td>
                                 <td class="px-6 py-4 border border-slate-300">
-                                    <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px]' />
+                                    <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px] cursor-pointer' onClick={editAdmin}/>
                                 </td>
                             </tr>
                         </tbody>
