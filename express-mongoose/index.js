@@ -25,6 +25,7 @@ server.get('/', (req,res) => {
 // Admin API URls
 
 require('./src/routes/admin/color.routes.js')(server);
+require('./src/routes/admin/material.routes.js')(server);
 
 
 server.listen(7002, () => {
