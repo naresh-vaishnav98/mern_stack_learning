@@ -69,46 +69,50 @@ export default function Admin() {
                ?
                editAdminn
                ?
-               <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-5'>
-                <div className='flex text-gray-700 justify-between'>
-                    <h4>Edit Admin</h4>
-                    <button onClick={editPopupHideShow}><strong className='text-xl'>x</strong></button>
-                    
-                </div>
-                <form action="" className='py-5 text-gray-500'>
-                    <label htmlFor="">Name</label><br />
-                    <input type="text" placeholder='Name'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
-                    <label htmlFor="">Email Address</label><br />
-                    <input type="text" placeholder='Email Address'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
-                    <label htmlFor="">Mobile Number</label><br />
-                    <input type="text" placeholder='Mobile Number'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
-                    <div className='flex gap-2 justify-self-end mt-3'>
-                        <button className='rounded bg-gray-300 px-3 py-1'  onClick={editPopupHideShow}>Close</button>
-                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Update Admin</button>
+               <div className='bg-black/50 w-screen z-10 h-screen'>
+                <div className='w-[600px] border border-1 rounded mx-auto fixed  inset-x-[500px] bg-white p-5'>
+                    <div className='flex text-gray-700 justify-between'>
+                        <h4>Edit Admin</h4>
+                        <button onClick={editPopupHideShow}><strong className='text-xl'>x</strong></button>
+                        
                     </div>
-                    
-                </form>
+                    <form action="" className='py-5 text-gray-500'>
+                        <label htmlFor="">Name</label><br />
+                        <input type="text" placeholder='Name'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                        <label htmlFor="">Email Address</label><br />
+                        <input type="text" placeholder='Email Address'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                        <label htmlFor="">Mobile Number</label><br />
+                        <input type="text" placeholder='Mobile Number'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                        <div className='flex gap-2 justify-self-end mt-3'>
+                            <button className='rounded bg-gray-300 px-3 py-1'  onClick={editPopupHideShow}>Close</button>
+                            <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Update Admin</button>
+                        </div>
+                        
+                    </form>
+                </div>
                </div>
                :
-               <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-5'>
-                <div className='flex text-gray-700 justify-between'>
-                    <h4>Create Admin</h4>
-                    <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
-                    
-                </div>
-                <form action="" className='py-5 text-gray-500'>
-                    <label htmlFor="">Name</label><br />
-                    <input type="text" placeholder='Name'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
-                    <label htmlFor="">Email Address</label><br />
-                    <input type="text" placeholder='Email Address'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
-                    <label htmlFor="">Mobile Number</label><br />
-                    <input type="text" placeholder='Mobile Number'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
-                    <div className='flex gap-2 justify-self-end mt-3'>
-                        <button className='rounded bg-gray-300 px-3 py-1'  onClick={popupHideShow}>Close</button>
-                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Create Admin</button>
+               <div className='bg-black/50 w-screen z-10 h-screen'>
+                <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-5'>
+                    <div className='flex text-gray-700 justify-between'>
+                        <h4>Create Admin</h4>
+                        <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
+                        
                     </div>
-                    
-                </form>
+                    <form action="" className='py-5 text-gray-500'>
+                        <label htmlFor="">Name</label><br />
+                        <input type="text" placeholder='Name'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                        <label htmlFor="">Email Address</label><br />
+                        <input type="text" placeholder='Email Address'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                        <label htmlFor="">Mobile Number</label><br />
+                        <input type="text" placeholder='Mobile Number'  className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'/>
+                        <div className='flex gap-2 justify-self-end mt-3'>
+                            <button className='rounded bg-gray-300 px-3 py-1'  onClick={popupHideShow}>Close</button>
+                            <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Create Admin</button>
+                        </div>
+                        
+                    </form>
+                </div>
                </div>
                :
                ''
@@ -126,13 +130,13 @@ export default function Admin() {
             {
                 filterToggle
                     ?
-                    <div className=' mt-[60px] border border-1 rounded p-5 mx-5  animate-slide-in transition-all duration-1000 ease-out transform translate-y-[-100%] opacity-0'>
+                    <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
                         <h3 className='text-gray-600 mb-2'>FILTERS</h3>
                         <div>
                             <form action="" className='flex gap-5'>
                                 <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
                                 <input type="text" placeholder='Email Address' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
-                                <input type="text" placeholder='Mobile Nummber' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
+                                <input type="text" placeholder='Mobile Number' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
                                 <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Admins</button>
                                 <button className='flex items-center rounded bg-[#478CEE] text-white px-3'>Clear</button>
                             </form>

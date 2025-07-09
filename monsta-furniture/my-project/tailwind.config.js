@@ -9,15 +9,9 @@ export default {
   ],
   theme: {
     extend: {
-      animation: {
-        'slide-in': 'slideIn 1s ease-out forwards',
-      },
-      keyframes: {
-        slideIn: {
-          '0%': { transform: 'translateY(-100%)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-      },
+      backgroundImage: {
+        'user-profile-bg': "url('/profilebg.png')",
+      }
     },
   },
   plugins: [flowbiteReact],

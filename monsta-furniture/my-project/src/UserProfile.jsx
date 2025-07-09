@@ -1,60 +1,40 @@
-import React, { useState } from 'react'
-import { RiEditCircleFill } from "react-icons/ri";
-import { FaArrowRightArrowLeft } from "react-icons/fa6";
-import { MdDelete } from "react-icons/md";
-import { IoMdDocument, IoMdAdd, IoIosSearch } from "react-icons/io";
+import React from 'react'
+import { MdOutlineMail } from "react-icons/md";
 import { GrDocumentText } from "react-icons/gr";
-import { FaFilter, FaEye } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { IoMdDocument, IoMdAdd, IoIosSearch } from "react-icons/io";
 
-
-export default function Users() {
-
-    const [filterToggle, setFilterToggle] = useState(false);
-
-    const filterHideShow = () => {
-        if (filterToggle) {
-            setFilterToggle(false);
-        } else {
-            setFilterToggle(true);
-        }
-    }
-
-
-
+export default function UserProfile() {
     return (
         <>
-            <div className='mt-[40px] mx-3 flex justify-between'>
-                <h2 className='text-2xl'>Users Listing</h2>
-                <div className='flex gap-3 me-5 text-white'>
-                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={filterHideShow}><FaFilter /></button>
+            <div className='flex border border-1 rounded mt-[60px] h-[250px] me-10 ms-5'>
+                <div className='bg-[url("/profilebg.png")] bg-cover w-[32%]'>
+                    <div className='bg-black/50 w-[100%] h-[100%] flex items-center'>
+                        <div className='mx-auto w-[40%] h-[60%] flex flex-col gap-2 justify-center items-center text-white'>
+                            <div className='rounded-[50%] w-[40%] h-[55%] mx-auto overflow-hidden bg-[green]'>
+                                <img src="/monsta-Logo.png" alt="Profile-Image" />
+
+                            </div>
+                            <div className='flex items-center gap-1 text-lg'>
+                                <MdOutlineMail /> info@gmail.com
+                            </div>
+
+                            <p>Created:</p>
+
+                        </div>
+
+                    </div>
                 </div>
+                <div className='w-[32%] py-6 px-10 text-gray-700 font-semibold'>Billing Info</div>
+                <div className='w-[32%] py-6 px-10 text-gray-700 font-semibold'>Shipping Info</div>
             </div>
 
 
-            {
-                filterToggle
-                    ?
-                    <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
-                        <h3 className='text-gray-600 mb-2'>FILTERS</h3>
-                        <div>
-                            <form action="" className='flex gap-5'>
-                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
-                                <input type="text" placeholder='Email Address' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
-                                <input type="text" placeholder='Mobile Number' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
-                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Users</button>
-                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3'>Clear</button>
-                            </form>
-
-                        </div>
-                    </div>
-                    :
-                    ''
-            }
-
-
-
             <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
+                <div className='border-b mb-5'>
+                    <div className='border-b-2 border-blue-400 w-[100px] flex justify-center text-blue-500 p-3'>
+                        Order
+                    </div>
+                </div>
                 <div className='flex justify-between'>
                     <div className=''>
                         <div className='flex items-center pb-5 ps-1'>
@@ -76,10 +56,7 @@ export default function Users() {
                         </div>
                     </div>
                     <div className=' flex items-center rounded px-3'>
-                        <div className='flex bg-[#F0F0F0] p-2 items-center gap-2'>
-                            <FaArrowRightArrowLeft className='' />
-                            <MdDelete className='text-red-500 text-xl ' />
-                        </div>
+                        
                         <div className='flex p-2 gap-2 items-center border border-1 bg-white'>
                             <GrDocumentText className='hover:bg-gray-200' />
                             <IoMdDocument className='text-xl hover:bg-gray-200' />
@@ -92,23 +69,18 @@ export default function Users() {
                     <table class="w-full text-sm text-left rtl:text-right">
                         <thead class="text-xs text-white uppercase border border-1 bg-[#478CEE]">
                             <tr>
-                                <th scope="col" class="p-4  border border-1">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                    </div>
+                                
+                                <th scope="col" class="px-6 py-3 border border-1">
+                                    Order Info
                                 </th>
                                 <th scope="col" class="px-6 py-3 border border-1">
-                                    Name
+                                    User Info
                                 </th>
                                 <th scope="col" class="px-6 py-3 border border-1">
-                                    Email ID
+                                    Price Info
                                 </th>
                                 <th scope="col" class="px-6 py-3 border border-1">
-                                    MObile Number
-                                </th>
-                                <th scope="col" class="px-6 py-3 border border-1">
-                                    Status
+                                    Order Status
                                 </th>
                                 <th scope="col" class="px-6 py-3 border border-1">
                                     Action
@@ -117,12 +89,7 @@ export default function Users() {
                         </thead>
                         <tbody className='text-gray-500 bg-white'>
                             <tr class="bg-white border-b">
-                                <td class="w-4 p-4 border border-slate-300">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
+                                
                                 <th scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
                                     Apple MacBook Pro 17"
                                 </th>
@@ -133,11 +100,11 @@ export default function Users() {
                                     Laptop
                                 </td>
                                 <td class="px-6 py-4 border border-slate-300">
-                                    <button className='w-[70px] h-[30px] border border-1 bg-[#4DC36F] text-white rounded'>Active</button>
+                                    <button className='w-[70px] h-[30px] border border-1 bg-[yellow] text-blacck rounded'>pending</button>
                                 </td>
                                 <td class="px-6 py-4 border border-slate-300">
                                     {/* <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px]' /> */}
-                                    <Link to='/user-profile'><FaEye className='text-[#0199B8] w-[50px] h-[30px]' /></Link>
+                                    
                                 </td>
                             </tr>
                         </tbody>

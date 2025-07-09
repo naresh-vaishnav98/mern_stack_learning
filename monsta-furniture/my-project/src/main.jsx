@@ -20,6 +20,7 @@ import PaymentGatewayListing from './PaymentGatewayListing';
 import Configurations from './Configurations';
 import FaqsListing from './FaqsListing';
 import CMSPagesListing from './CMSPagesListing';
+import UserProfile from './UserProfile';
 
 
 createRoot(document.getElementById('root')).render(
@@ -45,6 +46,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/configurations' element={<Configurations/>}></Route>
           <Route path='/faqs-listing' element={<FaqsListing/>}></Route>
           <Route path='/cms-pages-listing' element={<CMSPagesListing/>}></Route>
+          <Route path='/user-profile' element={<UserProfile/>}></Route>
         </Route>
       </Routes>    
     </BrowserRouter>
