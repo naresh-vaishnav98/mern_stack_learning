@@ -1,23 +1,158 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { RiEditCircleFill } from "react-icons/ri";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
-import { IoMdDocument, IoMdAdd } from "react-icons/io";
+import { IoMdDocument, IoMdAdd, IoIosSearch } from "react-icons/io";
 import { GrDocumentText } from "react-icons/gr";
-import { FaFilter } from "react-icons/fa";
+import { FaFilter, FaRegSave } from "react-icons/fa";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
 import { CiImageOn } from "react-icons/ci";
 
 export default function MaterialsListing() {
+
+
+    const [filterToggle, setFilterToggle] = useState(false);
+    const [popupToggle, setPopupToggle] = useState(false);
+
+    const [editMaterial, setEditMaterial] = useState(false);
+
+
+
+    const filterHideShow = () => {
+        if (filterToggle) {
+            setFilterToggle(false);
+        } else {
+            setFilterToggle(true);
+        }
+    }
+
+    const popupHideShow = () => {
+        if (popupToggle) {
+            setPopupToggle(false);
+        } else {
+            setPopupToggle(true);
+        }
+    }
+
+
+    const editPopupHideShow = () => {
+        if (editMaterial) {
+            setEditMaterial(false);
+        } else {
+            setEditMaterial(true);
+        }
+
+        if (popupToggle) {
+            setPopupToggle(false);
+        } else {
+            setPopupToggle(true);
+        }
+    }
+
+
+    const editMateriall = () => {
+        if (editMaterial) {
+            setPopupToggle(false);
+            setEditMaterial(false);
+        } else {
+            setPopupToggle(true);
+            setEditMaterial(true);
+        }
+    }
+
+
+
+
+
     return (
         <>
+
+            {
+                popupToggle
+                    ?
+                    editMaterial
+                        ?
+                        <div className='bg-black/50 w-screen z-10 h-screen'>
+                            <div className='w-[600px] border border-1 rounded mx-auto fixed  inset-x-[500px] bg-white p-5'>
+                                <div className='flex text-gray-700 justify-between'>
+                                    <h4>Edit Material</h4>
+                                    <button onClick={editPopupHideShow}><strong className='text-xl'>x</strong></button>
+
+                                </div>
+                                <form action="" className='py-5 text-gray-500'>
+                                    <label htmlFor="">Name</label><br />
+                                    <input type="text" placeholder='Name' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <label htmlFor="">Order</label><br />
+                                    <input type="text" placeholder='Order' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <div className='flex gap-2 justify-self-end mt-3'>
+                                        <button className='rounded bg-gray-300 px-3 py-1' onClick={editPopupHideShow}>Close</button>
+                                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Update Material</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        :
+                        <div className='bg-black/50 w-screen z-10 h-screen'>
+                            <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-5'>
+                                <div className='flex text-gray-700 justify-between'>
+                                    <h4>Create Material</h4>
+                                    <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
+
+                                </div>
+                                <form action="" className='py-5 text-gray-500'>
+                                    <label htmlFor="">Name</label><br />
+                                    <input type="text" placeholder='Name' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <label htmlFor="">Order</label><br />
+                                    <input type="text" placeholder='Order' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <div className='flex gap-2 justify-self-end mt-3'>
+                                        <button className='rounded bg-gray-300 px-3 py-1' onClick={popupHideShow}>Close</button>
+                                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Create Material</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    :
+                    ''
+            }
+
+
+
+
+
+
             <div className='mt-[40px] mx-3 flex justify-between'>
                 <h2 className='text-2xl'>Materials Listing</h2>
                 <div className='flex gap-3 me-5 text-white'>
-                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]'><FaFilter /></button>
-                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]'><IoMdAdd /></button>
+                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={filterHideShow}><FaFilter /></button>
+                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={popupHideShow}><IoMdAdd /></button>
                 </div>
             </div>
+
+
+            {
+                filterToggle
+                    ?
+                    <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
+                        <h3 className='text-gray-600 mb-2'>FILTERS</h3>
+                        <div>
+                            <form action="" className='flex gap-5'>
+                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
+                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Colors</button>
+                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3'>Clear</button>
+                            </form>
+
+                        </div>
+                    </div>
+                    :
+                    ''
+            }
+
+
+
+
+
 
             <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
                 <div className='flex justify-between'>
@@ -97,7 +232,7 @@ export default function MaterialsListing() {
                                 </td>
                                 <td class="px-6 py-4 border border-slate-300">
                                     <div className='flex'>
-                                        <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px]' />
+                                        <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px] cursor-pointer' onClick={editMateriall} />
                                     </div>
                                 </td>
                             </tr>
