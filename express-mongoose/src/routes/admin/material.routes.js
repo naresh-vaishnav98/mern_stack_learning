@@ -8,13 +8,13 @@ module.exports = server => {
 
     router.post('/view',view);
 
-    router.post('/details',details);
+    router.post('/details/:id',details);
 
-    router.post('/update',update);
+    router.put('/update/:id',update);
 
-    router.post('/change-status',changeStatus);
+    router.put('/change-status',changeStatus);
 
-    router.post('/delete',destroy);
+    router.put('/delete',destroy);
 
     server.use('/api/admin/material',router);
 }
