@@ -1,24 +1,79 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { RiEditCircleFill } from "react-icons/ri";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
-import { IoMdDocument, IoMdAdd } from "react-icons/io";
+import { IoMdDocument, IoMdAdd, IoIosSearch } from "react-icons/io";
 import { GrDocumentText } from "react-icons/gr";
 import { FaFilter } from "react-icons/fa";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
 import { CiImageOn } from "react-icons/ci";
+import { Link } from 'react-router-dom';
 
 
 export default function SliderListing() {
+
+    const [filterToggle, setFilterToggle] = useState(false);
+    const [popupToggle, setPopupToggle] = useState(false);
+
+    const filterHideShow = () => {
+        if (filterToggle) {
+            setFilterToggle(false);
+        } else {
+            setFilterToggle(true);
+        }
+    }
+
+    const popupHideShow = () => {
+        if (popupToggle) {
+            setPopupToggle(false);
+        } else {
+            setPopupToggle(true);
+        }
+    }
+
     return (
         <>
+
+            {
+                popupToggle
+                    ?
+                    <div className='bg-black/50 w-screen z-10 h-screen'>
+                        <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-3'>
+                            <strong><p className='text-xl text-right cursor-pointer mb-1' onClick={popupHideShow}>X</p></strong>
+                            <img src="/monsta-slider.jpg" alt="Slider Image" className='rounded' />
+                        </div>
+                    </div>
+                    :
+                    ''
+            }
             <div className='mt-[40px] mx-3 flex justify-between'>
                 <h2 className='text-2xl'>Slider Listing</h2>
                 <div className='flex gap-3 me-5 text-white'>
-                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]'><FaFilter /></button>
-                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]'><IoMdAdd /></button>
+                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={filterHideShow}><FaFilter /></button>
+                    <Link to={'/create-slider'}>
+                        <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]'><IoMdAdd /></button>
+                    </Link>
+
                 </div>
             </div>
+
+            {
+                filterToggle
+                    ?
+                    <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
+                        <h3 className='text-gray-600 mb-2'>FILTERS</h3>
+                        <div>
+                            <form action="" className='flex gap-5'>
+                                <input type="text" placeholder='Title' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
+                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Sliders</button>
+                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3'>Clear</button>
+                            </form>
+
+                        </div>
+                    </div>
+                    :
+                    ''
+            }
 
             <div className=' mt-[60px] border border-1 rounded p-5 mx-5'>
                 <div className='flex justify-between'>
@@ -47,7 +102,7 @@ export default function SliderListing() {
                             <MdDelete className='text-red-500 text-xl ' />
                         </div>
                         <div className='flex p-1 gap-2 items-center border border-1 bg-white'>
-                            <CgArrowsExchangeAltV className='text-2xl'/>
+                            <CgArrowsExchangeAltV className='text-2xl' />
                             <GrDocumentText className='hover:bg-gray-200' />
                             {/* <IoMdDocument className='text-xl hover:bg-gray-200' /> */}
                         </div>
@@ -98,8 +153,11 @@ export default function SliderListing() {
                                 </td>
                                 <td class="px-6 py-4 border border-slate-300">
                                     <div className='flex'>
-                                        <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px]' />
-                                        <CiImageOn className='text-white rounded-[50%] p-1 w-[30px] h-[30px] bg-[#478CEE]' />
+                                        <Link to={'/edit-slider'}>
+                                            <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px]' />
+                                        </Link>
+
+                                        <CiImageOn className='text-white rounded-[50%] p-1 w-[30px] h-[30px] bg-[#478CEE] cursor-pointer' onClick={popupHideShow} />
                                     </div>
                                 </td>
                             </tr>

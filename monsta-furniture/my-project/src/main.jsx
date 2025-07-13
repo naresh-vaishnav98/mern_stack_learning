@@ -21,6 +21,8 @@ import Configurations from './Configurations';
 import FaqsListing from './FaqsListing';
 import CMSPagesListing from './CMSPagesListing';
 import UserProfile from './UserProfile';
+import CreateSlider from './CreateSlider';
+import EditSlider from './EditSlider';
 
 
 createRoot(document.getElementById('root')).render(
@@ -47,6 +49,8 @@ createRoot(document.getElementById('root')).render(
           <Route path='/faqs-listing' element={<FaqsListing/>}></Route>
           <Route path='/cms-pages-listing' element={<CMSPagesListing/>}></Route>
           <Route path='/user-profile' element={<UserProfile/>}></Route>
+          <Route path='/create-slider' element={<CreateSlider/>}></Route>
+          <Route path='/edit-slider' element={<EditSlider/>}></Route>
         </Route>
       </Routes>    
     </BrowserRouter>
