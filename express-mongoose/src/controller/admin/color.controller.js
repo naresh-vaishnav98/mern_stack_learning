@@ -43,15 +43,22 @@ exports.view = async (req,res) => {
         deleted_at : null
     }
 
-    if(req.body.name){
-        condition.name = req.body.name;
+    if(req.body != undefined){
+        if(req.body.name){
+            condition.name = req.body.name;
+        }
+    }
+    
+
+    if(req.body != undefined){
+        var limit = req.body.limit??5;
+
+        var page = req.body.page??1;
+
+        var skip = (page-1)*limit;
     }
 
-    var limit = req.body.limit??5;
-
-    var page = req.body.page??1;
-
-    var skip = (page-1)*limit;
+    
 
 
     var totalRecords = await color.find(condition).countDocuments();

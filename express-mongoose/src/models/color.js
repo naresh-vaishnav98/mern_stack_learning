@@ -5,7 +5,7 @@ const colorschema = new mongoose.Schema({
     name : {
         type : String,
         required : [true,'Name is Required !!'],
-        match: /^[a-zA-Z]{2,10}$/,
+        match: /^[a-zA-Z ]{2,15}$/,
         validate : {
             validator : async function (v) {
                 const name = await this.constructor.findOne({
