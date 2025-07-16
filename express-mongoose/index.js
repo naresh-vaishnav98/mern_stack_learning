@@ -34,4 +34,4 @@ server.listen(7002, () => {
   .catch((error) => {
     console.log(error);
   });
-});
+}); 
