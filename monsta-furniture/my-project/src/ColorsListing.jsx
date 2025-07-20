@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RiEditCircleFill } from "react-icons/ri";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { IoMdDocument, IoMdAdd, IoIosSearch } from "react-icons/io";
 import { GrDocumentText } from "react-icons/gr";
-import { FaFilter,FaRegSave } from "react-icons/fa";
+import { FaFilter, FaRegSave } from "react-icons/fa";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
+import { LuFilter, LuFilterX } from "react-icons/lu";
 import { CiImageOn } from "react-icons/ci";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+// import toast from 'react-toastify';
 
 export default function ColorsListing() {
 
@@ -16,6 +20,11 @@ export default function ColorsListing() {
     const [editColor, setEditColor] = useState(false);
 
 
+    let [colors, setColors] = useState([]);
+    let [colorId, setColorId] = useState('');
+
+    let [searchName, setSearchName] = useState('');
+    let [checkedValues, setCheckedValues] = useState([]);
 
     const filterHideShow = () => {
         if (filterToggle) {
@@ -49,7 +58,7 @@ export default function ColorsListing() {
     }
 
 
-    const editColorr = () => {
+    const editColorr = (id) => {
         if (editColor) {
             setPopupToggle(false);
             setEditColor(false);
@@ -57,7 +66,179 @@ export default function ColorsListing() {
             setPopupToggle(true);
             setEditColor(true);
         }
+        setColorId(id);
     }
+    // console.log(newColorData);
+
+
+
+
+    useEffect(() => {
+        axios.post('http://localhost:7002/api/admin/color/view', {
+            name: searchName
+        })
+            .then((result) => {
+                setColors(result.data._data);
+                // console.log(result.data._data)
+            })
+            .catch((error) => {
+                toast.error('Something Went Wronggggg !!')
+            })
+    }, [editColor, popupToggle, searchName, checkedValues]);
+
+
+    const createColor = (e) => {
+        e.preventDefault();
+        var CreateColorr = {
+            name: e.target.name.value,
+            code: e.target.code.value,
+            order: e.target.order.value
+        }
+
+
+        if (!colorId) {
+            axios.post('http://localhost:7002/api/admin/color/create', CreateColorr)
+                .then((result) => {
+                    // console.log(result.data)
+                    if (result.data._status == true) {
+                        toast.success('Created Successfully !!')
+                        setEditColor(false);
+                        setPopupToggle(false);
+                    } else {
+                        toast.error(result.data._data[0]);
+                    }
+
+                })
+                .catch((error) => {
+                    toast.error('Something Went Wronggggg !!')
+                })
+        }
+
+
+
+    }
+
+
+    const updateColor = (event) => {
+        event.preventDefault();
+        var newColorData = {
+            name: event.target.name.value,
+            code: event.target.code.value,
+            order: event.target.order.value
+        }
+
+
+        if (colorId) {
+            axios.put('http://localhost:7002/api/admin/color/update/' + colorId, newColorData)
+                .then((result) => {
+                    if (result.data._status == true) {
+                        toast.success('Updated Successfully !!')
+                        setEditColor(false);
+                        setPopupToggle(false);
+                    } else {
+                        toast.error(result.data._data[0])
+                    }
+                    // console.log(result);
+                    ;
+                })
+                .catch((error) => {
+                    toast.error('Something Went Wrongggg !!')
+                })
+        }
+    }
+
+    const filterSearch = (event) => {
+        setSearchName(event.target.value);
+    }
+
+
+    const getValue = (id) => {
+        if (checkedValues.includes(id)) {
+            var data = checkedValues.filter((v, i) => {
+                if (v != id) {
+                    return v;
+                }
+            })
+            // console.log(data)
+            setCheckedValues(data);
+        } else {
+            var data = [...checkedValues, id];
+            // console.log(data);
+            setCheckedValues(data);
+        }
+
+    }
+
+
+
+    const getAllColors = () => {
+
+        if (checkedValues.length == colors.length) {
+            setCheckedValues([]);
+        } else {
+            var data = [];
+            setCheckedValues([]);
+            colors.forEach((v, i) => {
+                data.push(v._id);
+
+            })
+            console.log(data)
+            setCheckedValues([...data]);
+        }
+    }
+
+
+
+    const changeStatus = () => {
+        if (checkedValues.length > 0) {
+            axios.put('http://localhost:7002/api/admin/color/change-status', {
+                id: checkedValues
+            })
+                .then((result) => {
+                    if (result.data._status == true) {
+                        toast.success('Status Changed Successfully !!');
+                        setCheckedValues([]);
+                    } else {
+                        toast.error(result.data._data[0]);
+                    }
+
+                })
+                .catch((error) => {
+                    toast.error('Something Went Wrong !!')
+                })
+        }else{
+            toast.error('Please Select Records to Change Status !!')
+        }
+    }
+
+    const deleteRecord = () => {
+        if(confirm('Are You Sure You Want To Delete Selected Record ??')){
+            if (checkedValues.length > 0) {
+                axios.put('http://localhost:7002/api/admin/color/delete', {
+                    id: checkedValues
+                })
+                    .then((result) => {
+                        if (result.data._status == true) {
+                            toast.success('Records Deleted Successfully !!');
+                            setCheckedValues([]);
+                        } else {
+                            toast.error(result.data._data[0]);
+                        }
+
+                    })
+                    .catch((error) => {
+                        toast.error('Something Went Wrong !!')
+                    })
+            }else{
+                toast.error('Please Select Records to Change Status !!')
+            }
+        }else{
+            setCheckedValues([]);
+        }
+    }
+
+
+
 
 
 
@@ -76,19 +257,33 @@ export default function ColorsListing() {
                                     <button onClick={editPopupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
-                                <form action="" className='py-5 text-gray-500'>
-                                    <label htmlFor="">Name</label><br />
-                                    <input type="text" placeholder='Name' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
-                                    <label htmlFor="">Code</label><br />
-                                    <input type="text" placeholder='Color Code' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
-                                    <label htmlFor="">Order</label><br />
-                                    <input type="text" placeholder='Order' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
-                                    <div className='flex gap-2 justify-self-end mt-3'>
-                                        <button className='rounded bg-gray-300 px-3 py-1' onClick={editPopupHideShow}>Close</button>
-                                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Update Color</button>
-                                    </div>
 
-                                </form>
+                                {
+                                    colors.map((v, i) => {
+                                        if (v._id == colorId) {
+                                            return (
+                                                <>
+                                                    <form action="" className='py-5 text-gray-500' onSubmit={updateColor}>
+                                                        <label htmlFor="">Name</label><br />
+                                                        <input type="text" placeholder='Name' autoComplete='off' defaultValue={v.name} className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='name' />
+                                                        <label htmlFor="">Code</label><br />
+                                                        <input type="text" placeholder='Color Code' autoComplete='off' defaultValue={v.code} className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='code' />
+                                                        <label htmlFor="">Order</label><br />
+                                                        <input type="text" placeholder='Order' autoComplete='off' defaultValue={v.order} className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='order' />
+                                                        <div className='flex gap-2 justify-self-end mt-3'>
+                                                            <button className='rounded bg-gray-300 px-3 py-1' onClick={editPopupHideShow}>Close</button>
+                                                            <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white' type='submit'><FaRegSave /> Update Color</button>
+                                                        </div>
+                                                    </form >
+                                                </>
+                                            )
+                                        }
+                                    })
+                                }
+
+
+
+
                             </div>
                         </div>
                         :
@@ -99,18 +294,17 @@ export default function ColorsListing() {
                                     <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
-                                <form action="" className='py-5 text-gray-500'>
+                                <form action="" className='py-5 text-gray-500' onSubmit={createColor}>
                                     <label htmlFor="">Name</label><br />
-                                    <input type="text" placeholder='Name' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <input type="text" placeholder='Name' autoComplete='off' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='name' />
                                     <label htmlFor="">Code</label><br />
-                                    <input type="text" placeholder='Color Code' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <input type="text" placeholder='Color Code' autoComplete='off' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='code' />
                                     <label htmlFor="">Order</label><br />
-                                    <input type="text" placeholder='Order' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <input type="text" placeholder='Order' autoComplete='off' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='order' />
                                     <div className='flex gap-2 justify-self-end mt-3'>
                                         <button className='rounded bg-gray-300 px-3 py-1' onClick={popupHideShow}>Close</button>
-                                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Create Color</button>
+                                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white' type='submit'><FaRegSave /> Create Color</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -125,7 +319,15 @@ export default function ColorsListing() {
             <div className='mt-[40px] mx-3 flex justify-between'>
                 <h2 className='text-2xl'>Colors Listing</h2>
                 <div className='flex gap-3 me-5 text-white'>
-                    <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={filterHideShow}><FaFilter /></button>
+                    {
+                        filterToggle
+                            ?
+                            <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={filterHideShow}>< LuFilterX /></button>
+                            :
+                            <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={filterHideShow}><LuFilter /></button>
+                    }
+
+
                     <button className='bg-[#478CEE] text-2xl p-2 rounded-[50%]' onClick={popupHideShow}><IoMdAdd /></button>
                 </div>
             </div>
@@ -137,7 +339,7 @@ export default function ColorsListing() {
                         <h3 className='text-gray-600 mb-2'>FILTERS</h3>
                         <div>
                             <form action="" className='flex gap-5'>
-                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
+                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' onKeyUp={filterSearch} />
                                 <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Colors</button>
                                 <button className='flex items-center rounded bg-[#478CEE] text-white px-3'>Clear</button>
                             </form>
@@ -172,8 +374,8 @@ export default function ColorsListing() {
                     </div>
                     <div className=' flex items-center rounded px-3'>
                         <div className='flex bg-[#F0F0F0] p-2 items-center gap-2'>
-                            <FaArrowRightArrowLeft className='' />
-                            <MdDelete className='text-red-500 text-xl ' />
+                            <FaArrowRightArrowLeft className='cursor-pointer' onClick={changeStatus} />
+                            <MdDelete className='text-red-500 text-xl cursor-pointer' onClick={deleteRecord} />
                         </div>
                         <div className='flex p-1 gap-2 items-center border border-1 bg-white'>
                             <CgArrowsExchangeAltV className='text-2xl' />
@@ -190,7 +392,8 @@ export default function ColorsListing() {
                             <tr>
                                 <th scope="col" class="p-4  border border-1">
                                     <div class="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                        <input id="checkbox-all-search" onClick={getAllColors} checked={checkedValues.length == colors.length ? 'checked' : ''}
+                                            type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                         <label for="checkbox-all-search" class="sr-only">checkbox</label>
                                     </div>
                                 </th>
@@ -212,31 +415,58 @@ export default function ColorsListing() {
                             </tr>
                         </thead>
                         <tbody className='text-gray-500 bg-white'>
-                            <tr class="bg-white border-b">
-                                <td class="w-4 p-4 border border-slate-300">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
-                                    Name
-                                </td>
-                                <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
-                                    Code
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <input type="number" value='1' className='border border-1 border-gray-300 rounded p-2' />
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <button className='w-[70px] h-[30px] border border-1 bg-[#4DC36F] text-white rounded'>Active</button>
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <div className='flex'>
-                                        <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px] cursor-pointer' onClick={editColorr} />
-                                    </div>
-                                </td>
-                            </tr>
+
+                            {
+                                colors.map((v, i) => {
+                                    if (colors) {
+                                        return (
+                                            <tr class="bg-white border-b" key={i}>
+                                                <td class="w-4 p-4 border border-slate-300">
+                                                    <div class="flex items-center">
+                                                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onClick={() => getValue(v._id)} checked={checkedValues.includes(v._id) ? 'checked' : ''} />
+                                                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                                                    </div>
+                                                </td>
+                                                <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
+                                                    {v.name}
+                                                </td>
+                                                <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
+                                                    {v.code}
+                                                </td>
+                                                <td class="px-6 py-4 border border-slate-300">
+                                                    <input type="number" defaultValue={v.order} className='border border-1 border-gray-300 rounded p-2' />
+                                                </td>
+                                                <td class="px-6 py-4 border border-slate-300">
+                                                    {
+                                                        v.status
+                                                            ?
+                                                            <button className='w-[70px] h-[30px] border border-1 bg-[#4DC36F] text-white rounded'>Active</button>
+                                                            :
+                                                            <button className='w-[90px] h-[30px] border border-1 bg-[#EA6B56] text-white rounded'>Inactive</button>
+                                                    }
+
+
+                                                </td>
+                                                <td class="px-6 py-4 border border-slate-300">
+                                                    <div className='flex'>
+                                                        <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px] cursor-pointer' onClick={() => editColorr(v._id)} />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    } else {
+                                        return (
+                                            <tr>
+                                                <td colSpan={6}>No records Found</td>
+                                            </tr>
+                                        )
+                                    }
+
+                                })
+                            }
+
+
+
                         </tbody>
                     </table>
                 </div>

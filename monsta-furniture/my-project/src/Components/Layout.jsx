@@ -18,7 +18,7 @@ export default function Layout() {
                     <div className='w-[14%]'>
                         <SideBarr />
                     </div>
-                    <div className='w-[86%]'>
+                    <div className='w-[90%]'>
                         <Outlet />
                     </div>
                 </div>

@@ -72,11 +72,7 @@ exports.view = async (req, res) => {
 
     const orCondition = [];
 
-    // if (request.body.order != undefined) {
-    //     if (request.body.order != '') {
-    //         orCondition.push({ order: request.body.order })
-    //     }
-    // }
+    
     if (req.body != undefined) {
         if (req.body.name != undefined) {
             if (req.body.name != '') {
@@ -186,8 +182,6 @@ exports.details = async (req, res) => {
                 }
                 res.send(output);
             } else {
-
-
                 const output = {
                     _status: false,
                     _message: 'No Record Found !!',
@@ -207,7 +201,39 @@ exports.details = async (req, res) => {
 }
 
 exports.changeStatus = async (req, res) => {
+    await color.updateMany({
+        _id: req.body.id
+    }, [{
+        $set: {
+            status : {
+               $not : '$status'
+            }
+        }
+    }])
 
+        .then((result) => {
+            const output = {
+                _status: true,
+                _message: 'Status Changed Succesfully !!',
+                _data: result
+            }
+            res.send(output);
+        })
+        .catch((error) => {
+
+            var errorMessage = [];
+
+            for (index in error.errors) {
+                errorMessage.push(error.errors[index].message);
+            }
+
+            const output = {
+                _status: false,
+                _message: 'Something Went Wrong !!',
+                _data: errorMessage
+            }
+            res.send(output);
+        })
 }
 
 exports.destroy = async (req, res) => {

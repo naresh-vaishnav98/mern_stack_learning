@@ -144,9 +144,7 @@ exports.details = async (req,res) => {
                 _data : result
             }
             res.send(output);
-        } else {
-
-        
+        } else {        
             const output = {
                 _status : false,
                 _message : 'No Record Found !!',
@@ -166,7 +164,39 @@ exports.details = async (req,res) => {
 }
 
 exports.changeStatus = async (req,res) => {
+    await material.updateMany({
+        _id: req.body.id
+    }, [{
+        $set: {
+            status : {
+               $not : '$status'
+            }
+        }
+    }])
 
+        .then((result) => {
+            const output = {
+                _status: true,
+                _message: 'Status Changed Succesfully !!',
+                _data: result
+            }
+            res.send(output);
+        })
+        .catch((error) => {
+
+            var errorMessage = [];
+
+            for (index in error.errors) {
+                errorMessage.push(error.errors[index].message);
+            }
+
+            const output = {
+                _status: false,
+                _message: 'Something Went Wrong !!',
+                _data: errorMessage
+            }
+            res.send(output);
+        })
 }
 
 exports.destroy = async (req,res) => {
