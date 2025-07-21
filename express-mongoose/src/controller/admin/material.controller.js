@@ -38,28 +38,61 @@ exports.create = async (req,res) => {
 
 exports.view = async (req,res) => {
 
-    var condition = {
-        deleted_at: null,
+    // var condition = {
+    //     deleted_at: null,
+    // }
+
+    // if(req.body != undefined){
+    //     if(req.body.name){
+    //         condition.name = req.body.name;
+    //     }
+    // }
+
+    var limit = 5;
+    var page = 1;
+    var skip = 0;
+    
+    if(req.body != undefined){
+        limit = req.body.limit??5;
+        
+        page = req.body.page??1;
+        
+        skip = (page-1)*limit;
     }
 
-    if(req.body != undefined){
-        if(req.body.name){
-            condition.name = req.body.name;
+
+    const addCondition = [
+        {
+            deleted_at: null,
+        }
+    ];
+
+    const orCondition = [];
+
+    
+    if (req.body != undefined) {
+        if (req.body.name != undefined) {
+            if (req.body.name != '') {
+                var name = new RegExp(req.body.name, 'i');
+                orCondition.push({ name: name})
+            }
         }
     }
-    
-    if(req.body != undefined){
-        var limit = req.body.limit??5;
-        
-        var page = req.body.page??1;
-        
-        var skip = (page-1)*limit;
+
+    if (addCondition.length > 0) {
+        var filter = { $and: addCondition }
+    } else {
+        var filter = {}
+    }
+
+    if (orCondition.length > 0) {
+        filter.$or = orCondition;   
     }
     
     
-    var totalRecords = await material.find(condition).countDocuments();
+    var totalRecords = await material.find(filter).countDocuments();
 
-    await material.find(condition).sort({
+    await material.find(filter).select('_id name order status').sort({
         _id : 'descending'
     })
     .limit(limit).skip(skip)

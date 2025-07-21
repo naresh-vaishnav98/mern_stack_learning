@@ -434,7 +434,7 @@ export default function ColorsListing() {
                                                     {v.code}
                                                 </td>
                                                 <td class="px-6 py-4 border border-slate-300">
-                                                    <input type="number" defaultValue={v.order} className='border border-1 border-gray-300 rounded p-2' />
+                                                    <input type="number" value={v.order} className='border border-1 border-gray-300 rounded p-2' />
                                                 </td>
                                                 <td class="px-6 py-4 border border-slate-300">
                                                     {

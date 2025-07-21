@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RiEditCircleFill } from "react-icons/ri";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
@@ -7,6 +7,8 @@ import { GrDocumentText } from "react-icons/gr";
 import { FaFilter, FaRegSave } from "react-icons/fa";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
 import { CiImageOn } from "react-icons/ci";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function MaterialsListing() {
 
@@ -15,6 +17,14 @@ export default function MaterialsListing() {
     const [popupToggle, setPopupToggle] = useState(false);
 
     const [editMaterial, setEditMaterial] = useState(false);
+
+    let [materials, setMaterials] = useState([]);
+
+    let [materialId, setMaterialId] = useState('');
+    let [materialDetails, setMaterialDetails] = useState({});
+
+    let [searchName, setSearchName] = useState('');
+    let [checkedValues, setCheckedValues] = useState([]);
 
 
 
@@ -50,7 +60,9 @@ export default function MaterialsListing() {
     }
 
 
-    const editMateriall = () => {
+    const editMateriall = (id) => {
+
+        setMaterialId(id);
         if (editMaterial) {
             setPopupToggle(false);
             setEditMaterial(false);
@@ -58,8 +70,200 @@ export default function MaterialsListing() {
             setPopupToggle(true);
             setEditMaterial(true);
         }
+
+        axios.post('http://localhost:7002/api/admin/material/details/' + id)
+            .then((result) => {
+                if (result.data._status == true) {
+                    // var data = {
+                    //     name : result.data.
+                    // }
+                    setMaterialDetails(result.data._data);
+                    // console.log(result.data._data);
+                } else {
+                    toast.error(result.data._data[0])
+                }
+            })
+            .catch((error) => {
+                toast.error('Something Went Wrong !!')
+            })
     }
 
+
+    console.log(searchName)
+
+    useEffect(() => {
+        axios.post('http://localhost:7002/api/admin/material/view', { name: searchName })
+            .then((result) => {
+                if (result.data._status == true) {
+                    setMaterials(result.data._data);
+
+                } else {
+                    toast.error(result.data._data[0]);
+                }
+
+            })
+            .catch((error) => {
+                toast.error('Something Went Wrong !!');
+            })
+    }, [editMaterial, popupToggle, searchName, checkedValues])
+
+
+    // console.log(materials);
+
+
+
+    const createMaterial = (event) => {
+        event.preventDefault();
+        var data = {
+            name: event.target.name.value,
+            order: event.target.order.value
+        }
+        // console.log(data);
+        if (!materialId) {
+            axios.post('http://localhost:7002/api/admin/material/create', data)
+                .then((result) => {
+                    if (result.data._status == true) {
+                        toast.success('Material Created Successfully !!');
+                        setEditMaterial(false);
+                        setPopupToggle(false);
+                    } else {
+                        toast.error(result.data._data[0]);
+                        setEditMaterial(false);
+                        setPopupToggle(false);
+                    }
+                })
+                .catch((error) => {
+                    toast.error(result.data._data[0]);
+                    setEditMaterial(false);
+                    setPopupToggle(false);
+                })
+        }
+    }
+
+
+
+    const editMaterialForm = (event) => {
+        event.preventDefault();
+        var data = {
+            name: event.target.name.value,
+            order: event.target.order.value
+        }
+        // console.log(data);
+        if (materialId) {
+            axios.put('http://localhost:7002/api/admin/material/update/' + materialId, data)
+                .then((result) => {
+                    if (result.data._status == true) {
+                        toast.success('Material Updated Successfully !!');
+                        setEditMaterial(false);
+                        setPopupToggle(false);
+                    } else {
+                        toast.error(result.data._data[0]);
+                        setEditMaterial(false);
+                        setPopupToggle(false);
+                    }
+                })
+                .catch((error) => {
+                    toast.error('Something Went Wrong !!');
+                    setEditMaterial(false);
+                    setPopupToggle(false);
+                })
+        }
+    }
+
+
+
+    const filterData = (event) => {
+        // console.log(event.target.value)
+        setSearchName(event.target.value);
+    }
+
+
+    const getValue = (id) => {
+        if (checkedValues.includes(id)) {
+            var data = checkedValues.filter((v, i) => {
+                if (v != id) {
+                    return v;
+                }
+            })
+            console.log(data);
+            setCheckedValues(data);
+
+        } else {
+            var data = [...checkedValues, id];
+            console.log(data);
+            setCheckedValues(data);
+        }
+
+    }
+
+
+    const getAllValues = () => {
+        if (materials.length == checkedValues.length) {
+            setCheckedValues([]);
+        } else {
+            setCheckedValues([]);
+            var data = materials.map((v, i) => {
+                return v._id;
+            })
+            console.log(data);
+            setCheckedValues(data)
+        }
+    }
+
+
+    const changeStatus = () => {
+        if (checkedValues.length > 0) {
+            axios.put('http://localhost:7002/api/admin/material/change-status', { id: checkedValues })
+                .then((result) => {
+                    if (result.data._status == true) {
+                        toast.success('Materials Status-Changed Successfully !!');
+                        setCheckedValues([]);
+
+                    } else {
+                        setCheckedValues([]);
+                        toast.error(result.data._data[0]);
+
+                    }
+                })
+                .catch((error) => {
+                    setCheckedValues([]);
+                    toast.error('Something Went Wrong !!');
+
+                })
+        } else {
+            toast.error('Please Select Record for Changing Status !!!')
+        }
+    }
+
+
+    const deleteRecord = () => {
+        if (checkedValues.length > 0) {
+            if (confirm('Are You Sure You Want to Delete the Selected Records ?')) {
+
+                axios.put('http://localhost:7002/api/admin/material/delete', { id: checkedValues })
+                    .then((result) => {
+                        if (result.data._status == true) {
+                            toast.success('Record Deleted Successfully !!');
+                            setCheckedValues([]);
+
+                        } else {
+                            setCheckedValues([]);
+                            toast.error(result.data._data[0]);
+
+                        }
+                    })
+                    .catch((error) => {
+                        setCheckedValues([]);
+                        toast.error('Something Went Wrong !!');
+
+                    })
+            }else{
+                setCheckedValues([]);
+            }
+        } else {
+            toast.error('Please Select Record to Delete !!!')
+        }
+    }
 
 
 
@@ -79,17 +283,32 @@ export default function MaterialsListing() {
                                     <button onClick={editPopupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
-                                <form action="" className='py-5 text-gray-500'>
-                                    <label htmlFor="">Name</label><br />
-                                    <input type="text" placeholder='Name' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
-                                    <label htmlFor="">Order</label><br />
-                                    <input type="text" placeholder='Order' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
-                                    <div className='flex gap-2 justify-self-end mt-3'>
-                                        <button className='rounded bg-gray-300 px-3 py-1' onClick={editPopupHideShow}>Close</button>
-                                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Update Material</button>
-                                    </div>
 
-                                </form>
+                                {
+                                    materials.map((v, i) => {
+                                        if (materialId == v._id) {
+                                            return (
+
+                                                <>
+                                                    <form action="" className='py-5 text-gray-500' onSubmit={editMaterialForm}>
+                                                        <label htmlFor="">Name</label><br />
+                                                        <input type="text" placeholder='Name' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' defaultValue={v.name} name='name' />
+                                                        <label htmlFor="">Order</label><br />
+                                                        <input type="text" placeholder='Order' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' defaultValue={v.order} name='order' />
+                                                        <div className='flex gap-2 justify-self-end mt-3'>
+                                                            <button className='rounded bg-gray-300 px-3 py-1' onClick={editPopupHideShow}>Close</button>
+                                                            <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white' type='submit'><FaRegSave /> Update Material</button>
+                                                        </div>
+                                                    </form>
+                                                </>
+                                            )
+                                        }
+
+                                    })
+                                }
+
+
+
                             </div>
                         </div>
                         :
@@ -100,14 +319,14 @@ export default function MaterialsListing() {
                                     <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
-                                <form action="" className='py-5 text-gray-500'>
+                                <form action="" className='py-5 text-gray-500' onSubmit={createMaterial}>
                                     <label htmlFor="">Name</label><br />
-                                    <input type="text" placeholder='Name' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <input type="text" placeholder='Name' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='name' />
                                     <label htmlFor="">Order</label><br />
-                                    <input type="text" placeholder='Order' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' />
+                                    <input type="text" placeholder='Order' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='order' />
                                     <div className='flex gap-2 justify-self-end mt-3'>
                                         <button className='rounded bg-gray-300 px-3 py-1' onClick={popupHideShow}>Close</button>
-                                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white'><FaRegSave /> Create Material</button>
+                                        <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white' type='submit'><FaRegSave /> Create Material</button>
                                     </div>
 
                                 </form>
@@ -138,8 +357,8 @@ export default function MaterialsListing() {
                         <h3 className='text-gray-600 mb-2'>FILTERS</h3>
                         <div>
                             <form action="" className='flex gap-5'>
-                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
-                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Colors</button>
+                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' onKeyUp={filterData} />
+                                <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Materials</button>
                                 <button className='flex items-center rounded bg-[#478CEE] text-white px-3'>Clear</button>
                             </form>
 
@@ -177,8 +396,8 @@ export default function MaterialsListing() {
                     </div>
                     <div className=' flex items-center rounded px-3'>
                         <div className='flex bg-[#F0F0F0] p-2 items-center gap-2'>
-                            <FaArrowRightArrowLeft className='' />
-                            <MdDelete className='text-red-500 text-xl ' />
+                            <FaArrowRightArrowLeft onClick={changeStatus} className='cursor-pointer' />
+                            <MdDelete className='text-red-500 text-xl cursor-pointer' onClick={deleteRecord} />
                         </div>
                         <div className='flex p-1 gap-2 items-center border border-1 bg-white'>
                             <CgArrowsExchangeAltV className='text-2xl' />
@@ -195,7 +414,9 @@ export default function MaterialsListing() {
                             <tr>
                                 <th scope="col" class="p-4  border border-1">
                                     <div class="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                        <input id="checkbox-all-search" onClick={getAllValues}
+                                            checked={checkedValues.length == materials.length ? 'checked' : ''}
+                                            type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                         <label for="checkbox-all-search" class="sr-only">checkbox</label>
                                     </div>
                                 </th>
@@ -214,28 +435,44 @@ export default function MaterialsListing() {
                             </tr>
                         </thead>
                         <tbody className='text-gray-500 bg-white'>
-                            <tr class="bg-white border-b">
-                                <td class="w-4 p-4 border border-slate-300">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
-                                    Name
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <input type="number" value='1' className='border border-1 border-gray-300 rounded p-2' />
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <button className='w-[70px] h-[30px] border border-1 bg-[#4DC36F] text-white rounded'>Active</button>
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <div className='flex'>
-                                        <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px] cursor-pointer' onClick={editMateriall} />
-                                    </div>
-                                </td>
-                            </tr>
+
+                            {
+                                materials.map((v, i) => {
+                                    return (
+                                        <tr class="bg-white border-b" key={i}>
+                                            <td class="w-4 p-4 border border-slate-300">
+                                                <div class="flex items-center">
+                                                    <input id="checkbox-table-search-1" onClick={() => getValue(v._id)}
+                                                        checked={checkedValues.includes(v._id) ? 'checked' : ''}
+                                                        type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                                                </div>
+                                            </td>
+                                            <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
+                                                {v.name}
+                                            </td>
+                                            <td class="px-6 py-4 border border-slate-300">
+                                                <input type="number" value={v.order} className='border border-1 border-gray-300 rounded p-2' />
+                                            </td>
+                                            <td class="px-6 py-4 border border-slate-300">
+                                                {
+                                                    v.status
+                                                        ?
+                                                        <button className='w-[70px] h-[30px] border border-1 bg-[#4DC36F] text-white rounded'>Active</button>
+                                                        :
+                                                        <button className='w-[90px] h-[30px] border border-1 bg-[#EA6B56] text-white rounded'>Inactive</button>
+                                                }
+                                            </td>
+                                            <td class="px-6 py-4 border border-slate-300">
+                                                <div className='flex'>
+                                                    <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px] cursor-pointer' onClick={() => editMateriall(v._id)} />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+
                         </tbody>
                     </table>
                 </div>
