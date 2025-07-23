@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const categoryschema = new mongoose.Schema({
     name : {
         type : String,
-        // required : [true,'Name is Required !!'],
+        required : [true,'Name is Required !!'],
         match: /^[a-zA-Z ]{2,15}$/,
         validate : {
             validator : async function (v) {

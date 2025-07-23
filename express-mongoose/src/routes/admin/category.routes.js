@@ -4,6 +4,9 @@ const router = express.Router();
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/category' })
 const path = require('path');
+require('dotenv').config();
+
+console.log(process.env)
 
 module.exports = server => {
 
