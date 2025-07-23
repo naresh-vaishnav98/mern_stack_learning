@@ -26,6 +26,7 @@ server.get('/', (req,res) => {
 
 require('./src/routes/admin/color.routes.js')(server);
 require('./src/routes/admin/material.routes.js')(server);
+require('./src/routes/admin/category.routes.js')(server);
 
 
 server.listen(7002, () => {
