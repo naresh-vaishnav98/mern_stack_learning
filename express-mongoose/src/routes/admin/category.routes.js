@@ -6,7 +6,7 @@ const upload = multer({ dest: 'uploads/category' })
 const path = require('path');
 require('dotenv').config();
 
-console.log(process.env)
+// console.log(process.env)
 
 module.exports = server => {
 

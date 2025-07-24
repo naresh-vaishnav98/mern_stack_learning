@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
 
 const server = express();
 
@@ -21,7 +22,7 @@ server.get('/', (req,res) => {
     res.send('Server Working Fine !!');
 })
 
-
+server.use('/uploads/category',express.static('uploads/category'));
 // Admin API URls
 
 require('./src/routes/admin/color.routes.js')(server);
@@ -29,8 +30,8 @@ require('./src/routes/admin/material.routes.js')(server);
 require('./src/routes/admin/category.routes.js')(server);
 
 
-server.listen(7002, () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/furniture')
+server.listen(process.env.PORT, () => {
+    mongoose.connect(process.env.DB_URL)
   .then(() => console.log('Connected!'))
   .catch((error) => {
     console.log(error);

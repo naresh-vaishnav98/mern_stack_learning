@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
     var saveData = req.file.filename;
     var data = new category(req.body);
 
-    // console.log(req.file.filename);
+    // console.log(req.file);
     if(req.file){
         data.image = saveData;
     }
@@ -16,6 +16,7 @@ exports.create = async (req, res) => {
             const output = {
                 _status: true,
                 _message: 'Inserted Succesfully !!',
+                _image_path : process.env.CATEGORY_BASE_URL,
                 _data: result
             }
             res.send(output);

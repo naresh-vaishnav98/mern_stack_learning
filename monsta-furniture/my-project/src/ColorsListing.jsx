@@ -26,6 +26,8 @@ export default function ColorsListing() {
     let [searchName, setSearchName] = useState('');
     let [checkedValues, setCheckedValues] = useState([]);
 
+    var env = import.meta.env;
+
     const filterHideShow = () => {
         if (filterToggle) {
             setFilterToggle(false);
@@ -74,7 +76,7 @@ export default function ColorsListing() {
 
 
     useEffect(() => {
-        axios.post('http://localhost:7002/api/admin/color/view', {
+        axios.post(env.VITE_API_BASE_URL+'/color/view', {
             name: searchName
         })
             .then((result) => {
@@ -94,10 +96,11 @@ export default function ColorsListing() {
             code: e.target.code.value,
             order: e.target.order.value
         }
-
+        // console.log('hjfghjcv')
 
         if (!colorId) {
-            axios.post('http://localhost:7002/api/admin/color/create', CreateColorr)
+            // console.log('hujfjhhj')
+            axios.post(env.VITE_API_BASE_URL+'/color/create', CreateColorr)
                 .then((result) => {
                     // console.log(result.data)
                     if (result.data._status == true) {
@@ -129,12 +132,13 @@ export default function ColorsListing() {
 
 
         if (colorId) {
-            axios.put('http://localhost:7002/api/admin/color/update/' + colorId, newColorData)
+            axios.put(env.VITE_API_BASE_URL+'/color/update/' + colorId, newColorData)
                 .then((result) => {
                     if (result.data._status == true) {
                         toast.success('Updated Successfully !!')
                         setEditColor(false);
                         setPopupToggle(false);
+                        setColorId('');
                     } else {
                         toast.error(result.data._data[0])
                     }
@@ -191,7 +195,7 @@ export default function ColorsListing() {
 
     const changeStatus = () => {
         if (checkedValues.length > 0) {
-            axios.put('http://localhost:7002/api/admin/color/change-status', {
+            axios.put(env.VITE_API_BASE_URL+'/color/change-status', {
                 id: checkedValues
             })
                 .then((result) => {
@@ -214,7 +218,7 @@ export default function ColorsListing() {
     const deleteRecord = () => {
         if(confirm('Are You Sure You Want To Delete Selected Record ??')){
             if (checkedValues.length > 0) {
-                axios.put('http://localhost:7002/api/admin/color/delete', {
+                axios.put(env.VITE_API_BASE_URL+'/color/delete', {
                     id: checkedValues
                 })
                     .then((result) => {

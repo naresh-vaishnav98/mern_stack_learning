@@ -26,7 +26,9 @@ export default function MaterialsListing() {
     let [searchName, setSearchName] = useState('');
     let [checkedValues, setCheckedValues] = useState([]);
 
+    // console.log(import.meta.env.VITE_API_BASE_URL)
 
+    var env = import.meta.env;
 
     const filterHideShow = () => {
         if (filterToggle) {
@@ -71,7 +73,7 @@ export default function MaterialsListing() {
             setEditMaterial(true);
         }
 
-        axios.post('http://localhost:7002/api/admin/material/details/' + id)
+        axios.post(env.VITE_API_BASE_URL+'/material/details/' + id)
             .then((result) => {
                 if (result.data._status == true) {
                     // var data = {
@@ -92,7 +94,7 @@ export default function MaterialsListing() {
     console.log(searchName)
 
     useEffect(() => {
-        axios.post('http://localhost:7002/api/admin/material/view', { name: searchName })
+        axios.post(env.VITE_API_BASE_URL+'/material/view', { name: searchName })
             .then((result) => {
                 if (result.data._status == true) {
                     setMaterials(result.data._data);
@@ -120,7 +122,7 @@ export default function MaterialsListing() {
         }
         // console.log(data);
         if (!materialId) {
-            axios.post('http://localhost:7002/api/admin/material/create', data)
+            axios.post(env.VITE_API_BASE_URL+'/material/create', data)
                 .then((result) => {
                     if (result.data._status == true) {
                         toast.success('Material Created Successfully !!');
@@ -150,12 +152,13 @@ export default function MaterialsListing() {
         }
         // console.log(data);
         if (materialId) {
-            axios.put('http://localhost:7002/api/admin/material/update/' + materialId, data)
+            axios.put(env.VITE_API_BASE_URL+'/material/update/' + materialId, data)
                 .then((result) => {
                     if (result.data._status == true) {
                         toast.success('Material Updated Successfully !!');
                         setEditMaterial(false);
                         setPopupToggle(false);
+                        setMaterialId('')
                     } else {
                         toast.error(result.data._data[0]);
                         setEditMaterial(false);
@@ -213,7 +216,7 @@ export default function MaterialsListing() {
 
     const changeStatus = () => {
         if (checkedValues.length > 0) {
-            axios.put('http://localhost:7002/api/admin/material/change-status', { id: checkedValues })
+            axios.put(env.VITE_API_BASE_URL+'/material/change-status', { id: checkedValues })
                 .then((result) => {
                     if (result.data._status == true) {
                         toast.success('Materials Status-Changed Successfully !!');
@@ -240,7 +243,7 @@ export default function MaterialsListing() {
         if (checkedValues.length > 0) {
             if (confirm('Are You Sure You Want to Delete the Selected Records ?')) {
 
-                axios.put('http://localhost:7002/api/admin/material/delete', { id: checkedValues })
+                axios.put(env.VITE_API_BASE_URL+'/material/delete', { id: checkedValues })
                     .then((result) => {
                         if (result.data._status == true) {
                             toast.success('Record Deleted Successfully !!');
@@ -265,7 +268,7 @@ export default function MaterialsListing() {
         }
     }
 
-
+    
 
 
     return (
