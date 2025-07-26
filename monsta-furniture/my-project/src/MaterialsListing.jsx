@@ -9,6 +9,8 @@ import { CgArrowsExchangeAltV } from "react-icons/cg";
 import { CiImageOn } from "react-icons/ci";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/bootstrap-light-dark.css';
 
 export default function MaterialsListing() {
 
@@ -25,6 +27,8 @@ export default function MaterialsListing() {
 
     let [searchName, setSearchName] = useState('');
     let [checkedValues, setCheckedValues] = useState([]);
+    let [currentPage, setCurrentPage] = useState(1);
+    let [totalPages, setTotalPages] = useState(1);
 
     // console.log(import.meta.env.VITE_API_BASE_URL)
 
@@ -94,10 +98,11 @@ export default function MaterialsListing() {
     console.log(searchName)
 
     useEffect(() => {
-        axios.post(env.VITE_API_BASE_URL+'/material/view', { name: searchName })
+        axios.post(env.VITE_API_BASE_URL+'/material/view', { name: searchName, page: currentPage })
             .then((result) => {
                 if (result.data._status == true) {
                     setMaterials(result.data._data);
+                    setTotalPages(result.data._pagination.total_pages);
 
                 } else {
                     toast.error(result.data._data[0]);
@@ -107,7 +112,7 @@ export default function MaterialsListing() {
             .catch((error) => {
                 toast.error('Something Went Wrong !!');
             })
-    }, [editMaterial, popupToggle, searchName, checkedValues])
+    }, [editMaterial, popupToggle, searchName, checkedValues,currentPage])
 
 
     // console.log(materials);
@@ -482,11 +487,11 @@ export default function MaterialsListing() {
 
                 <div className='flex justify-between items-center mt-3 text-gray-500'>
                     <h4>Showing 1 to 3 of 3 entries</h4>
-                    <div>
-                        <button className='border border-1 p-1 rounded'>Previous</button>
-                        <button className='border border-1 p-1 bg-[#478CEE] text-white px-3'>1</button>
-                        <button className='border border-1 p-1 rounded'>Next</button>
-                    </div>
+                    <ResponsivePagination
+                        current={currentPage}
+                        total={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
                 </div>
             </div>
         </>

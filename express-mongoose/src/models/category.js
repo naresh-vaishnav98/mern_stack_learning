@@ -20,6 +20,15 @@ const categoryschema = new mongoose.Schema({
         type : String,
         default : ''
     },
+    main_category : {
+        type : String,
+        default : ''
+    },
+    sub_category : {
+        type : String,
+        default : ''
+    },
+
     order : {
         type : Number,
         default : 0,

@@ -3,11 +3,11 @@ const category = require('../../models/category.js');
 
 exports.create = async (req, res) => {
 
-    var saveData = req.file.filename;
+    // var saveData = req.file.filename;
     var data = new category(req.body);
 
     // console.log(req.file);
-    if(req.file){
+    if (req.file) {
         data.image = saveData;
     }
 
@@ -16,7 +16,7 @@ exports.create = async (req, res) => {
             const output = {
                 _status: true,
                 _message: 'Inserted Succesfully !!',
-                _image_path : process.env.CATEGORY_BASE_URL,
+                _image_path: process.env.CATEGORY_BASE_URL,
                 _data: result
             }
             res.send(output);
@@ -74,12 +74,12 @@ exports.view = async (req, res) => {
 
     const orCondition = [];
 
-    
+
     if (req.body != undefined) {
         if (req.body.name != undefined) {
             if (req.body.name != '') {
                 var name = new RegExp(req.body.name, 'i');
-                orCondition.push({ name: name})
+                orCondition.push({ name: name })
             }
         }
     }
@@ -91,14 +91,14 @@ exports.view = async (req, res) => {
     }
 
     if (orCondition.length > 0) {
-        filter.$or = orCondition;   
+        filter.$or = orCondition;
     }
 
     // console.log(filter);
 
     var totalRecords = await category.find(filter).countDocuments();
 
-    await category.find(filter).select('_id name image order status').sort({
+    await category.find(filter).select('_id name image main_category sub_category order status').sort({
         _id: 'descending'
     })
         .limit(limit).skip(skip)
@@ -170,7 +170,7 @@ exports.update = async (req, res) => {
 }
 
 exports.details = async (req, res) => {
-   
+
 
     await category.findById(req.params.id)
         .then((result) => {
@@ -205,8 +205,8 @@ exports.changeStatus = async (req, res) => {
         _id: req.body.id
     }, [{
         $set: {
-            status : {
-               $not : '$status'
+            status: {
+                $not: '$status'
             }
         }
     }])

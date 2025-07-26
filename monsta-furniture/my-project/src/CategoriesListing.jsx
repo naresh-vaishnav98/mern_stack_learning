@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RiEditCircleFill } from "react-icons/ri";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
@@ -7,12 +7,28 @@ import { GrDocumentText } from "react-icons/gr";
 import { FaFilter, FaRegSave } from "react-icons/fa";
 import { CgArrowsExchangeAltV } from "react-icons/cg";
 import { LuFilter, LuFilterX } from "react-icons/lu";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/bootstrap-light-dark.css';
 
 export default function CategoriesListing() {
 
     const [filterToggle, setFilterToggle] = useState(false);
     const [popupToggle, setPopupToggle] = useState(false);
     const [editCategory, setEditCategory] = useState(false);
+    // let [getCategoryValue, setGetCategoryValue] = useState('');
+    let [getSubCategory, setGetSubCategory] = useState([]);
+    let [categories, setCategories] = useState([]);
+    let [categoryID, setCategoryID] = useState('');
+    let [checkedValues, setCheckedValues] = useState([]);
+    let [currentPage, setCurrentPage] = useState(1);
+    let [totalPages, setTotalPages] = useState(1);
+
+
+    console.log(currentPage)
+
+    var env = import.meta.env;
 
     const filterHideShow = () => {
         if (filterToggle) {
@@ -46,7 +62,9 @@ export default function CategoriesListing() {
     }
 
 
-    const editCategoryy = () => {
+    const editCategoryy = (id) => {
+        // console.log(id)
+        setCategoryID(id);
         if (editCategory) {
             setPopupToggle(false);
             setEditCategory(false);
@@ -55,6 +73,189 @@ export default function CategoriesListing() {
             setEditCategory(true);
         }
     }
+
+
+    var CategoryArray = [
+        { mainCategory: 'Root Level', subCategory: 'Sofa' },
+        { mainCategory: 'Root Level', subCategory: 'Living' },
+        { mainCategory: 'Living', subCategory: 'Mirrors' },
+        { mainCategory: 'Living', subCategory: 'Living Storage' },
+        { mainCategory: 'Living', subCategory: 'Tables' },
+        { mainCategory: 'Sofa', subCategory: 'Swing Jhula' },
+        { mainCategory: 'Sofa', subCategory: 'Sofa sets' },
+        { mainCategory: 'Sofa', subCategory: 'Sofa Cum Bed' },
+    ];
+
+    const categoryValue = async (event) => {
+        var val = event.target.value;
+        // setGetCategoryValue(val);
+        if (val) {
+            var data = CategoryArray.filter((v, i) => val === v.mainCategory);
+            setGetSubCategory(data);
+        }
+    }
+    // console.log(getSubCategory);
+
+
+    useEffect(() => {
+        axios.post(env.VITE_API_BASE_URL + '/categories/view',{page : currentPage})
+            .then((result) => {
+                setCategories(result.data._data);
+                // setCurrentPage(result.data._pagination.current_page);
+                setTotalPages(result.data._pagination.total_pages)
+                // console.log(result.data._data)
+            })
+            .catch((error) => {
+                toast.error('Something Went Wronggggg !!')
+            })
+    }, [popupToggle, editCategory, checkedValues,currentPage]);
+
+
+    const createCategory = (event) => {
+        event.preventDefault();
+        // console.log(event.target.order.value)
+        var data = {
+            main_category: event.target.category.value,
+            sub_category: event.target.subCategory.value,
+            image: '',
+            name: event.target.name.value,
+            order: event.target.order.value
+        }
+        // console.log(data)
+        axios.post(env.VITE_API_BASE_URL + '/categories/create', data)
+            .then((result) => {
+                // console.log(result.data)
+                if (result.data._status == true) {
+                    toast.success('Created Successfully !!')
+                    setEditCategory(false);
+                    setPopupToggle(false);
+                } else {
+                    toast.error(result.data._data[0]);
+                    setEditCategory(false);
+                    setPopupToggle(false);
+                }
+
+            })
+            .catch((error) => {
+                toast.error('Something Went Wrong !!')
+                setEditCategory(false);
+                setPopupToggle(false);
+            })
+    }
+
+
+    const updateCategory = (event) => {
+        event.preventDefault();
+        console.log(event.target.order.value)
+        var data = {
+            main_category: event.target.category.value,
+            sub_category: event.target.subCategory.value,
+            image: '',
+            name: event.target.name.value,
+            order: event.target.order.value
+        }
+        if (categoryID) {
+            axios.put(env.VITE_API_BASE_URL + '/categories/update/' + categoryID, data)
+                .then((result) => {
+                    // console.log(result.data)
+                    if (result.data._status == true) {
+                        toast.success('Updated Successfully !!')
+                        setEditCategory(false);
+                        setPopupToggle(false);
+                    } else {
+                        toast.error(result.data._data[0]);
+                        setEditCategory(false);
+                        setPopupToggle(false);
+                    }
+
+                })
+                .catch((error) => {
+                    toast.error('Something Went Wrong !!')
+                    setEditCategory(false);
+                    setPopupToggle(false);
+                })
+        }
+    }
+
+
+
+    const getValue = (id) => {
+        if (checkedValues.includes(id)) {
+            var data = checkedValues.filter((v, i) => {
+                if (v != id) {
+                    return v;
+                }
+            })
+            setCheckedValues(data);
+        } else {
+            setCheckedValues([...checkedValues, id]);
+        }
+    }
+
+    const getAllValues = () => {
+        if (checkedValues.length != categories.length) {
+            setCheckedValues([]);
+            var data = categories.map((v, i) => {
+                return v._id;
+            })
+            setCheckedValues(data);
+        } else {
+            setCheckedValues([]);
+        }
+
+    }
+
+
+    const changeStatus = () => {
+        if (checkedValues.length > 0) {
+            axios.put(env.VITE_API_BASE_URL + '/categories/change-status', {
+                id: checkedValues
+            })
+                .then((result) => {
+                    if (result.data._status == true) {
+                        toast.success('Status Changed Successfully !!');
+                        setCheckedValues([]);
+                    } else {
+                        toast.error(result.data._data[0]);
+                    }
+
+                })
+                .catch((error) => {
+                    toast.error('Something Went Wrong !!')
+                })
+        } else {
+            toast.error('Please Select Records to Change Status !!')
+        }
+    }
+
+    const deleteRecord = () => {
+        if (confirm('Are You Sure You Want to Delete ??')) {
+            if (checkedValues.length > 0) {
+                axios.put(env.VITE_API_BASE_URL + '/categories/delete', {
+                    id: checkedValues
+                })
+                    .then((result) => {
+                        if (result.data._status == true) {
+                            toast.success('Deleted Successfully !!');
+                            setCheckedValues([]);
+                        } else {
+                            toast.error(result.data._data[0]);
+                        }
+
+                    })
+                    .catch((error) => {
+                        toast.error('Something Went Wrong !!')
+                    })
+            } else {
+                toast.error('Please Select Records to Change Status !!')
+            }
+        }else{
+            setCheckedValues([])
+        }
+    }
+
+
+    // console.log(checkedValues);
 
     return (
         <>
@@ -71,19 +272,25 @@ export default function CategoriesListing() {
                                     <button onClick={editPopupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
-                                <form action="" className='py-5 text-gray-500'>
+                                <form action="" className='py-5 text-gray-500' onSubmit={updateCategory}>
                                     <label htmlFor="">Select Category</label><br />
-                                    <select name="" id="" className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'>
+                                    <select name="category" id="" className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' onChange={(e) => categoryValue(e)}>
                                         <option value="">Select Category</option>
-                                        <option value="">Root Level</option>
-                                        <option value="">Living</option>
-                                        <option value="">Sofa</option>
+                                        <option value="Root Level">Root Level</option>
+                                        <option value="Living">Living</option>
+                                        <option value="Sofa">Sofa</option>
                                     </select>
                                     <label htmlFor="">Select Sub Category</label><br />
-                                    <select name="" id="" className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'>
-                                        <option value="">Select Sub Category</option>
-                                        <option value="">Living</option>
-                                        <option value="">Sofa</option>
+                                    <select name="subCategory" id="" className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'>
+                                        {getSubCategory && getSubCategory.length > 0 ? (
+                                            getSubCategory.map((v, i) => (
+                                                <option key={i} value={v.subCategory}>
+                                                    {v.subCategory}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option value="">Select Sub Category</option>
+                                        )}
                                     </select>
                                     <label htmlFor="">Name</label><br />
                                     <input type="text" placeholder='Name' autoComplete='off' defaultValue='{v.name}' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='name' />
@@ -104,19 +311,24 @@ export default function CategoriesListing() {
                                     <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
-                                <form action="" className='py-5 text-gray-500' >
+                                <form action="" className='py-5 text-gray-500' onSubmit={createCategory} >
                                     <label htmlFor="">Select Category</label><br />
-                                    <select name="" id="" className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'>
+                                    <select name="category" id="" className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' onChange={(e) => categoryValue(e)}>
                                         <option value="">Select Category</option>
-                                        <option value="">Root Level</option>
-                                        <option value="">Living</option>
-                                        <option value="">Sofa</option>
+                                        <option value="Root Level">Root Level</option>
+                                        <option value="Living">Living</option>
+                                        <option value="Sofa">Sofa</option>
                                     </select>
                                     <label htmlFor="">Select Sub Category</label><br />
-                                    <select name="" id="" className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'>
+                                    <select name="subCategory" id="" className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5'>{getSubCategory && getSubCategory.length > 0 ? (
+                                        getSubCategory.map((v, i) => (
+                                            <option key={i} value={v.subCategory}>
+                                                {v.subCategory}
+                                            </option>
+                                        ))
+                                    ) : (
                                         <option value="">Select Sub Category</option>
-                                        <option value="">Living</option>
-                                        <option value="">Sofa</option>
+                                    )}
                                     </select>
                                     <label htmlFor="">Name</label><br />
                                     <input type="text" placeholder='Name' autoComplete='off' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='name' />
@@ -198,8 +410,8 @@ export default function CategoriesListing() {
                     </div>
                     <div className=' flex items-center rounded px-3'>
                         <div className='flex bg-[#F0F0F0] p-2 items-center gap-2'>
-                            <FaArrowRightArrowLeft className='' />
-                            <MdDelete className='text-red-500 text-xl ' />
+                            <FaArrowRightArrowLeft className='cursor-pointer' onClick={changeStatus} />
+                            <MdDelete className='text-red-500 text-xl cursor-pointer' onClick={deleteRecord} />
                         </div>
                         <div className='flex p-1 gap-2 items-center border border-1 bg-white'>
                             <CgArrowsExchangeAltV className='text-2xl' />
@@ -216,7 +428,8 @@ export default function CategoriesListing() {
                             <tr>
                                 <th scope="col" class="p-4  border border-1">
                                     <div class="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                        <input onClick={getAllValues} checked={checkedValues.length == categories.length ? 'checked' : ''}
+                                            id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                         <label for="checkbox-all-search" class="sr-only">checkbox</label>
                                     </div>
                                 </th>
@@ -241,45 +454,62 @@ export default function CategoriesListing() {
                             </tr>
                         </thead>
                         <tbody className='text-gray-500 bg-white'>
-                            <tr class="bg-white border-b">
-                                <td class="w-4 p-4 border border-slate-300">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                    </div>
-                                </td>
-                                <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
-                                    Catergory
-                                </td>
-                                <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
-                                    Main Category
-                                </td>
-                                <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
-                                    Sub Category
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <input type="number" value='1' className='border border-1 border-gray-300 rounded p-2' />
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <button className='w-[70px] h-[30px] border border-1 bg-[#4DC36F] text-white rounded'>Active</button>
-                                </td>
-                                <td class="px-6 py-4 border border-slate-300">
-                                    <div className='flex'>
-                                        <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px] cursor-pointer' onClick={editCategoryy}/>
-                                    </div>
-                                </td>
-                            </tr>
+                            {
+                                categories.map((v, i) => {
+                                    return (
+                                        <tr class="bg-white border-b" key={i}>
+                                            <td class="w-4 p-4 border border-slate-300">
+                                                <div class="flex items-center">
+                                                    <input onClick={() => getValue(v._id)}
+                                                        checked={checkedValues.includes(v._id) ? 'checked' : ''}
+                                                        id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                                                </div>
+                                            </td>
+                                            <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
+                                                {v.name}
+                                            </td>
+                                            <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
+                                                {v.main_category}
+                                            </td>
+                                            <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
+                                                {v.sub_category}
+                                            </td>
+                                            <td class="px-6 py-4 border border-slate-300">
+                                                <input type="number" value={v.order} className='border border-1 border-gray-300 rounded p-2' />
+                                            </td>
+                                            <td class="px-6 py-4 border border-slate-300">
+                                                {
+                                                    v.status
+                                                        ?
+                                                        <button className='w-[70px] h-[30px] border border-1 bg-[#4DC36F] text-white rounded'>Active</button>
+                                                        :
+                                                        <button className='w-[90px] h-[30px] border border-1 bg-[#EA6B56] text-white rounded'>Inactive</button>
+                                                }
+
+                                            </td>
+                                            <td class="px-6 py-4 border border-slate-300">
+                                                <div className='flex'>
+                                                    <RiEditCircleFill className='text-[#0199B8] w-[50px] h-[30px] cursor-pointer' onClick={() => editCategoryy(v._id)} />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+
                         </tbody>
                     </table>
                 </div>
-
+                
                 <div className='flex justify-between items-center mt-3 text-gray-500'>
                     <h4>Showing 1 to 3 of 3 entries</h4>
-                    <div>
-                        <button className='border border-1 p-1 rounded'>Previous</button>
-                        <button className='border border-1 p-1 bg-[#478CEE] text-white px-3'>1</button>
-                        <button className='border border-1 p-1 rounded'>Next</button>
-                    </div>
+                    <ResponsivePagination
+                        current={currentPage}
+                        total={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
+                    
                 </div>
             </div>
         </>

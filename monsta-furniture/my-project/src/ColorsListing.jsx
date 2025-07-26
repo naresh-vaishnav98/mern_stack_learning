@@ -10,6 +10,8 @@ import { LuFilter, LuFilterX } from "react-icons/lu";
 import { CiImageOn } from "react-icons/ci";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/bootstrap-light-dark.css';
 // import toast from 'react-toastify';
 
 export default function ColorsListing() {
@@ -25,6 +27,8 @@ export default function ColorsListing() {
 
     let [searchName, setSearchName] = useState('');
     let [checkedValues, setCheckedValues] = useState([]);
+    let [currentPage, setCurrentPage] = useState(1);
+    let [totalPages, setTotalPages] = useState(1);
 
     var env = import.meta.env;
 
@@ -77,16 +81,18 @@ export default function ColorsListing() {
 
     useEffect(() => {
         axios.post(env.VITE_API_BASE_URL+'/color/view', {
-            name: searchName
+            name: searchName,
+            page : currentPage
         })
             .then((result) => {
                 setColors(result.data._data);
+                setTotalPages(result.data._pagination.total_pages)
                 // console.log(result.data._data)
             })
             .catch((error) => {
                 toast.error('Something Went Wronggggg !!')
             })
-    }, [editColor, popupToggle, searchName, checkedValues]);
+    }, [editColor, popupToggle, searchName, checkedValues,currentPage]);
 
 
     const createColor = (e) => {
@@ -477,11 +483,11 @@ export default function ColorsListing() {
 
                 <div className='flex justify-between items-center mt-3 text-gray-500'>
                     <h4>Showing 1 to 3 of 3 entries</h4>
-                    <div>
-                        <button className='border border-1 p-1 rounded'>Previous</button>
-                        <button className='border border-1 p-1 bg-[#478CEE] text-white px-3'>1</button>
-                        <button className='border border-1 p-1 rounded'>Next</button>
-                    </div>
+                    <ResponsivePagination
+                        current={currentPage}
+                        total={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
                 </div>
             </div>
         </>
