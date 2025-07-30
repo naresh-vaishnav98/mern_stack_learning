@@ -146,7 +146,7 @@ export default function CategoriesListing() {
 
     const updateCategory = (event) => {
         event.preventDefault();
-        console.log(event.target.order.value)
+        // console.log(event.target.order.value)
         var data = {
             main_category: event.target.category.value,
             sub_category: event.target.subCategory.value,

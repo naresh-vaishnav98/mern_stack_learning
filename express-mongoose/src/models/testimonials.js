@@ -25,7 +25,7 @@ const testimonialschema = new mongoose.Schema({
         default : ''
     },
     Rating : {
-        type : Number,
+        type : String,
         default : ''
     },
     message : {

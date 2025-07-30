@@ -13,18 +13,26 @@ import $ from 'jquery';
 import 'dropify/dist/js/dropify.min.js';
 import 'dropify/dist/css/dropify.min.css';
 import { toast } from 'react-toastify';
+import ResponsivePagination from 'react-responsive-pagination';
+import 'react-responsive-pagination/themes/bootstrap-light-dark.css';
 
 export default function TestimonialsListing() {
 
     const [filterToggle, setFilterToggle] = useState(false);
     const [popupToggle, setPopupToggle] = useState(false);
+    const [popupToggleEdit, setPopupToggleEdit] = useState(false);
 
     const [editTestimonial, setEditTestimonial] = useState(false);
 
     let [testimonials, setTestimonials] = useState([]);
     let [image_path, setImage_path] = useState('');
     let [testimonialID, setTestimonialID] = useState('');
-    let [imageURL,setImageURL] = useState('');
+    let [imageURL, setImageURL] = useState('');
+    let [searchName, setSearchName] = useState('');
+    let [checkedValues ,setCheckedValues] = useState([]);
+    let [currentPage, setCurrentPage] = useState(1);
+    let [totalPages, setTotalPages] = useState(1);
+    
 
     var env = import.meta.env;
 
@@ -42,6 +50,8 @@ export default function TestimonialsListing() {
         } else {
             setPopupToggle(true);
         }
+
+
     }
 
 
@@ -57,26 +67,34 @@ export default function TestimonialsListing() {
         } else {
             setPopupToggle(true);
         }
+        if (popupToggleEdit) {
+            setPopupToggleEdit(false);
+            setImageURL('');
+        } else {
+            setPopupToggleEdit(true);
+        }
     }
 
-
+    // console.log(imageURL);
     const editTestimonials = (id) => {
         if (editTestimonial) {
             setPopupToggle(false);
+            setPopupToggleEdit(false);
             setEditTestimonial(false);
         } else {
             setPopupToggle(true);
+            setPopupToggleEdit(true);
             setEditTestimonial(true);
         }
         setTestimonialID(id);
 
-    axios.post(env.VITE_API_BASE_URL + '/testimonials/details/'+id)
-    .then( (result) => {
-        setImageURL(image_path+'/'+result.data._data.image);
-    } )
-    .catch( (error) => {
-        toast.error('Something Went Wrong !!')
-    } )
+        axios.post(env.VITE_API_BASE_URL + '/testimonials/details/' + id)
+            .then((result) => {
+                setImageURL(image_path + '/' + result.data._data.image);
+            })
+            .catch((error) => {
+                toast.error('Something Went Wrong !!')
+            })
     }
 
     // useEffect( () => {
@@ -110,7 +128,7 @@ export default function TestimonialsListing() {
     }, [popupToggle]);
 
     useEffect(() => {
-        // if(imageURL){
+        if (imageURL) {
             $('.dropifyEdit').dropify({
                 messages: {
                     'default': 'Drag and drop a file here or click',
@@ -119,53 +137,180 @@ export default function TestimonialsListing() {
                     'error': 'Ooops, something wrong happended.'
                 }
             });
-        // }        
+        }
     }, [imageURL])
 
 
     useEffect(() => {
-        axios.post(env.VITE_API_BASE_URL + '/testimonials/view')
+        axios.post(env.VITE_API_BASE_URL + '/testimonials/view',{name : searchName, page : currentPage})
             .then((result) => {
                 setTestimonials(result.data._data);
+                setTotalPages(result.data._pagination.total_pages);
                 setImage_path(result.data._image_path);
             })
             .catch((error) => {
                 toast.error('Something Went Wronggggg !!')
             })
-    }, []);
+    }, [popupToggle,searchName,currentPage,checkedValues]);
 
     // console.log(image_path)
 
 
 
-    const editCategory = (event) => {
-        event.preventDefault();
-        var data = {
-            name: event.target.name.value,
-            order: event.target.order.value,
-            rating: event.target.rating.value,
-            designation: event.target.designation.value,
-            message: event.target.message.value,
-            // image: event.target.image.src
+    const createTestimonial = (e) => {
+        e.preventDefault();
+        // var CreateColorr = {
+        //     name: e.target.name.value,
+        //     order: e.target.order.value
+        // }
+        // console.log('hjfghjcv')
+
+        if (!testimonialID) {
+            // console.log('hujfjhhj')
+            axios.post(env.VITE_API_BASE_URL+'/testimonials/create',e.target)
+                .then((result) => {
+                    // console.log(result.data)
+                    if (result.data._status == true) {
+                        toast.success('Created Successfully !!')
+                        setEditTestimonial(false);
+                        setPopupToggle(false);
+                    } else {
+                        toast.error(result.data._data[0]);
+                    }
+
+                })
+                .catch((error) => {
+                    toast.error('Something Went Wronggggg !!')
+                })
         }
+
+
+
+    }
+
+    const filterSearch = (event) => {
+        setSearchName(event.target.value);
+    }
+
+
+    
+    const getValue = (id) => {
+        if (checkedValues.includes(id)) {
+            var data = checkedValues.filter((v, i) => {
+                if (v != id) {
+                    return v;
+                }
+            })
+            // console.log(data)
+            setCheckedValues(data);
+        } else {
+            var data = [...checkedValues, id];
+            // console.log(data);
+            setCheckedValues(data);
+        }
+
+    }
+
+
+
+    const getAllTestimonials = () => {
+
+        if (checkedValues.length == testimonials.length) {
+            setCheckedValues([]);
+        } else {
+            var data = [];
+            setCheckedValues([]);
+            testimonials.forEach((v, i) => {
+                data.push(v._id);
+
+            })
+            // console.log(data)
+            setCheckedValues([...data]);
+        }
+    }
+
+
+
+    const changeStatus = () => {
+        if (checkedValues.length > 0) {
+            axios.put(env.VITE_API_BASE_URL+'/testimonials/change-status', {
+                id: checkedValues
+            })
+                .then((result) => {
+                    if (result.data._status == true) {
+                        toast.success('Status Changed Successfully !!');
+                        setCheckedValues([]);
+                    } else {
+                        toast.error(result.data._data[0]);
+                    }
+
+                })
+                .catch((error) => {
+                    toast.error('Something Went Wrong !!')
+                })
+        }else{
+            toast.error('Please Select Records to Change Status !!')
+        }
+    }
+
+    const deleteRecord = () => {
+        if(confirm('Are You Sure You Want To Delete Selected Record ??')){
+            if (checkedValues.length > 0) {
+                axios.put(env.VITE_API_BASE_URL+'/testimonials/delete', {
+                    id: checkedValues
+                })
+                    .then((result) => {
+                        if (result.data._status == true) {
+                            toast.success('Records Deleted Successfully !!');
+                            setCheckedValues([]);
+                        } else {
+                            toast.error(result.data._data[0]);
+                        }
+
+                    })
+                    .catch((error) => {
+                        toast.error('Something Went Wrong !!')
+                    })
+            }else{
+                toast.error('Please Select Records to Delete !!')
+            }
+        }else{
+            setCheckedValues([]);
+        }
+    }
+
+
+    const updateTestimonial = (event) => {
+        event.preventDefault();
+        // var data = {
+        //     name: event.target.name.value,
+        //     order: event.target.order.value,
+        //     rating: event.target.rating.value,
+        //     designation: event.target.designation.value,
+        //     message: event.target.message.value,
+        //     // image: event.target.image.src
+        // }
         // console.log(event.target.image.value);
 
         if (testimonialID) {
-            axios.put(env.VITE_API_BASE_URL + '/testimonials/update/' + testimonialID,)
+            console.log(event.target);
+            axios.put(env.VITE_API_BASE_URL + '/testimonials/update/' + testimonialID, event.target)
                 .then((result) => {
                     if (result.data._status == true) {
                         toast.success('Updated Successfully !!')
-                        setEditColor(false);
+                        setEditTestimonial(false);
                         setPopupToggle(false);
-                        setColorId('');
+                        // setColorId('');
                     } else {
                         toast.error(result.data._data[0])
+                        setPopupToggle(false);
                     }
                     // console.log(result);
                     ;
                 })
                 .catch((error) => {
-                    toast.error('Something Went Wrongggg !!')
+                    toast.error('Something Went Wrong !!')
+                    setPopupToggle(false);
                 })
         }
     }
@@ -195,7 +340,7 @@ export default function TestimonialsListing() {
                                         if (v._id == testimonialID) {
                                             return (
                                                 <>
-                                                    <form action="" className='py-5 text-gray-500' onSubmit={editCategory}>
+                                                    <form action="" className='py-5 text-gray-500' onSubmit={updateTestimonial}>
                                                         <div className='flex justify-between'>
                                                             <div className='w-[48%]'>
                                                                 <label htmlFor="">Name</label><br />
@@ -206,9 +351,9 @@ export default function TestimonialsListing() {
                                                             </div>
                                                             <div className='w-[48%]'>
                                                                 <label htmlFor="">Designation</label><br />
-                                                                <input type="text" placeholder='Designation' autoComplete='off' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='designation' defaultValue={v.designation}/>
+                                                                <input type="text" placeholder='Designation' autoComplete='off' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='designation' defaultValue={v.designation} />
                                                                 <label htmlFor="">Order</label><br />
-                                                                <input type="text" placeholder='Order' autoComplete='off' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='order' defaultValue={v.order}/>
+                                                                <input type="text" placeholder='Order' autoComplete='off' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='order' defaultValue={v.order} />
                                                                 <label htmlFor="">Message</label><br />
                                                                 <textarea name="message" id="" rows="6" placeholder='Message' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5 resize-none' defaultValue={v.message}></textarea>
                                                             </div>
@@ -239,7 +384,7 @@ export default function TestimonialsListing() {
                                     <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
-                                <form action="" className='py-5 text-gray-500 '>
+                                <form action="" className='py-5 text-gray-500 ' onSubmit={createTestimonial}>
                                     <div className='flex justify-between'>
                                         <div className='w-[48%]'>
                                             <label htmlFor="">Name</label><br />
@@ -295,7 +440,7 @@ export default function TestimonialsListing() {
                         <h3 className='text-gray-600 mb-2'>FILTERS</h3>
                         <div>
                             <form action="" className='flex gap-5'>
-                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' />
+                                <input type="text" placeholder='Name' className='border border-1 border-gray-300 rounded p-[5px] w-[24%]' onKeyUp={filterSearch}/>
                                 <button className='flex items-center rounded bg-[#478CEE] text-white px-3 gap-2'><IoIosSearch /> Filter Testimonial</button>
                                 <button className='flex items-center rounded bg-[#478CEE] text-white px-3'>Clear</button>
                             </form>
@@ -329,8 +474,8 @@ export default function TestimonialsListing() {
                     </div>
                     <div className=' flex items-center rounded px-3'>
                         <div className='flex bg-[#F0F0F0] p-2 items-center gap-2'>
-                            <FaArrowRightArrowLeft className='' />
-                            <MdDelete className='text-red-500 text-xl ' />
+                            <FaArrowRightArrowLeft className='cursor-pointer' onClick={changeStatus}/>
+                            <MdDelete className='text-red-500 text-xl cursor-pointer ' onClick={deleteRecord}/>
                         </div>
                         <div className='flex p-1 gap-2 items-center border border-1 bg-white'>
                             <CgArrowsExchangeAltV className='text-2xl' />
@@ -347,7 +492,7 @@ export default function TestimonialsListing() {
                             <tr>
                                 <th scope="col" class="p-4  border border-1">
                                     <div class="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                        <input onClick={getAllTestimonials} checked={checkedValues.length == testimonials.length ? 'checked' : ''} id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                         <label for="checkbox-all-search" class="sr-only">checkbox</label>
                                     </div>
                                 </th>
@@ -381,7 +526,9 @@ export default function TestimonialsListing() {
                                         <tr class="bg-white border-b" key={i}>
                                             <td class="w-4 p-4 border border-slate-300">
                                                 <div class="flex items-center">
-                                                    <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                                                    <input id="checkbox-table-search-1"
+                                                    onClick={() => getValue(v._id)} checked={checkedValues.includes(v._id) ? 'checked' : ''}
+                                                    type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                                                     <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                                 </div>
                                             </td>
@@ -425,11 +572,11 @@ export default function TestimonialsListing() {
 
                 <div className='flex justify-between items-center mt-3 text-gray-500'>
                     <h4>Showing 1 to 3 of 3 entries</h4>
-                    <div>
-                        <button className='border border-1 p-1 rounded'>Previous</button>
-                        <button className='border border-1 p-1 bg-[#478CEE] text-white px-3'>1</button>
-                        <button className='border border-1 p-1 rounded'>Next</button>
-                    </div>
+                    <ResponsivePagination
+                        current={currentPage}
+                        total={totalPages}
+                        onPageChange={setCurrentPage}
+                    />
                 </div>
             </div>
         </>

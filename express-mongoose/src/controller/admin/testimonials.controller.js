@@ -41,7 +41,7 @@ exports.create = async (req, res) => {
 
 exports.view = async (req, res) => {
 
-    var limit = 5;
+    var limit = 3;
     var page = 1;
     var skip = 0;
 

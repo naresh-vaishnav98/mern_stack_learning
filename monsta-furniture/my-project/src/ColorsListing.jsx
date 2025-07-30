@@ -240,7 +240,7 @@ export default function ColorsListing() {
                         toast.error('Something Went Wrong !!')
                     })
             }else{
-                toast.error('Please Select Records to Change Status !!')
+                toast.error('Please Select Records to Delete !!')
             }
         }else{
             setCheckedValues([]);
