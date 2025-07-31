@@ -1,5 +1,9 @@
 'use client';
 import React, { useState } from 'react'
+import { FaGlobeAmericas } from "react-icons/fa";
+import { IoMdTime } from "react-icons/io";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+
 
 export default function Home() {
 
@@ -71,6 +75,36 @@ export default function Home() {
           </div>
         </div>
       </div>
+      
+
+          
+
+
+      <div className='w-screen bg-[#F8F9F9] p-15'>
+        <div className='w-[1320px] mx-auto flex justify-between'>
+          <div className='flex flex-col gap-4 justify-center items-center w-[30%]'>
+            <div className='border border-2 border-gray-800 text-gray-500 text-xl rounded-[50%] p-7 hover:text-[#C09578] hover:border-[#C09578]'>
+              <FaGlobeAmericas />
+            </div>
+            <h3 className='text-2xl text-gray-800 font-bold'>Free Shipping</h3>
+            <h4 className='text-gray-500 text-md'>Free Shipping on All Order</h4>
+          </div>
+          <div className='flex flex-col gap-4 justify-center items-center w-[30%]'>
+            <div className='border border-2 border-gray-800 text-gray-500 text-2xl rounded-[50%] p-7 hover:text-[#C09578] hover:border-[#C09578]'>
+              <IoCheckmarkDoneCircleOutline  />
+            </div>
+            <h3 className='text-2xl text-gray-800 font-bold'>Money return</h3>
+            <h4 className='text-gray-500 text-md'>Back Guarantee Unde 7 Days</h4>
+          </div>
+          <div className='flex flex-col gap-4 justify-center items-center w-[30%]'>
+            <div className='border border-2 border-gray-800 text-gray-500 text-2xl rounded-[50%] p-7 hover:text-[#C09578] hover:border-[#C09578]'>
+              <IoMdTime  />
+            </div>
+            <h3 className='text-2xl text-gray-800 font-bold'>Online Support</h3>
+            <h4 className='text-gray-500 text-md'>Support Online 24 hours a Day</h4>
+          </div>
+        </div>
+      </div>
 
       <div className='w-screen py-10'>
         <div className='w-[1320px] mx-auto'>
@@ -87,12 +121,13 @@ export default function Home() {
             <p className='text-gray-500 text-sm text-center'>stars</p>
           </div>
         </div>
-        <div className='w-[10%] flex justify-center items-center'>
-          <div className='w-[15px] h-[15px] rounded-50% bg-gray'></div>
-          <div className='w-[15px] h-[15px] rounded-50% bg-gray'></div>
-          <div className='w-[15px] h-[15px] rounded-50% bg-gray'></div>
+        <div className='w-[1320px] mx-auto flex gap-3 my-8 justify-center items-center'>
+          <div className='w-[10px] h-[10px] rounded-[50%] bg-[#C09578]'></div>
+          <div className='w-[10px] h-[10px] rounded-[50%] bg-[#C09578]'></div>
+          <div className='w-[10px] h-[10px] rounded-[50%] bg-[#C09578]'></div>
         </div>
       </div>
+
 
       <div className='w-screen bg-[#F8F9F9] flex flex-col gap-8 items-center justify-center py-[5%]'>
         <div className='text-center flex flex-col gap-3 items-center justify-center'>
