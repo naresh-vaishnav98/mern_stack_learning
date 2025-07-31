@@ -24,11 +24,13 @@ server.get('/', (req,res) => {
 
 server.use('/uploads/category',express.static('uploads/category'));
 server.use('/uploads/testimonials',express.static('uploads/testimonials'));
+server.use('/uploads/subCategory',express.static('uploads/subCategory'));
 // Admin API URls
 
 require('./src/routes/admin/color.routes.js')(server);
 require('./src/routes/admin/material.routes.js')(server);
 require('./src/routes/admin/category.routes.js')(server);
+require('./src/routes/admin/subCategory.routes.js')(server);
 require('./src/routes/admin/testimonials.routes.js')(server);
 
 
