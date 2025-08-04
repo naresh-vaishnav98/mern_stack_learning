@@ -3,7 +3,7 @@ const subCategory = require('../../models/subCategory.js');
 
 exports.create = async (req, res) => {
 
-    // var saveData = req.file.filename;
+    var saveData = req.file.filename;
     var data = new subCategory(req.body);
 
     // console.log(req.file);
@@ -87,15 +87,17 @@ exports.view = async (req, res) => {
 
     var totalRecords = await subCategory.find(filter).countDocuments();
 
-    await subCategory.find(filter).select('_id name image parent_category_id order status').sort({
+    await subCategory.find(filter).select('_id name image _image_path parent_category_id order status').sort({
         _id: 'descending'
     })
+        .populate('parent_category_id','_id name image')
         .limit(limit).skip(skip)
         .then((result) => {
             if (result.length > 0) {
                 const output = {
                     _status: true,
                     _message: 'Record Found !!',
+                    _image_path: process.env.SUB_CATEGORY_BASE_URL,
                     _pagination: {
                         total_records: totalRecords,
                         current_page: page,

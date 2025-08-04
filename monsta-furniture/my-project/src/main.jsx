@@ -23,6 +23,7 @@ import CMSPagesListing from './CMSPagesListing';
 import UserProfile from './UserProfile';
 import CreateSlider from './CreateSlider';
 import EditSlider from './EditSlider';
+import SubCategoryListing from './SubCategoryListing';
 
 
 
@@ -40,6 +41,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/whychooseus-listing' element={<WhyChooseUsListing/>}></Route>
           <Route path='/coupons' element={<Coupons/>}></Route>
           <Route path='/categories-listing' element={<CategoriesListing/>}></Route>
+          <Route path='/sub-categories-listing' element={<SubCategoryListing/>}></Route>
           <Route path='/materials-listing' element={<MaterialsListing/>}></Route>
           <Route path='/colors-listing' element={<ColorsListing/>}></Route>
           <Route path='/products-listing' element={<ProductsListing/>}></Route>

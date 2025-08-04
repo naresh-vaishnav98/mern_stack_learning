@@ -22,7 +22,8 @@ const subCategoryschema = new mongoose.Schema({
     },
     parent_category_id : {
         type : String,
-        default : ''
+        default : '',
+        ref : 'categories'
     },
 
     order : {
@@ -49,6 +50,6 @@ const subCategoryschema = new mongoose.Schema({
     },
 })
 
-const subCategoryModel = mongoose.model('categories', subCategoryschema);
+const subCategoryModel = mongoose.model('subCategories', subCategoryschema);
 
 module.exports = subCategoryModel;

@@ -35,6 +35,7 @@ export default function SideBarr() {
                         </SidebarCollapse>
                         <SidebarCollapse icon={PiNotebookLight} label="Product Catalogs">
                             <SidebarItem href="/categories-listing">Catagories</SidebarItem>
+                            <SidebarItem href="/sub-categories-listing">Sub Catagories</SidebarItem>
                             <SidebarItem href="/materials-listing">Materials</SidebarItem>
                             <SidebarItem href="/colors-listing">Colors</SidebarItem>
                             <SidebarItem href="/products-listing">Products</SidebarItem>
