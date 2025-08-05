@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import { FaGlobeAmericas } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+import ProductCard from './Common/ProductCard';
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+
 
 
 export default function Home() {
@@ -77,8 +80,74 @@ export default function Home() {
       </div>
       
 
-          
+      
+      <div className='w-screen relative pt-15'>
+        {/* <div className="w-[1000px] mx-auto h-[1px] bg-gray-300 shadow-md shadow-gray-300 absolute top-6 left-[25%]" /> */}
+        <div className='w-[1320px] mx-auto flex justify-center'>
+          <button className='text-2xl font-bold text-center px-3 py-2 border border-2 border-gray-200 hover:text-[#C09578] cursor-pointer'>Featured</button>
+          <button className='text-2xl font-bold text-center px-3 py-2 border border-2 border-gray-200 hover:text-[#C09578] cursor-pointer'>New Arrivals</button>
+          <button className='text-2xl font-bold text-center px-3 py-2 border border-2 border-gray-200 hover:text-[#C09578] cursor-pointer'>Onsale</button>
+        </div>
+        <div className='w-[1320px] mx-auto flex flex-wrap my-6'>
+          <div className='w-[23%]'>
+            <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/> 
+          </div>
+          <div className='w-[23%]'>
+            <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/> 
+          </div>
+          <div className='w-[23%]'>
+            <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/> 
+          </div>
+          <div className='w-[23%]'>
+            <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/> 
+          </div>
+          <div className='w-[23%]'>
+            <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/> 
+          </div>
+          <div className='w-[23%]'>
+            <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/> 
+          </div>
+        </div>
+      </div>
 
+
+
+
+
+      
+      <div className='w-screen relative'>
+          <img src="/HomePageImages/middleBanner.jpg" alt="Banner Image"/>
+          <div className='w-[1320px] mx-auto cursor-pointer absolute top-[25%] left-[15.5%] hover:scale-105 duration-500'>
+            <div>
+              <h2 className='text-5xl font-bold'>New Trending Collection</h2>
+              <p className='text-gray-700 mt-3'>We Believe That Good Design is Always in Season</p>
+            </div>            
+            <button className='mt-12  cursor-pointer border border-2 border-[#C09578] hover:text-white hover:bg-[#C09578] rounded py-4 px-10 text-xs font-bold text-[#C09578]'>SHOPPING NOW</button>
+          </div>
+      </div>
+
+
+
+      <div className='w-screen py-15'>
+        <div className='w-[1320px] mx-auto flex items-center justify-between'>
+          <h2 className='text-2xl font-bold'>Bestselling Products</h2>
+          <div className="w-[1000px] h-[1px] bg-gray-300 shadow-md shadow-gray-300" />
+          <div className='flex'>            
+            <IoIosArrowBack />
+            <IoIosArrowForward />
+          </div>
+        </div>
+        <div className='w-[1320px] mx-auto flex items-center justify-between mt-3'>
+          <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/>
+          <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/>
+          <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/>
+          <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/>
+          <ProductCard title={'Caroline Study Tables'} category={'Nest Of Tables'} actual_price={6000} sell_price={4000}/>
+        </div>
+      </div>
+      
+      
+      
 
       <div className='w-screen bg-[#F8F9F9] p-15'>
         <div className='w-[1320px] mx-auto flex justify-between'>
