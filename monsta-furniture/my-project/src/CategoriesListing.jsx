@@ -92,6 +92,8 @@ export default function CategoriesListing() {
         if (val) {
             var data = CategoryArray.filter((v, i) => val === v.mainCategory);
             setGetSubCategory(data);
+        }else{
+            setGetSubCategory([]);
         }
     }
     // console.log(getSubCategory);
@@ -268,7 +270,7 @@ export default function CategoriesListing() {
                         <div className='bg-black/50 w-screen z-10 h-screen'>
                             <div className='w-[600px] border border-1 rounded mx-auto fixed  inset-x-[500px] bg-white p-5'>
                                 <div className='flex text-gray-700 justify-between'>
-                                    <h4>Edit Color</h4>
+                                    <h4>Edit Category</h4>
                                     <button onClick={editPopupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
@@ -307,7 +309,7 @@ export default function CategoriesListing() {
                         <div className='bg-black/50 w-screen z-10 h-screen'>
                             <div className='w-[600px] border border-1 rounded mx-auto fixed z-10 inset-x-[500px] bg-white p-5'>
                                 <div className='flex text-gray-700 justify-between'>
-                                    <h4>Create Color</h4>
+                                    <h4>Create Category</h4>
                                     <button onClick={popupHideShow}><strong className='text-xl'>x</strong></button>
 
                                 </div>
