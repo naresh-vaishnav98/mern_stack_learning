@@ -19,9 +19,8 @@ const handleIncreament = () => {
   dispatch(increment());
 }
 const resetCounter = () => {
-  dispatch(reset());
+  dispatch(reset());  
 }
-
 
   return (
     <>
