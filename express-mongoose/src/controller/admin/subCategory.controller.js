@@ -1,4 +1,5 @@
 const subCategory = require('../../models/subCategory.js');
+const category = require('../../models/category.js');
 
 
 exports.create = async (req, res) => {
@@ -11,8 +12,19 @@ exports.create = async (req, res) => {
         data.image = saveData;
     }
 
+    // data.parent_category_id
+    const parent_cat = await category.findById(data.parent_category_id)
+
+
+    // console.log(data._id);
+
+        await parent_cat.updateOne({ sub_category: data._id})
+
+
+
     await data.save()
-        .then((result) => {
+        .then(async (result) => {
+            
             const output = {
                 _status: true,
                 _message: 'Inserted Succesfully !!',
@@ -90,7 +102,7 @@ exports.view = async (req, res) => {
     await subCategory.find(filter).select('_id name image _image_path parent_category_id order status').sort({
         _id: 'descending'
     })
-        .populate('parent_category_id','_id name image')
+        .populate('parent_category_id', '_id name image')
         .limit(limit).skip(skip)
         .then((result) => {
             if (result.length > 0) {

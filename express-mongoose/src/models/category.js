@@ -26,7 +26,8 @@ const categoryschema = new mongoose.Schema({
     },
     sub_category : {
         type : String,
-        default : ''
+        default : '',
+        ref : 'subCategories'
     },
 
     order : {

@@ -3,7 +3,7 @@ const category = require('../../models/category.js');
 
 exports.create = async (req, res) => {
 
-    // var saveData = req.file.filename;
+    var saveData = req.file.filename;
     var data = new category(req.body);
 
     // console.log(req.file);
@@ -101,6 +101,7 @@ exports.view = async (req, res) => {
     await category.find(filter).select('_id name image main_category sub_category order status').sort({
         _id: 'descending'
     })
+        .populate('sub_category', '_id name image')
         .limit(limit).skip(skip)
         .then((result) => {
             if (result.length > 0) {

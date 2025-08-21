@@ -474,7 +474,7 @@ export default function SubCategoryListing() {
                                                 {v.main_category}
                                             </td>
                                             <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
-                                                {v.sub_category}
+                                                {v.sub_category.name}
                                             </td>
                                             <td class="px-6 py-4 border border-slate-300">
                                                 <input type="number" value={v.order} className='border border-1 border-gray-300 rounded p-2' />

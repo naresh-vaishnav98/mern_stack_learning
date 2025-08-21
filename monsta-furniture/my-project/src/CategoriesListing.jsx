@@ -24,9 +24,10 @@ export default function CategoriesListing() {
     let [checkedValues, setCheckedValues] = useState([]);
     let [currentPage, setCurrentPage] = useState(1);
     let [totalPages, setTotalPages] = useState(1);
+    let [categoryDetails, setCategoryDetails] = useState('');
 
 
-    console.log(currentPage)
+    // console.log(currentPage)
 
     var env = import.meta.env;
 
@@ -72,6 +73,30 @@ export default function CategoriesListing() {
             setPopupToggle(true);
             setEditCategory(true);
         }
+
+
+        axios.post(env.VITE_API_BASE_URL + '/categories/details/' + id)
+            .then((result) => {
+                if (result.data._status == true) {
+                    // console.log(result.data._data);
+                    setCategoryDetails(result.data._data);
+                    // setEditCategory(false);
+                    // setPopupToggle(false);
+                } else {
+                    toast.error(result.data._data[0]);
+                    // setEditCategory(false);
+                    // setPopupToggle(false);
+                }
+
+            })
+            .catch((error) => {
+                toast.error('Something Went Wrong !!!!!!')
+                // setEditCategory(false);
+                // setPopupToggle(false);
+            })
+
+
+
     }
 
 
@@ -92,7 +117,7 @@ export default function CategoriesListing() {
         if (val) {
             var data = CategoryArray.filter((v, i) => val === v.mainCategory);
             setGetSubCategory(data);
-        }else{
+        } else {
             setGetSubCategory([]);
         }
     }
@@ -100,7 +125,7 @@ export default function CategoriesListing() {
 
 
     useEffect(() => {
-        axios.post(env.VITE_API_BASE_URL + '/categories/view',{page : currentPage})
+        axios.post(env.VITE_API_BASE_URL + '/categories/view', { page: currentPage })
             .then((result) => {
                 setCategories(result.data._data);
                 // setCurrentPage(result.data._pagination.current_page);
@@ -110,7 +135,7 @@ export default function CategoriesListing() {
             .catch((error) => {
                 toast.error('Something Went Wronggggg !!')
             })
-    }, [popupToggle, editCategory, checkedValues,currentPage]);
+    }, [popupToggle, editCategory, checkedValues, currentPage]);
 
 
     const createCategory = (event) => {
@@ -144,6 +169,10 @@ export default function CategoriesListing() {
                 setPopupToggle(false);
             })
     }
+
+
+
+
 
 
     const updateCategory = (event) => {
@@ -251,7 +280,7 @@ export default function CategoriesListing() {
             } else {
                 toast.error('Please Select Records to Change Status !!')
             }
-        }else{
+        } else {
             setCheckedValues([])
         }
     }
@@ -295,9 +324,9 @@ export default function CategoriesListing() {
                                         )}
                                     </select>
                                     <label htmlFor="">Name</label><br />
-                                    <input type="text" placeholder='Name' autoComplete='off' defaultValue='{v.name}' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='name' />
+                                    <input type="text" placeholder='Name' autoComplete='off' defaultValue={categoryDetails.name} className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='name' />
                                     <label htmlFor="">Order</label><br />
-                                    <input type="text" placeholder='Order' autoComplete='off' defaultValue='{v.order}' className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='order' />
+                                    <input type="text" placeholder='Order' autoComplete='off' defaultValue={categoryDetails.order}className='w-[100%] border border-1 border-gray-300 rounded p-1 mb-5' name='order' />
                                     <div className='flex gap-2 justify-self-end mt-3'>
                                         <button className='rounded bg-gray-300 px-3 py-1' onClick={editPopupHideShow}>Close</button>
                                         <button className='flex gap-2 items-center rounded px-3 py-1 border bg-[#448cee] text-white' type='submit'><FaRegSave /> Update Category</button>
@@ -475,7 +504,7 @@ export default function CategoriesListing() {
                                                 {v.main_category}
                                             </td>
                                             <td scope="row" class="px-6 py-4 font-medium border border-slate-300 whitespace-nowrap">
-                                                {v.sub_category}
+                                                {v.sub_category.name}
                                             </td>
                                             <td class="px-6 py-4 border border-slate-300">
                                                 <input type="number" value={v.order} className='border border-1 border-gray-300 rounded p-2' />
@@ -503,7 +532,7 @@ export default function CategoriesListing() {
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div className='flex justify-between items-center mt-3 text-gray-500'>
                     <h4>Showing 1 to 3 of 3 entries</h4>
                     <ResponsivePagination
@@ -511,7 +540,7 @@ export default function CategoriesListing() {
                         total={totalPages}
                         onPageChange={setCurrentPage}
                     />
-                    
+
                 </div>
             </div>
         </>
