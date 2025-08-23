@@ -34,6 +34,9 @@ require('./src/routes/admin/subCategory.routes.js')(server);
 require('./src/routes/admin/testimonials.routes.js')(server);
 
 
+// Website API URls
+require('./src/routes/website/user.routes.js')(server);
+
 server.listen(process.env.PORT, () => {
     mongoose.connect(process.env.DB_URL)
   .then(() => console.log('Connected!'))
