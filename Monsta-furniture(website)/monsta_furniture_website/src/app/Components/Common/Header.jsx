@@ -28,7 +28,7 @@ export default function Header() {
     // console.log(livingToggle);
   return (
     <>
-      <div className='w-screen'>
+      <div className='w-[100%]'>
         <div className='border-b border-gray-200'>
             <div className='max-w-[1320px] h-[40px] mx-auto flex justify-between items-center text-sm'>
                 <div>Contact us 24/7 : +91-98745612330 / furnitureinfo@gmail.com</div>

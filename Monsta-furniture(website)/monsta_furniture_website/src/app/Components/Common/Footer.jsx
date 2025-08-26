@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn, FaYoutube, FaTelegra
 export default function Footer() {
     return (
         <>
-            <div className='w-screen border-t border-gray-200'>
+            <div className='w-[100%] border-t border-gray-200'>
                 <div className='max-w-[1320px] h-[350px] mx-auto flex justify-between items-center text-sm border-b border-gray-200'>
                     <div className='w-[30%] h-[70%]'>
                         <h2 className='font-bold text-2xl pb-6 '>Contact us</h2>

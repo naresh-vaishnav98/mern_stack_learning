@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <>
-      <div className='w-screen relative'>
+      <div className='w-[100%] relative'>
         {
           bannerToggle
             ?
@@ -53,7 +53,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='w-screen border-b border-gray-200'>
+      <div className='w-[100%] border-b border-gray-200'>
         <div className='w-[1320px] mx-auto flex justify-center items-center gap-6 py-10'>
           <div className='w-[33%]  overflow-hidden relative'>
             <img src="/HomePageImages/yellowchair.webp" alt="" className='w-[100%] hover:scale-110 duration-500' />
@@ -81,7 +81,7 @@ export default function Home() {
       
 
       
-      <div className='w-screen relative pt-15'>
+      <div className='w-[100%] relative pt-15'>
         {/* <div className="w-[1000px] mx-auto h-[1px] bg-gray-300 shadow-md shadow-gray-300 absolute top-6 left-[25%]" /> */}
         <div className='w-[1320px] mx-auto flex justify-center'>
           <button className='text-2xl font-bold text-center px-3 py-2 border border-2 border-gray-200 hover:text-[#C09578] cursor-pointer'>Featured</button>
@@ -115,7 +115,7 @@ export default function Home() {
 
 
       
-      <div className='w-screen relative'>
+      <div className='w-[100%] relative'>
           <img src="/HomePageImages/middleBanner.jpg" alt="Banner Image"/>
           <div className='w-[1320px] mx-auto cursor-pointer absolute top-[25%] left-[15.5%] hover:scale-105 duration-500'>
             <div>
@@ -128,7 +128,7 @@ export default function Home() {
 
 
 
-      <div className='w-screen py-15'>
+      <div className='w-[100%] py-15'>
         <div className='w-[1320px] mx-auto flex items-center justify-between'>
           <h2 className='text-2xl font-bold'>Bestselling Products</h2>
           <div className="w-[1000px] h-[1px] bg-gray-300 shadow-md shadow-gray-300" />
@@ -149,7 +149,7 @@ export default function Home() {
       
       
 
-      <div className='w-screen bg-[#F8F9F9] p-15'>
+      <div className='w-[100%] bg-[#F8F9F9] p-15'>
         <div className='w-[1320px] mx-auto flex justify-between'>
           <div className='flex flex-col gap-4 justify-center items-center w-[30%]'>
             <div className='border border-2 border-gray-800 text-gray-500 text-xl rounded-[50%] p-7 hover:text-[#C09578] hover:border-[#C09578]'>
@@ -175,7 +175,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='w-screen py-10'>
+      <div className='w-[100%] py-10'>
         <div className='w-[1320px] mx-auto'>
           <h2 className='text-center mx-auto text-2xl font-bold'>What Our Customers Say ?</h2>
           <div className='w-[75%] text-center mx-auto text-gray-600 leading-7 my-6'>
@@ -198,7 +198,7 @@ export default function Home() {
       </div>
 
 
-      <div className='w-screen bg-[#F8F9F9] flex flex-col gap-8 items-center justify-center py-[5%]'>
+      <div className='w-[100%] bg-[#F8F9F9] flex flex-col gap-8 items-center justify-center py-[5%]'>
         <div className='text-center flex flex-col gap-3 items-center justify-center'>
           <h3 className='font-bold text-3xl'>Our Newsletter</h3>
           <p>Get E-mail updates about our latest shop and special offers.</p>
