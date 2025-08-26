@@ -63,6 +63,54 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
 
+    // var arr = [2,1,3,5,4];
+    // var arr1 =[];
+    // arr.map((value) => {
+    //     arr1.unshift(value);
+    // })
+
+    // var aa = arr.reduce((acc, curr) => {
+    //     if(acc>curr){
+    //         return acc;
+    //     }else{
+    //         return curr;
+    //     }
+    // })
+
+    // var aa = arr.reduce((acc, curr) => {
+    //     if(acc<curr){
+    //         return acc;
+    //     }else{
+    //         return curr;
+    //     }
+    // })
+
+    // var str = 'level';
+    // var str1 = str.split('').reverse().join('');
+    // if(str == str1){
+    //     console.log('palindrome');
+    // }else{
+    //     console.log('not palindrome');
+    // }
+
+    // var strArr = str.split('');
+    // var nn ='';
+    // for(var i=0; i<=strArr.length; i++){
+    //     vv = strArr.splice(i, 1)
+    //     // var vv = strArr[i];
+    //     console.log(strArr);
+    //     // strArr.forEach((value, index) => {
+    //     //     if(vv == value){
+    //     //         nn = value
+    //     //     }
+    //     // })
+    //     // strArr.splice(i, 1, vv)
+    // }
+    // console.log(nn);
+
+
+
+
     var saveData = {
         email : req.body.email,
         deleted_at : null
