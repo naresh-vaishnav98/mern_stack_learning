@@ -1,6 +1,6 @@
 const express = require("express");
-const Chat = require("../models/Chat");
-const { saveChat, getChat } = require("../controller/chat.controller");
+// const Chat = require("../models/Chat");
+const { saveChat, getChat } = require('../controller/chat.controller.js');
 const router = express.Router();
 
 
