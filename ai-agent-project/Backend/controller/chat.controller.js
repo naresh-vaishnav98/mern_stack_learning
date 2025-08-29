@@ -6,7 +6,7 @@ exports.saveChat = async (req, res) => {
         agentResponse: req.body.agentResponse
     });
 
-    newChat.save()
+    await newChat.save()
     .then((result) => {
         const output = {
             _status: true,
