@@ -9,6 +9,10 @@ const chatSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    role:{
+        type: String,
+        default: "user",
+    },
     created_at: {
         type: Date, 
         default: Date.now,
