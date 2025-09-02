@@ -11,7 +11,7 @@ module.exports = server => {
     router.post("/save-chat", saveChat);
 
     // Get chat history
-    router.get("/get-chat", getChat);
+    router.post("/get-chat", getChat);
 
 
     server.use('/api/chats', router);

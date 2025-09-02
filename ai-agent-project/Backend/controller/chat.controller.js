@@ -26,11 +26,11 @@ exports.saveChat = async (req, res) => {
 }
 
 
+
+
 exports.getChat = async (req, res) => {
     
-    chat.find()
-    .sort({ createdAt: -1 })
-    .limit(10)
+    await chat.find().sort({ created_at: -1 })
     .then((result) => {
         const output = {
             _status: true,

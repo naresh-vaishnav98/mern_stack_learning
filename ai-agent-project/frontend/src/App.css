@@ -40,3 +40,33 @@
 .read-the-docs {
   color: #888;
 }
+
+.myapp{
+  background-color: #f0f0f0;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+  margin-top: 20px;
+}
+form {
+
+  margin-top: 20px;
+  display: flex;
+  align-items: right;
+  justify-content: center;
+  gap: 10px;
+}
+form input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.head{
+  text-align: center;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 20px;
+}
