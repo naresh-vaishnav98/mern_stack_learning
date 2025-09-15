@@ -2,7 +2,6 @@ const user = require('../model/user');
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const nodemailer = require("nodemailer");
 
 
 exports.register = async (req, res) => {
@@ -11,14 +10,14 @@ exports.register = async (req, res) => {
 
     var saveData = {
         name : req.body.name,
-        email : req.body.email,
+        // email : req.body.email,
         password : password,
-        mobile_number : req.body.mobile_number,
+        // mobile_number : req.body.mobile_number,
     }
 
+    // console.log(saveData);
 
-
-    existingUser = await user.findOne({ email: req.body.email, deleted_at: null });
+    existingUser = await user.findOne({ name: req.body.name, deleted_at: null });
     if (existingUser) {
         const output = {
             _status: false,
@@ -30,8 +29,9 @@ exports.register = async (req, res) => {
 
 
     const data = new user(saveData);
-
+    console.log(data);
     await data.save()
+    
         .then((result) => {
             var token = jwt.sign({ data: result }, process.env.JWT_SECRET_KEY);
             const output = {
@@ -65,12 +65,14 @@ exports.login = async (req, res) => {
 
 
     var saveData = {
-        email : req.body.email,
+        name : req.body.name,
         deleted_at : null
     }
+    // console.log(saveData);
 
     await user.findOne(saveData) 
         .then(async(result) => {
+            console.log(result);
 
             const password = await bcrypt.compare(req.body.password, result.password);
             

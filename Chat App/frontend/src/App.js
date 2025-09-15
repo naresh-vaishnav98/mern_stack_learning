@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import io from 'socket.io-client';
+import Chat from './Components/chat';
+import Login from './Components/login';
+
+const socket = io('http://localhost:5002');
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!user ? (
+        <Login setUser={setUser} />
+      ) : (
+        <Chat socket={socket} user={user} />
+      )}
     </div>
   );
 }
