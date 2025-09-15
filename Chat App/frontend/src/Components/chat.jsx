@@ -8,6 +8,10 @@ function Chat({ socket, user }) {
     socket.on('receiveMessage', (data) => {
       setMessages((prev) => [...prev, data]);
     });
+
+    return () => {
+      socket.off('receiveMessage');
+    };
   }, [socket]);
 
   const sendMessage = () => {
@@ -18,6 +22,7 @@ function Chat({ socket, user }) {
 
   return (
     <div>
+        <h1>User : {user}</h1>
       <h2>Chat</h2>
       <div style={{ border: '1px solid black', height: '300px', overflowY: 'scroll' }}>
         {messages.map((msg, index) => (
